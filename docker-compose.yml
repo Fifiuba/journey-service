@@ -1,0 +1,23 @@
+version: '3.9'
+# Declaro los servicios a utilizar
+
+services:
+
+# Servicio de backend 
+  node:
+    restart: always
+    build: .
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/code
+
+# Servicio de base de datos
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+volumes:
+ mongodb:
