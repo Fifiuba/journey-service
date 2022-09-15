@@ -18,7 +18,7 @@ To run the image:
 $ sh startJourney.sh
 ```
 
-Then the app can be accessed from https://localhost:8001  
+Then the app can be accessed from https://localhost:9000  
 
 To stop the container first check the container id (from a new terminal):  
  
