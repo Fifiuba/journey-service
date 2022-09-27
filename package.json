@@ -4,8 +4,8 @@
   "description": "--- [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Fifiuba/journey-service/test?label=build&style=flat-square&logo=GitHub)](https://github.com/Fifiuba/journey-service/commits) [![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/main/graph/badge.svg?token=WQLIP37828)](https://codecov.io/gh/Fifiuba/journey-service) [![GitHub issues](https://img.shields.io/github/issues/Fifiuba/journey-service?&style=flat-square)](https://github.com/Fifiuba/journey-service/issues) [![GitHub license](https://img.shields.io/github/license/Fifiuba/journet-service?&style=flat-square)](https://github.com/Fifiuba/journey-service/blob/main/LICENSE)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "jest",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -19,12 +19,15 @@
   "homepage": "https://github.com/Fifiuba/journey-service#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "leaflet": "^1.9.1",
     "moment": "^2.29.4",
+    "mongodb": "^4.10.0",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
   },
   "keywords": [],
   "devDependencies": {
+    "jest": "^29.0.3",
     "nodemon": "^2.0.20"
   }
 }

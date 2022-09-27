@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const routes = require('./routes/routes.js')
+const routes = require('./routes')
 const bodyParser = require('body-parser')
 const path = require('path')
 const swaggerUi = require('swagger-ui-express');
@@ -24,7 +24,7 @@ const swaggerSpec = {
 
 app.use(bodyParser.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerSpec)));
-app.use("/journeys",routes.journeyRouter);
+app.use("/journey",routes.journeyRouter);
 
 app.get('/', (req, res) => {
     res.send('Journey service!');

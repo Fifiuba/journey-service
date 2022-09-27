@@ -31,3 +31,15 @@ Then to stop it enter (on the same console):
 ```
 $ sudo docker stop <image-id>
 ```
+
+## Database Model
+```bash 
+id_user
+car_info : {type: id: id_driver: car_model: license_plate:}
+trip_status (requested, cancelled, finished, ongoing)
+startTime
+endTime
+price
+route : {to: from:}
+
+```
