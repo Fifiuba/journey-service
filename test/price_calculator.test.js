@@ -1,5 +1,6 @@
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
+const {InvalidDistanceError} = require('../errors/invalid_distance');
 
 
 describe('PriceCalculator', () => {
@@ -28,5 +29,17 @@ describe('PriceCalculator', () => {
     const priceCalculator = new PriceCalculator(modality, distance);
 
     expect(priceCalculator.calculate()).toBe(275);
+  } );
+
+  test('04_should_throw_error_negative_distance', () => {
+    const distance = -1;
+    const modality = new Modality('standar');
+    const priceCalculator = new PriceCalculator(modality, distance);
+
+    const error = () => {
+      priceCalculator.calculate();
+    };
+
+    expect(error).toThrow(InvalidDistanceError);
   } );
 });
