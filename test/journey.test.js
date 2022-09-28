@@ -1,4 +1,7 @@
 const {Journey} = require('../model/journey')
+const {DistanceCalculator} = require('distanceCalculator');
+const {PriceCalculator} = require('priceCalculator');
+const {DurationCalculator} = require('durationCalculator');
 
 describe("Journey", () => {
     let obelisco = {

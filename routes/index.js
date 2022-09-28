@@ -14,12 +14,10 @@ journeyRouter.route('/info')
   .post(async (req, res) => {
       let from = req.body.from;
       let to = req.body.to;
-      let journey = new Journey(from,to);
-      res.send(journey.price());
-  })
-
-
-
+      let modality = req.body.modality; 
+      let journey = new Journey(from,to,modality);
+      res.send(journey.cost());
+})
 
 journeyRouter.post('/start/{id}',async (req,res) => {
   //let JourneyRepository = new JourneyRepository();  
