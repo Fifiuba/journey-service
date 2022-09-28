@@ -1,35 +1,31 @@
-const {PriceCalculator} = require('./priceCalculator.js');
+class Journey {
+  constructor(modality, priceCalculator) {
+    this.modality = modality;
+    this.priceCalculator = priceCalculator;
+  }
 
-class Journey{
+  distance() {
+    this.distanceCalculator.calculate();
+  }
 
-    constructor(modality, priceCalculator){
-        this.modality = modality;
-        this.priceCalculator = priceCalculator;
+  setStart(timestamp) {
+    this.start = timestamp;
+  }
 
-    }
+  setEnd(timestamp) {
+    this.end = timestamp;
+  }
 
-    distance() {
-        this.distanceCalculator.calculate()
-    }
+  duration() {
+    const MINUTE = 60000;
+    const milisegs = this.end - this.start;
+    const minutes = milisegs / MINUTE;
+    return minutes;
+  }
 
-    setStart(timestamp){
-      this.start = timestamp;
-    }
-
-    setEnd(timestamp){
-        this.end = timestamp;
-    }
-
-    duration() {
-        const MINUTE = 60000
-        let milisegs = this.end - this.start
-        let minutes = milisegs / MINUTE
-        return minutes
-    }
-
-    cost() {
-        this.priceCalculator.calculate()
-    }
+  cost() {
+    this.priceCalculator.calculate();
+  }
 }
 
-module.exports = {Journey}
+module.exports = {Journey};
