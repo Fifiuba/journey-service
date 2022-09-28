@@ -1,28 +1,26 @@
+const {DistanceCalculator} = require('distanceCalculator');
+const {PriceCalculator} = require('priceCalculator');
+const {DurationCalculator} = require('durationCalculator');
+
 class Journey{
 
-    constructor(from, to){
-        this.from = from;
-        this.to = to;
+    constructor(modality, priceCalculator, distanceCalculator, durationCalculator){
+        this.modality = modality;
+        this.priceCalculator = priceCalculator;
+        this.distanceCalculator = distanceCalculator;
+        this.durationCalculator = durationCalculator;
     }
 
     distance() {
-        const LAT_TO_KM = 111
-        let x = this.from["lat"] - this.to["lat"];
-        let y = this.from["long"] - this.to["long"]
-
-        let result = Math.sqrt(Math.pow(x*LAT_TO_KM,2) + Math.pow(y*LAT_TO_KM,2))
- 
-        return result
+        this.distanceCalculator.calculate()
     }
 
     setStart(timestamp){
       this.start = timestamp;
-      console.log(timestamp);
     }
 
     setEnd(timestamp){
         this.end = timestamp;
-        console.log(timestamp);
     }
 
     duration() {
@@ -33,12 +31,8 @@ class Journey{
     }
 
     cost() {
-        const BASE_PRICE = 10;
-        return this.distance() * BASE_PRICE 
+        this.priceCalculator.calculate()
     }
-
-
-    
 }
 
 module.exports = {Journey}
