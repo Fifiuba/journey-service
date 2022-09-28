@@ -1,6 +1,6 @@
-const {DistanceCalculator} = require('distanceCalculator');
-const {PriceCalculator} = require('priceCalculator');
-const {DurationCalculator} = require('durationCalculator');
+const {DistanceCalculator} = require('./distanceCalculator.js');
+const {PriceCalculator} = require('./priceCalculator.js');
+const {DurationCalculator} = require('./durationCalculator.js');
 
 class Journey{
 
