@@ -1,14 +1,11 @@
-const {DistanceCalculator} = require('./distanceCalculator.js');
 const {PriceCalculator} = require('./priceCalculator.js');
-const {DurationCalculator} = require('./durationCalculator.js');
 
 class Journey{
 
-    constructor(modality, priceCalculator, distanceCalculator, durationCalculator){
+    constructor(modality, priceCalculator){
         this.modality = modality;
         this.priceCalculator = priceCalculator;
-        this.distanceCalculator = distanceCalculator;
-        this.durationCalculator = durationCalculator;
+
     }
 
     distance() {
