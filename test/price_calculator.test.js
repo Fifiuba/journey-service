@@ -23,4 +23,13 @@ describe("PriceCalculator",() => {
         expect(priceCalculator.calculate()).toBe(700)
     } )
 
+    test('03_should_be_275_when_distance_is_2.5_and_modality_pro',() => {
+        let distance = 2.5;
+        const modality = new Modality('pro');
+
+        const priceCalculator = new PriceCalculator(modality,distance)
+
+        expect(priceCalculator.calculate()).toBe(275)
+    } )
+
 })
