@@ -1,13 +1,13 @@
 class PriceCalculator{
     
-    constructor(modality,calculator){
+    constructor(modality,distance){
         this.modality = modality;
-        this.distanceCalculator = calculator;
+        this.distance = distance;
     }
     
     calculate(){
         const BASE_PRICE = 100;
-        let price = this.distanceCalculator.calculate() * BASE_PRICE;
+        let price = this.distance * BASE_PRICE;
         price = this.modality.apply(price);
         
         return price;
