@@ -5,7 +5,7 @@ services:
     build: . 
     ports:
     - "9000:9000"
-    restart: on-failure
+    restart: always
 
   mongodb:
     container_name: mongodb
@@ -15,6 +15,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=Journeys
 
   mongo-express:
     container_name: mongo-express
@@ -31,6 +32,3 @@ services:
       - "8081:8081"
     restart: always
 
-networks: 
-  default: 
-      name: users-service_default

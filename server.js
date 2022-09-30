@@ -15,7 +15,7 @@ async function connect(){
       },
       user: "root",
       pass: "root",
-      dbName: 'journey_db',
+      dbName: 'Journey_db',
 
     }).then(() => {
       console.log('Mongodb connected...');
