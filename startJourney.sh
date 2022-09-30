@@ -1,1 +1,3 @@
-sudo docker run -p 9000:9000 journey-service
+sudo docker compose build
+clear 
+sudo docker compose up

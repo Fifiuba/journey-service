@@ -27,7 +27,7 @@ services:
       - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
       - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
     depends_on:
-      - mongo
+      - mongodb
     ports:
       - "8081:8081"
     restart: always
