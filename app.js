@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose')
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');

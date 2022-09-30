@@ -1,21 +1,12 @@
-const {MongoClient} = require('mongodb')
-//require('dotenv').config()
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const database = new MongoClient('mongodb://root:root@mongodb:27017/');
+//Each schema maps to a MongoDB collection and defines the shape of the documents within that collection
+const JourneySchema = new Schema({
+  att: String
+});
 
-async function run (){
-
-  try{
-
-    await database.connect();
-    await database.db("admin").command({ping:1});
-    console.log("Connected successfully to server");
-  } finally{
-
-    await database.close();
-  }
-}
-
-run().catch(console.dir);
-
-module.exports = {database}
+//To use our schema definition, we need to convert it into a Model we can work with
+//Instances of Models are documents
+const JourneyModel = mongoose.model('Journey', JourneySchema);
+module.exports = {JourneyModel}

@@ -1,15 +1,23 @@
 const express = require('express');
 const { Journey } = require('../model/journey');
-const {database} = require('../database/database.js')
+const {JourneyModel} = require('../database/database.js');
 
 const journeyRouter = express.Router();
 
 journeyRouter.route('/example')
   .post(async (req, res) => {
-    database.collection("journey").insertOne(req.body, function(err, res) {
-      if (err) throw err;
-      console.log("1 document inserted");
-      db.close();
+    const example = new JourneyModel({
+      att: req.body.message
+    });
+    example.save().then( result => {
+      console.log(result);
+      res.status(201).json(example);
+
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: err});
+
     });
 });
 
