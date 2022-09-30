@@ -1,9 +1,17 @@
 const express = require('express');
 const { Journey } = require('../model/journey');
-require('./database/database')
-const dbConnect = dbo.getDb();
+const {database} = require('../database/database.js')
 
 const journeyRouter = express.Router();
+
+journeyRouter.route('/example')
+  .post(async (req, res) => {
+    database.collection("journey").insertOne(req.body, function(err, res) {
+      if (err) throw err;
+      console.log("1 document inserted");
+      db.close();
+    });
+});
 
 journeyRouter.route('/request')
   .post(async (req, res) => {

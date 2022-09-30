@@ -1,31 +1,21 @@
 const {MongoClient} = require('mongodb')
-require('dotenv').config()
+//require('dotenv').config()
 
+const database = new MongoClient('mongodb://root:root@mongodb:27017/');
 
+async function run (){
 
-const connectionString = process.env.ATLAS_URI;
-const client = new MongoClient(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  try{
 
-let dbConnection;
+    await database.connect();
+    await database.db("admin").command({ping:1});
+    console.log("Connected successfully to server");
+  } finally{
 
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (err || !db) {
-        return callback(err);
-      }
+    await database.close();
+  }
+}
 
-      dbConnection = db.db("journey");
-      console.log("Successfully connected to MongoDB.");
+run().catch(console.dir);
 
-      return callback();
-    });
-  },
-
-  getDb: function () {
-    return dbConnection;
-  },
-};
+module.exports = {database}
