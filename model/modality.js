@@ -1,8 +1,15 @@
 
 class Modality {
-    apply(price) {
-        return price;
+  constructor(type) {
+    this.type = type;
+  }
+  apply(price) {
+    if (this.type === 'standar') {
+      return price;
     }
+
+    return price * 1.10;
+  }
 }
 
-module.exports = {Modality}
+module.exports = {Modality};

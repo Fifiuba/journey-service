@@ -1,17 +1,22 @@
-class PriceCalculator{
-    
-    constructor(modality,calculator){
-        this.modality = modality;
-        this.distanceCalculator = calculator;
+const {InvalidDistanceError} = require('../errors/invalid_distance');
+
+class PriceCalculator {
+  constructor(modality, distance) {
+    this.modality = modality;
+    this.distance = distance;
+  }
+
+  calculate() {
+    const BASE_PRICE = 100;
+    if (this.distance < 0) {
+      throw new InvalidDistanceError('Negative distance!');
     }
-    
-    calculate(){
-        const BASE_PRICE = 100;
-        let price = this.distanceCalculator.calculate() * BASE_PRICE;
-        price = this.modality.apply(price);
-        
-        return price;
-    }
+
+    let price = this.distance * BASE_PRICE;
+    price = this.modality.apply(price);
+
+    return price;
+  }
 }
 
-module.exports = {PriceCalculator}
+module.exports = {PriceCalculator};
