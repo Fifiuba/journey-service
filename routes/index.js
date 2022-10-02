@@ -1,25 +1,29 @@
 const express = require('express');
-const { Journey } = require('../model/journey');
+const {Journey} = require('../model/journey');
 const {JourneyModel} = require('../database/database.js');
 
 const journeyRouter = express.Router();
 
 journeyRouter.route('/example')
-  .post(async (req, res) => {
-    const example = new JourneyModel({
-      att: req.body.message
+    .post(async (req, res) => {
+      const example = new JourneyModel({
+        status: 'requested',
+        idPassenger: 10,
+        driver: {
+          idDriver: 1,
+          vip: false,
+        },
+        price: 20,
+      });
+      example.save().then( (result) => {
+        console.log(result);
+        res.status(201).json(example);
+      })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json({error: err});
+          });
     });
-    example.save().then( result => {
-      console.log(result);
-      res.status(201).json(example);
-
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({error: err});
-
-    });
-});
 
 journeyRouter.route('/request')
     .post(async (req, res) => {

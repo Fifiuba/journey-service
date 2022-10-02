@@ -1,6 +1,6 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const mongoose = require('mongoose')
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
@@ -21,7 +21,7 @@ const swaggerSpec = {
   apis: [`${__dirname}/routes/routes.js`],
 };
 
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerSpec)));
 app.use('/journey', routes.journeyRouter);
