@@ -1,5 +1,6 @@
 const {app} = require('./app');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const PORT = process.env.PORT || 9000;
 
@@ -13,8 +14,8 @@ async function connect(){
       auth: {
         authSource: "admin"
       },
-      user: "root",
-      pass: "root",
+      user: process.env.ME_CONFIG_MONGODB_ADMINUSERNAME,
+      pass: process.env.ME_CONFIG_MONGODB_ADMINPASSWORD,
       dbName: 'Journey_db',
 
     }).then(() => {
