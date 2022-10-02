@@ -14,6 +14,8 @@ journeyRouter.route('/example')
           vip: false,
         },
         price: 20,
+        from: [-10,0],
+        to:[29.121234, 13.131313]
       });
       example.save().then( (result) => {
         console.log(result);

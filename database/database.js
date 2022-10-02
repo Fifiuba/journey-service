@@ -14,6 +14,8 @@ const JourneySchema = new Schema({
   price: Number,
   startOn: {type: Date, default: Date.now},
   finishOn: {type: Date, default: Date.now},
+  from: {type: [Number]},
+  to: {type: [Number]},
 });
 
 // To use our schema definition, we need to convert it

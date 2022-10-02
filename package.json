@@ -25,7 +25,6 @@
     "moment": "^2.29.4",
     "mongodb": "^4.10.0",
     "mongoose": "^6.6.3",
-    "mongoose-geojson-schema": "^2.2.3",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
   },
