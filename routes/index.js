@@ -33,12 +33,18 @@ journeyRouter.route('/request')
     .post(async (req, res) => {
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
-      const priceCalculator = new PriceCalculator(modality,distance);
-      const json = {
-        price: priceCalculator.calculate(),
-      };
-      res.status(202).json(json);
-});
+      const priceCalculator = new PriceCalculator(modality, distance);
+      
+      try {
+        let price = priceCalculator.calculate()
+        const json = {
+          price: price,
+        };
+        res.status(202).json(json);
+      } catch (error) {
+        res.status(500).json({error: error});
+      }
+    });
 
 journeyRouter.route('/info')
     .post(async (req, res) => {
