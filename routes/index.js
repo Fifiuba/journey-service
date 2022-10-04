@@ -3,6 +3,7 @@ const {Journey} = require('../model/journey');
 const {JourneyModel} = require('../database/database.js');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
+const { Auth } = require('../model/auth');
 
 const journeyRouter = express.Router();
 
@@ -34,15 +35,17 @@ journeyRouter.route('/request')
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
       const priceCalculator = new PriceCalculator(modality, distance);
+      const auth = new Auth();
 
       try {
+        auth.validate(req.headers)
         const price = priceCalculator.calculate();
         const json = {
           price: price,
         };
         res.status(202).json(json);
       } catch (error) {
-        res.status(500).json({error: error});
+        res.status(error.code).json({error: error});
       }
     });
 
