@@ -5,4 +5,11 @@ class InvalidDistanceError extends Error {
   }
 }
 
-module.exports = {InvalidDistanceError};
+class InvalidTokenError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'InvalidTokenError';
+  }
+}
+
+module.exports = {InvalidDistanceError, InvalidTokenError};
