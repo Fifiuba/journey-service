@@ -34,9 +34,9 @@ journeyRouter.route('/request')
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
       const priceCalculator = new PriceCalculator(modality, distance);
-      
+
       try {
-        let price = priceCalculator.calculate()
+        const price = priceCalculator.calculate();
         const json = {
           price: price,
         };
