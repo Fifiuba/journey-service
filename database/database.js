@@ -21,4 +21,21 @@ const JourneySchema = new Schema({
 // To use our schema definition, we need to convert it
 // into a Model we can work with Instances of Models are documents
 const JourneyModel = mongoose.model('Journey', JourneySchema);
-module.exports = {JourneyModel};
+module.exports = {JourneyModel, getJourneyById, getJourneys};
+
+
+async function getJourneyById(id){
+
+  var json = await JourneyModel.findById(id, function (err){
+    return err;
+  }).clone().catch(function(err){ console.log(err)});
+
+  console.log('encuentra:')
+  console.log(json)
+  return json;
+}
+
+async function getJourneys(){
+
+  return await JourneyModel.find()
+}

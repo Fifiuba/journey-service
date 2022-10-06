@@ -1,6 +1,6 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-const {JourneyModel} = require('../database/database.js');
+const {JourneyModel, getJourneyById} = require('../database/database.js');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -58,18 +58,24 @@ journeyRouter.route('/info')
       res.send(journey.cost());
     });
 
-journeyRouter.post('/start/{id}', async (req, res) => {
+journeyRouter.post('/start/:id', async (req, res) => {
   // let JourneyRepository = new JourneyRepository();
 });
 
-journeyRouter.post('/cancel/{id}', async (req, res) => {
+journeyRouter.post('/cancel/:id', async (req, res) => {
 
 
 });
 
-journeyRouter.post('/finish/{id}', async (req, res) => {
+journeyRouter.post('/finish/:id', async (req, res) => {
+  
 
+});
 
+journeyRouter.route("/:id").get(async (req, res) => {
+  
+  var journey = await getJourneyById(req.params.id);
+  res.send(journey);
 });
 
 module.exports = {journeyRouter};
