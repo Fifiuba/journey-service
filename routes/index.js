@@ -1,6 +1,9 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
 const {JourneyModel} = require('../database/database.js');
+const {PriceCalculator} = require('../model/priceCalculator');
+const {Modality} = require('../model/modality');
+const { Auth } = require('../model/auth');
 
 const journeyRouter = express.Router();
 
@@ -14,8 +17,8 @@ journeyRouter.route('/example')
           vip: false,
         },
         price: 20,
-        from: [-10,0],
-        to:[29.121234, 13.131313]
+        from: [-10, 0],
+        to: [29.121234, 13.131313],
       });
       example.save().then( (result) => {
         console.log(result);
@@ -29,14 +32,28 @@ journeyRouter.route('/example')
 
 journeyRouter.route('/request')
     .post(async (req, res) => {
+      const distance = req.body.distance;
+      const modality = new Modality(req.body.modality);
+      const priceCalculator = new PriceCalculator(modality, distance);
+      const auth = new Auth();
 
+      try {
+        auth.validate(req.headers)
+        const price = priceCalculator.calculate();
+        const json = {
+          price: price,
+        };
+        res.status(202).json(json);
+      } catch (error) {
+        res.status(error.code).json({error: error});
+      }
     });
 
 journeyRouter.route('/info')
     .post(async (req, res) => {
       const from = req.body.from;
       const to = req.body.to;
-      const modality = req.body.modality;
+      const modality = new Modality(req.body.modality);
       const journey = new Journey(from, to, modality);
       res.send(journey.cost());
     });
