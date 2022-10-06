@@ -21,4 +21,10 @@ const JourneySchema = new Schema({
 // To use our schema definition, we need to convert it
 // into a Model we can work with Instances of Models are documents
 const JourneyModel = mongoose.model('Journey', JourneySchema);
-module.exports = {JourneyModel};
+module.exports = {JourneyModel, updateJourneyStatusTo};
+
+async function updateJourneyStatusTo(newStatus, id){
+
+  var updatedJourney = await JourneyModel.findByIdAndUpdate(id, {status: newStatus},{new: true});
+  return updatedJourney;
+}

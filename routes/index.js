@@ -1,6 +1,6 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-const {JourneyModel} = require('../database/database.js');
+const {JourneyModel, updateJourneyStatusTo} = require('../database/database.js');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -62,9 +62,16 @@ journeyRouter.post('/start/{id}', async (req, res) => {
   // let JourneyRepository = new JourneyRepository();
 });
 
-journeyRouter.post('/cancel/{id}', async (req, res) => {
+journeyRouter.post('/accept/:id', async (req, res) => {
+  
+  var journey = await updateJourneyStatusTo("accepted",req.params.id);
+  res.send(journey);
+});
 
+journeyRouter.post('/cancel/:id', async (req, res) => {
 
+  var journey = await updateJourneyStatusTo("cancelled",req.params.id);
+  res.send(journey);
 });
 
 journeyRouter.post('/finish/{id}', async (req, res) => {
