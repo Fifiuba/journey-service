@@ -26,13 +26,11 @@ module.exports = {JourneyModel, getJourneyById, getJourneys};
 
 async function getJourneyById(id){
 
-  var json = await JourneyModel.findById(id, function (err){
+  var journey = await JourneyModel.findById(id, function (err){
     return err;
   }).clone().catch(function(err){ console.log(err)});
 
-  console.log('encuentra:')
-  console.log(json)
-  return json;
+  return journey;
 }
 
 async function getJourneys(){
