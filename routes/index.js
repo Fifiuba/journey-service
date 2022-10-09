@@ -58,6 +58,24 @@ journeyRouter.route('/info')
       res.send(journey.cost());
     });
 
+journeyRouter.post('/', async (req, res) => {
+   
+    const modality = new Modality(req.body.modality);
+    const priceCalculator = new PriceCalculator(modality, req.body.distance);
+
+    const price = priceCalculator.calculate();
+   
+    const db_journey = new JourneyModel({
+            status: 'requested',
+            idPassenger: req.body.idPassenger,
+            price: price,
+            from: req.body.from.split(","),
+            to: req.body.to.split(","),
+          });
+    var result = await db_journey.save();
+    res.send(result);
+});
+
 journeyRouter.post('/start/{id}', async (req, res) => {
   // let JourneyRepository = new JourneyRepository();
 });
