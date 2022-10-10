@@ -1,6 +1,6 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-const {JourneyModel, updateJourneyStatusTo} = require('../database/database.js');
+const {JourneyModel, updateJourneyStatusTo, updateJourneyDriverTo, updateJourneyInfo} = require('../database/database.js');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -76,8 +76,18 @@ journeyRouter.post('/', async (req, res) => {
     res.send(result);
 });
 
-journeyRouter.post('/start/{id}', async (req, res) => {
+journeyRouter.patch('/start/:id', async (req, res) => {
   // let JourneyRepository = new JourneyRepository();
+  // var journey = await updateJourneyStatusTo("start", req.params.id)
+  // var journey = await updateJourneyDriverTo(req.body.idDriver, req.body.vip, req.params.id)
+  
+  const journeyInfo = {
+    status : 'start',
+    driver : {idDriver: req.body.idDriver, vip: req.body.vip},
+    startOn : Date.now()
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  res.send(journey)
 });
 
 journeyRouter.post('/accept/:id', async (req, res) => {
@@ -92,9 +102,14 @@ journeyRouter.post('/cancel/:id', async (req, res) => {
   res.send(journey);
 });
 
-journeyRouter.post('/finish/{id}', async (req, res) => {
-
-
+journeyRouter.patch('/finish/:id', async (req, res) => {
+ 
+  const journeyInfo = {
+    status: 'finish',
+    finishOn: Date.now()
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  res.send(journey)
 });
 
 module.exports = {journeyRouter};
