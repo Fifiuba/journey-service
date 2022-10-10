@@ -1,6 +1,6 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-const {JourneyModel, updateJourneyStatusTo, updateJourneyDriverTo, updateJourneyInfo} = require('../database/database.js');
+const {JourneyModel, updateJourneyInfo} = require('../database/database.js');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -77,10 +77,7 @@ journeyRouter.post('/', async (req, res) => {
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
-  // let JourneyRepository = new JourneyRepository();
-  // var journey = await updateJourneyStatusTo("start", req.params.id)
-  // var journey = await updateJourneyDriverTo(req.body.idDriver, req.body.vip, req.params.id)
-  
+
   const journeyInfo = {
     status : 'start',
     driver : {idDriver: req.body.idDriver, vip: req.body.vip},
@@ -92,13 +89,19 @@ journeyRouter.patch('/start/:id', async (req, res) => {
 
 journeyRouter.post('/accept/:id', async (req, res) => {
   
-  var journey = await updateJourneyStatusTo("accepted",req.params.id);
+  const journeyInfo = {
+    status : 'accepted'
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey);
 });
 
 journeyRouter.post('/cancel/:id', async (req, res) => {
 
-  var journey = await updateJourneyStatusTo("cancelled",req.params.id);
+  const journeyInfo = {
+    status : 'cancelled'
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey);
 });
 

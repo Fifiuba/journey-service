@@ -23,22 +23,8 @@ const JourneySchema = new Schema({
 const JourneyModel = mongoose.model('Journey', JourneySchema);
 
 
-module.exports = {JourneyModel, updateJourneyStatusTo, updateJourneyDriverTo, updateJourneyInfo};
+module.exports = {JourneyModel, updateJourneyInfo};
 
-
-async function updateJourneyStatusTo(newStatus, id){
-
-  var journey_db = await JourneyModel.findByIdAndUpdate(id, {status: newStatus},{new: true});
-  console.log(journey_db)
-  return journey_db;
-}
-
-async function updateJourneyDriverTo(newidDriver, newVipDriver, id){
-
-  var journey = await JourneyModel.findByIdAndUpdate(id, {driver: {idDriver: newidDriver, vip : newVipDriver}},{new: true});
-  console.log(journey);
-  return journey;
-}
 
 async function updateJourneyInfo(infoJourney, id){
     var journey = await JourneyModel.findByIdAndUpdate(id, infoJourney,{new: true});
