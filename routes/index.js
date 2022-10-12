@@ -83,8 +83,7 @@ journeyRouter.route("/:id").get(async (req, res) => {
   
   var journey = await getJourneyById(req.params.id);
   if (!journey){
-    res.statusCode = 500;
-    res.json("journey not found")
+    res.status(500).send("journey not found")
     return;
   }
   res.send(journey);
