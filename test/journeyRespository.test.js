@@ -1,45 +1,9 @@
 const {getJourneyById, getJourneys} = require('../model/journeyRepository');
-const { MongoMemoryServer } = require("mongodb-memory-server");
 const {JourneyModel} = require('../database/database')
-const {mongoose } = require('mongoose');
 const { ObjectId } = require('mongodb');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');
-
-
-//falta ver que devuelva bien los campos
-//falta testear el modelo en si (los campos que tienen y no que estar)
-//falta testear la app completa
-
-let mongo = null;
- 
-const connectDB = async () => {
-  mongo = await MongoMemoryServer.create();
-  const uri = mongo.getUri();
- 
-  await mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-};
-
-
-const dropDB = async () => {
-    if (mongo) {
-      await mongoose.connection.dropDatabase();
-      await mongoose.connection.close();
-      await mongo.stop();
-    }
-};
-
-const dropCollections = async () => {
-    if (mongo) {
-      const collections = await mongoose.connection.db.collections();
-      for (let collection of collections) {
-        await collection.remove();
-      }
-    }
-};
+const {connectDB,dropDB,dropCollections} = require('./testDatabase/testDatabase')
 
 describe("Journey repository test", () => {
 
@@ -65,14 +29,14 @@ describe("Journey repository test", () => {
         expect(result._id.toString()).toBe(savedJourney._id.toString());
     });
 
-    it("02 when getting an id of a not existing journey the repository throws error", async () => {
+    it("02 when getting an id of a not existing journey the repository returns null", async () => {
         
         const newJourney = new JourneyModel(journey);
         await newJourney.save();
         
         let result = await getJourneyById(new ObjectId("aaaaaaaaaaaa"));
 
-        expect(JSON.stringify(result)).toBe(JSON.stringify({error: "journey not found"}))
+        expect(JSON.stringify(result)).toBe("null")
     });
 
     it("03 when getting all journeys the repository returns them", async () => {
