@@ -18,13 +18,13 @@ const swaggerSpec = {
       },
     ],
   },
-  apis: [`${__dirname}/routes/routes.js`],
+  apis: [`${__dirname}/routes/index.js`],
 };
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerSpec)));
 app.use('/journey', routes.journeyRouter);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerSpec)));
 
 app.get('/', (req, res) => {
   res.send('Journey service!');

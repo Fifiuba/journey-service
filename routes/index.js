@@ -7,6 +7,7 @@ const { Auth } = require('../model/auth');
 
 const journeyRouter = express.Router();
 
+
 journeyRouter.route('/example')
     .post(async (req, res) => {
       const example = new JourneyModel({
@@ -57,7 +58,38 @@ journeyRouter.route('/info')
       const journey = new Journey(from, to, modality);
       res.send(journey.cost());
     });
-
+/**
+ * @swagger
+ *   * /journey/:
+     *   post:
+     *    summary: create Journey.
+     *
+     *    description: create a jorueny for a passenger.
+     *
+     *    parameters:
+     *         - name: "idPassenger"
+     *           in: body
+     *           type: "int"
+     *           required: true
+     *         - name: "from"
+     *           in: body
+     *           type: "string"
+     *           required: true
+     *         - name: "to"
+     *           in: body
+     *           type: "string"
+     *           required: true
+     *         - name: "modality"
+     *           in: body
+     *           type: "string"
+     *           required: true
+     *
+     *    responses:
+     *         "200":
+     *           description: "Return journey created correctly"
+     *
+     * 
+*/
 journeyRouter.post('/', async (req, res) => {
    
     const modality = new Modality(req.body.modality);
