@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-
 // Each schema maps to a MongoDB collection and defines
 // the shape of the documents within that collection
 const JourneySchema = new Schema({
