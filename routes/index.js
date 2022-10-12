@@ -1,7 +1,7 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
 const {JourneyModel} = require('../database/database.js');
-require('../model/journeyRepository')
+const {getJourneyById,getJourneys} = require('../model/journeyRepository')
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -82,6 +82,11 @@ journeyRouter.route("/all").get(async (req, res) => {
 journeyRouter.route("/:id").get(async (req, res) => {
   
   var journey = await getJourneyById(req.params.id);
+  if (!journey){
+    res.statusCode = 500;
+    res.json("journey not found")
+    return;
+  }
   res.send(journey);
 });
 module.exports = {journeyRouter};
