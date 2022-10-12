@@ -23,8 +23,9 @@ const swaggerSpec = {
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/journey', routes.journeyRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerSpec)));
+app.use('/journey', routes.journeyRouter);
+
 
 app.get('/', (req, res) => {
   res.send('Journey service!');

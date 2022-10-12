@@ -59,38 +59,7 @@ journeyRouter.route('/info')
       const journey = new Journey(from, to, modality);
       res.send(journey.cost());
     });
-/**
- * @swagger
- *   * /journey/:
-     *   post:
-     *    summary: create Journey.
-     *
-     *    description: create a jorueny for a passenger.
-     *
-     *    parameters:
-     *         - name: "idPassenger"
-     *           in: body
-     *           type: "int"
-     *           required: true
-     *         - name: "from"
-     *           in: body
-     *           type: "string"
-     *           required: true
-     *         - name: "to"
-     *           in: body
-     *           type: "string"
-     *           required: true
-     *         - name: "modality"
-     *           in: body
-     *           type: "string"
-     *           required: true
-     *
-     *    responses:
-     *         "200":
-     *           description: "Return journey created correctly"
-     *
-     * 
-*/
+
 journeyRouter.post('/', async (req, res) => {
    
     const modality = new Modality(req.body.modality);
@@ -148,6 +117,12 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
   res.send(journey)
 });
 
+journeyRouter.route("/all").get(async (req, res) => {
+  
+  var journeys = await getJourneys();
+  res.send(journeys);
+});
+
 journeyRouter.route("/:id").get(async (req, res) => {
   
   var journey = await getJourneyById(req.params.id);
@@ -157,4 +132,7 @@ journeyRouter.route("/:id").get(async (req, res) => {
   }
   res.send(journey);
 });
+
 module.exports = {journeyRouter};
+
+
