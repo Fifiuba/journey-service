@@ -1,11 +1,7 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-<<<<<<< HEAD
 const {JourneyModel, updateJourneyInfo} = require('../database/database.js');
-=======
-const {JourneyModel} = require('../database/database.js');
 const {getJourneyById,getJourneys} = require('../model/journeyRepository')
->>>>>>> origin/feat-get-journeys
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const { Auth } = require('../model/auth');
@@ -100,7 +96,6 @@ journeyRouter.post('/', async (req, res) => {
     const modality = new Modality(req.body.modality);
     const priceCalculator = new PriceCalculator(modality, req.body.distance);
 
-<<<<<<< HEAD
     const price = priceCalculator.calculate();
    
     const db_journey = new JourneyModel({
@@ -115,13 +110,6 @@ journeyRouter.post('/', async (req, res) => {
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
-=======
-journeyRouter.post('/start/:id', async (req, res) => {
-  // let JourneyRepository = new JourneyRepository();
-});
-
-journeyRouter.post('/cancel/:id', async (req, res) => {
->>>>>>> origin/feat-get-journeys
 
   const journeyInfo = {
     status : 'start',
@@ -141,7 +129,6 @@ journeyRouter.post('/accept/:id', async (req, res) => {
   res.send(journey);
 });
 
-<<<<<<< HEAD
 journeyRouter.post('/cancel/:id', async (req, res) => {
 
   const journeyInfo = {
@@ -159,17 +146,6 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
   }
   var journey = await updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey)
-=======
-journeyRouter.post('/finish/:id', async (req, res) => {
-  
-
-});
-
-journeyRouter.route("/all").get(async (req, res) => {
-  
-  var journeys = await getJourneys();
-  res.send(journeys);
->>>>>>> origin/feat-get-journeys
 });
 
 journeyRouter.route("/:id").get(async (req, res) => {
