@@ -22,11 +22,4 @@ const JourneySchema = new Schema({
 const JourneyModel = mongoose.model('Journey', JourneySchema);
 
 
-module.exports = {JourneyModel, updateJourneyInfo};
-
-
-async function updateJourneyInfo(infoJourney, id){
-    var journey = await JourneyModel.findByIdAndUpdate(id, infoJourney,{new: true});
-    console.log(journey);
-    return journey;
-}
+module.exports = {JourneyModel};

@@ -1,15 +1,15 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
 
-const {JourneyModel, updateJourneyInfo} = require('../database/database.js');
-const {getJourneyById,getJourneys} = require('../model/journeyRepository')
+const {JourneyModel} = require('../database/database.js');
+const {JourneyRepository} = require('../model/journeyRepository')
 
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
-
+const journeyRepository = new JourneyRepository();
 
 journeyRouter.route('/example')
     .post(async (req, res) => {
@@ -87,7 +87,7 @@ journeyRouter.patch('/start/:id', async (req, res) => {
     driver : {idDriver: req.body.idDriver, vip: req.body.vip},
     startOn : Date.now()
   }
-  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey)
 });
 
@@ -97,7 +97,7 @@ journeyRouter.post('/accept/:id', async (req, res) => {
   const journeyInfo = {
     status : 'accepted'
   }
-  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey);
 });
 
@@ -106,7 +106,7 @@ journeyRouter.post('/cancel/:id', async (req, res) => {
   const journeyInfo = {
     status : 'cancelled'
   }
-  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey);
 });
 
@@ -116,7 +116,7 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
     status: 'finish',
     finishOn: Date.now()
   }
-  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey)
 });
 
@@ -138,8 +138,8 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
  *                 $ref: '#/components/schemas/Journey'
  */
 journeyRouter.route("/all").get(async (req, res) => {
-  
-  var journeys = await getJourneys();
+
+  var journeys = await journeyRepository.getJourneys();
   res.send(journeys);
 });
 /**
@@ -167,7 +167,7 @@ journeyRouter.route("/all").get(async (req, res) => {
  */
 journeyRouter.route("/:id").get(async (req, res) => {
   
-  var journey = await getJourneyById(req.params.id);
+  var journey = await journeyRepository.getJourneyById(req.params.id);
   if (!journey){
     res.status(500).send("journey not found");
     return;
