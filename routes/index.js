@@ -169,9 +169,11 @@ journeyRouter.route("/:id").get(async (req, res) => {
   
   var journey = await getJourneyById(req.params.id);
   if (!journey){
-    res.status(500).send("journey not found")
+    res.status(500).send("journey not found");
+    return;
+  }
   res.send(journey);
-
+  });
 /**
  * @swagger
  * components:
@@ -207,5 +209,3 @@ journeyRouter.route("/:id").get(async (req, res) => {
  */
 
 module.exports = {journeyRouter};
-
-
