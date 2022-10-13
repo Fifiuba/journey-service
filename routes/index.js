@@ -2,7 +2,7 @@ const express = require('express');
 const {Journey} = require('../model/journey');
 
 const {JourneyModel} = require('../database/database.js');
-const {JourneyRepository} = require('../model/journeyRepository')
+const {JourneyRepository} = require('../model/journeyRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
@@ -10,29 +10,6 @@ const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
-
-journeyRouter.route('/example')
-    .post(async (req, res) => {
-      const example = new JourneyModel({
-        status: 'requested',
-        idPassenger: 10,
-        driver: {
-          idDriver: 1,
-          vip: false,
-        },
-        price: 20,
-        from: [-10, 0],
-        to: [29.121234, 13.131313],
-      });
-      example.save().then( (result) => {
-        console.log(result);
-        res.status(201).json(example);
-      })
-          .catch((err) => {
-            console.log(err);
-            res.status(500).json({error: err});
-          });
-    });
 
 journeyRouter.route('/request')
     .post(async (req, res) => {
@@ -63,61 +40,56 @@ journeyRouter.route('/info')
     });
 
 journeyRouter.post('/', async (req, res) => {
-   
-    const modality = new Modality(req.body.modality);
-    const priceCalculator = new PriceCalculator(modality, req.body.distance);
+  const modality = new Modality(req.body.modality);
+  const priceCalculator = new PriceCalculator(modality, req.body.distance);
 
-    const price = priceCalculator.calculate();
-   
-    const db_journey = new JourneyModel({
-            status: 'requested',
-            idPassenger: req.body.idPassenger,
-            price: price,
-            from: req.body.from.split(","),
-            to: req.body.to.split(","),
-          });
-    var result = await db_journey.save();
-    res.send(result);
+  const price = priceCalculator.calculate();
+
+  const db_journey = new JourneyModel({
+    status: 'requested',
+    idPassenger: req.body.idPassenger,
+    price: price,
+    from: req.body.from.split(','),
+    to: req.body.to.split(','),
+  });
+  const result = await db_journey.save();
+  res.send(result);
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
-
   const journeyInfo = {
-    status : 'start',
-    driver : {idDriver: req.body.idDriver, vip: req.body.vip},
-    startOn : Date.now()
-  }
-  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
-  res.send(journey)
+    status: 'start',
+    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
+    startOn: Date.now(),
+  };
+  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
+  res.send(journey);
 });
 
 
 journeyRouter.post('/accept/:id', async (req, res) => {
-  
   const journeyInfo = {
-    status : 'accepted'
-  }
-  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
+    status: 'accepted',
+  };
+  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
   res.send(journey);
 });
 
 journeyRouter.post('/cancel/:id', async (req, res) => {
-
   const journeyInfo = {
-    status : 'cancelled'
-  }
-  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
+    status: 'cancelled',
+  };
+  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
   res.send(journey);
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
- 
   const journeyInfo = {
     status: 'finish',
-    finishOn: Date.now()
-  }
-  var journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id)
-  res.send(journey)
+    finishOn: Date.now(),
+  };
+  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
+  res.send(journey);
 });
 
 
@@ -137,9 +109,8 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
  *               items:
  *                 $ref: '#/components/schemas/Journey'
  */
-journeyRouter.route("/all").get(async (req, res) => {
-
-  var journeys = await journeyRepository.getJourneys();
+journeyRouter.route('/all').get(async (req, res) => {
+  const journeys = await journeyRepository.getJourneys();
   res.send(journeys);
 });
 /**
@@ -165,15 +136,14 @@ journeyRouter.route("/all").get(async (req, res) => {
  *       500:
  *         description: journey not found
  */
-journeyRouter.route("/:id").get(async (req, res) => {
-  
-  var journey = await journeyRepository.getJourneyById(req.params.id);
-  if (!journey){
-    res.status(500).send("journey not found");
+journeyRouter.route('/:id').get(async (req, res) => {
+  const journey = await journeyRepository.getJourneyById(req.params.id);
+  if (!journey) {
+    res.status(500).send('journey not found');
     return;
   }
   res.send(journey);
-  });
+});
 /**
  * @swagger
  * components:
@@ -198,13 +168,13 @@ journeyRouter.route("/:id").get(async (req, res) => {
  *         price:
  *           type: integer
  *           description: price of the journey
- *         
+ *
  *       example:
  *         id: hagsy
  *         idPassenger: 1
  *         status: status
  *         price: 100
- *         
+ *
  *
  */
 

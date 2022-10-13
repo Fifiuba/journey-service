@@ -1,6 +1,6 @@
 const {JourneyModel} = require('../database/database');
 
-class JourneyRepository{
+class JourneyRepository {
   // returns null if the journey is not found
   async getJourneyById(id) {
     const journey = await JourneyModel.findById(id, function(err) {
@@ -16,8 +16,8 @@ class JourneyRepository{
     return await JourneyModel.find();
   }
 
-  async updateJourneyInfo(infoJourney, id){
-    var journey = await JourneyModel.findByIdAndUpdate(id, infoJourney,{new: true});
+  async updateJourneyInfo(infoJourney, id) {
+    const journey = await JourneyModel.findByIdAndUpdate(id, infoJourney, {new: true});
     console.log(journey);
     return journey;
   }
