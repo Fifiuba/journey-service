@@ -1,10 +1,12 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
+
 const {JourneyModel, updateJourneyInfo} = require('../database/database.js');
 const {getJourneyById,getJourneys} = require('../model/journeyRepository')
+
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
-const { Auth } = require('../model/auth');
+const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
 
@@ -40,7 +42,7 @@ journeyRouter.route('/request')
       const auth = new Auth();
 
       try {
-        auth.validate(req.headers)
+        auth.validate(req.headers);
         const price = priceCalculator.calculate();
         const json = {
           price: price,
@@ -89,6 +91,7 @@ journeyRouter.patch('/start/:id', async (req, res) => {
   res.send(journey)
 });
 
+
 journeyRouter.post('/accept/:id', async (req, res) => {
   
   const journeyInfo = {
@@ -116,6 +119,7 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
   var journey = await updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey)
 });
+
 
 /**
  * @swagger
@@ -166,10 +170,7 @@ journeyRouter.route("/:id").get(async (req, res) => {
   var journey = await getJourneyById(req.params.id);
   if (!journey){
     res.status(500).send("journey not found")
-    return;
-  }
   res.send(journey);
-});
 
 /**
  * @swagger
