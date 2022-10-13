@@ -10,6 +10,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["test/*.js"],
     "rules": {
         "require-jsdoc" : 0,
         "new-cap": 0

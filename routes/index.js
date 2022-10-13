@@ -1,10 +1,10 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
 const {JourneyModel} = require('../database/database.js');
-const {getJourneyById,getJourneys} = require('../model/journeyRepository')
+const {getJourneyById, getJourneys} = require('../model/journeyRepository');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
-const { Auth } = require('../model/auth');
+const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
 
@@ -39,7 +39,7 @@ journeyRouter.route('/request')
       const auth = new Auth();
 
       try {
-        auth.validate(req.headers)
+        auth.validate(req.headers);
         const price = priceCalculator.calculate();
         const json = {
           price: price,
@@ -69,21 +69,19 @@ journeyRouter.post('/cancel/:id', async (req, res) => {
 });
 
 journeyRouter.post('/finish/:id', async (req, res) => {
-  
+
 
 });
 
-journeyRouter.route("/all").get(async (req, res) => {
-  
-  var journeys = await getJourneys();
+journeyRouter.route('/all').get(async (req, res) => {
+  const journeys = await getJourneys();
   res.send(journeys);
 });
 
-journeyRouter.route("/:id").get(async (req, res) => {
-  
-  var journey = await getJourneyById(req.params.id);
-  if (!journey){
-    res.status(500).send("journey not found")
+journeyRouter.route('/:id').get(async (req, res) => {
+  const journey = await getJourneyById(req.params.id);
+  if (!journey) {
+    res.status(500).send('journey not found');
     return;
   }
   res.send(journey);
