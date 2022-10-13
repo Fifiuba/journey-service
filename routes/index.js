@@ -117,12 +117,50 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
   res.send(journey)
 });
 
+/**
+ * @swagger
+ * /journey/all:
+ *   get:
+ *     summary: Returns all journeys
+ *     tags: [Journeys]
+ *     responses:
+ *       200:
+ *         description: the list of the journyes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Journey'
+ */
 journeyRouter.route("/all").get(async (req, res) => {
   
   var journeys = await getJourneys();
   res.send(journeys);
 });
-
+/**
+ * @swagger
+ * /posts/:id:
+ *   get:
+ *     summary: gets journey by id
+ *     tags: [Journeys]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of journey
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: journeys by its id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Journey'
+ *       500:
+ *         description: journey not found
+ */
 journeyRouter.route("/:id").get(async (req, res) => {
   
   var journey = await getJourneyById(req.params.id);
@@ -132,6 +170,40 @@ journeyRouter.route("/:id").get(async (req, res) => {
   }
   res.send(journey);
 });
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Journey:
+ *       type: object
+ *       required:
+ *         - idPassenger
+ *         - status
+ *         - price
+
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The Auto-generated id of a journey
+ *         idPassenger:
+ *           type: integer
+ *           description: id of the passenger
+ *         status:
+ *           type: string
+ *           description: status of the journey
+ *         price:
+ *           type: integer
+ *           description: price of the journey
+ *         
+ *       example:
+ *         id: hagsy
+ *         idPassenger: 1
+ *         status: status
+ *         price: 100
+ *         
+ *
+ */
 
 module.exports = {journeyRouter};
 
