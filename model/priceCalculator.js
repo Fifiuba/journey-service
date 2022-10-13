@@ -14,7 +14,6 @@ class PriceCalculator {
 
     let price = this.distance * BASE_PRICE;
     price = this.modality.apply(price);
-
     return price;
   }
 }

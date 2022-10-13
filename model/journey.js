@@ -24,7 +24,7 @@ class Journey {
   }
 
   cost() {
-    this.priceCalculator.calculate();
+    return this.priceCalculator.calculate();
   }
 }
 

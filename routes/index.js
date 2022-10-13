@@ -1,12 +1,15 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
-const {JourneyModel} = require('../database/database.js');
-const {getJourneyById, getJourneys} = require('../model/journeyRepository');
+
+const {JourneyModel, updateJourneyInfo} = require('../database/database.js');
+const {getJourneyById,getJourneys} = require('../model/journeyRepository')
+
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
+
 
 journeyRouter.route('/example')
     .post(async (req, res) => {
@@ -59,31 +62,150 @@ journeyRouter.route('/info')
       res.send(journey.cost());
     });
 
-journeyRouter.post('/start/:id', async (req, res) => {
-  // let JourneyRepository = new JourneyRepository();
+journeyRouter.post('/', async (req, res) => {
+   
+    const modality = new Modality(req.body.modality);
+    const priceCalculator = new PriceCalculator(modality, req.body.distance);
+
+    const price = priceCalculator.calculate();
+   
+    const db_journey = new JourneyModel({
+            status: 'requested',
+            idPassenger: req.body.idPassenger,
+            price: price,
+            from: req.body.from.split(","),
+            to: req.body.to.split(","),
+          });
+    var result = await db_journey.save();
+    res.send(result);
+});
+
+journeyRouter.patch('/start/:id', async (req, res) => {
+
+  const journeyInfo = {
+    status : 'start',
+    driver : {idDriver: req.body.idDriver, vip: req.body.vip},
+    startOn : Date.now()
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  res.send(journey)
+});
+
+
+journeyRouter.post('/accept/:id', async (req, res) => {
+  
+  const journeyInfo = {
+    status : 'accepted'
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  res.send(journey);
 });
 
 journeyRouter.post('/cancel/:id', async (req, res) => {
 
-
-});
-
-journeyRouter.post('/finish/:id', async (req, res) => {
-
-
-});
-
-journeyRouter.route('/all').get(async (req, res) => {
-  const journeys = await getJourneys();
-  res.send(journeys);
-});
-
-journeyRouter.route('/:id').get(async (req, res) => {
-  const journey = await getJourneyById(req.params.id);
-  if (!journey) {
-    res.status(500).send('journey not found');
-    return;
+  const journeyInfo = {
+    status : 'cancelled'
   }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
   res.send(journey);
 });
+
+journeyRouter.patch('/finish/:id', async (req, res) => {
+ 
+  const journeyInfo = {
+    status: 'finish',
+    finishOn: Date.now()
+  }
+  var journey = await updateJourneyInfo(journeyInfo, req.params.id)
+  res.send(journey)
+});
+
+
+/**
+ * @swagger
+ * /journey/all:
+ *   get:
+ *     summary: Returns all journeys
+ *     tags: [Journeys]
+ *     responses:
+ *       200:
+ *         description: the list of the journyes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Journey'
+ */
+journeyRouter.route("/all").get(async (req, res) => {
+  
+  var journeys = await getJourneys();
+  res.send(journeys);
+});
+/**
+ * @swagger
+ * /posts/:id:
+ *   get:
+ *     summary: gets journey by id
+ *     tags: [Journeys]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of journey
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: journeys by its id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Journey'
+ *       500:
+ *         description: journey not found
+ */
+journeyRouter.route("/:id").get(async (req, res) => {
+  
+  var journey = await getJourneyById(req.params.id);
+  if (!journey){
+    res.status(500).send("journey not found")
+  res.send(journey);
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Journey:
+ *       type: object
+ *       required:
+ *         - idPassenger
+ *         - status
+ *         - price
+
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The Auto-generated id of a journey
+ *         idPassenger:
+ *           type: integer
+ *           description: id of the passenger
+ *         status:
+ *           type: string
+ *           description: status of the journey
+ *         price:
+ *           type: integer
+ *           description: price of the journey
+ *         
+ *       example:
+ *         id: hagsy
+ *         idPassenger: 1
+ *         status: status
+ *         price: 100
+ *         
+ *
+ */
+
 module.exports = {journeyRouter};
+
+
