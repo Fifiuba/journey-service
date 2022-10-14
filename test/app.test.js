@@ -3,7 +3,7 @@ const {app} = require('../app');
 const {connectDB, dropDB, dropCollections} = require('./testDatabase/testDatabase');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');
-const {JourneyModel} = require('../database/database');
+const {JourneyModel} = require('../database/schema');
 
 describe('Application tests', () => {
   beforeAll(async () => {
@@ -30,8 +30,7 @@ describe('Application tests', () => {
 
   it('GET journey by id of a non-existing journey', async () => {
     const newJourney = new JourneyModel(journey);
-    const savedJourney = await newJourney.save();
-    const id = savedJourney._id.toString();
+    await newJourney.save();
 
     await request(app).get('/journey/aaaaaaaaaaaa').expect(500).then((response) => {
       expect(JSON.stringify(response)).toContain('journey not found');
@@ -51,4 +50,41 @@ describe('Application tests', () => {
       expect([savedJourney._id.toString(), anotherSavedJourney._id.toString()]).toEqual(expect.arrayContaining(expected));
     });
   });
+
+  it('UPDATE journey status to accepted', async () => {
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+
+    await request(app).patch('/journey/accept/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body._id.toString()).toBe(savedJourney._id.toString());
+    });
+  });
+
+  it('UPDATE journey status to started', async () => {
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+
+    await request(app).patch('/journey/start/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body._id.toString()).toBe(savedJourney._id.toString());
+    });
+  });
+
+  it('UPDATE journey status to accepted', async () => {
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+
+    await request(app).patch('/journey/cancel/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body._id.toString()).toBe(savedJourney._id.toString());
+    });
+  });
+
+  it('UPDATE journey status to finished', async () => {
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+
+    await request(app).patch('/journey/finish/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body._id.toString()).toBe(savedJourney._id.toString());
+    });
+  });
+
 });
