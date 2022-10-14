@@ -1,25 +1,29 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
 
-// Each schema maps to a MongoDB collection and defines
-// the shape of the documents within that collection
-const JourneySchema = new Schema({
-  status: String,
-  idPassenger: Number,
-  driver: {
-    idDriver: {type: Number},
-    vip: {type: Boolean},
-  },
-  price: Number,
-  startOn: {type: Date, default: Date.now},
-  finishOn: {type: Date, default: Date.now},
-  from: {type: [Number]},
-  to: {type: [Number]},
-});
+class JourneyDatabase {
+  async connectDB() {
+    await mongoose.connect('mongodb://root:root@mongodb:27017', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      auth: {
+        authSource: 'admin',
+      },
+      user: process.env.ME_CONFIG_MONGODB_ADMINUSERNAME,
+      pass: process.env.ME_CONFIG_MONGODB_ADMINPASSWORD,
+      dbName: 'Journey_db',
 
-// To use our schema definition, we need to convert it
-// into a Model we can work with Instances of Models are documents
-const JourneyModel = mongoose.model('Journey', JourneySchema);
+    }).then(() => {
+      console.log('Mongodb connected...');
+    });
+  }
 
 
-module.exports = {JourneyModel};
+  async disconnectDB() {
+    await mongoose.disconnect().then(() => {
+      console.log('Mongodb disconnected...');
+    });
+  }
+}
+
+
+module.exports = {JourneyDatabase};

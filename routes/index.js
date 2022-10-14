@@ -1,7 +1,7 @@
 const express = require('express');
 const {Journey} = require('../model/journey');
 
-const {JourneyModel} = require('../database/database.js');
+const {JourneyModel} = require('../database/schema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
@@ -11,13 +11,21 @@ const {Auth} = require('../model/auth');
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 
+function returnJourney(response, journey) {
+  if (!journey) {
+    response.status(500).send('journey not found');
+    return;
+  }
+  response.send(journey);
+}
+
 journeyRouter.route('/request')
     .post(async (req, res) => {
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
       const priceCalculator = new PriceCalculator(modality, distance);
       const auth = new Auth();
-
+      // TODO: porque no se esta guardando en la base?
       try {
         auth.validate(req.headers);
         const price = priceCalculator.calculate();
@@ -45,14 +53,14 @@ journeyRouter.post('/', async (req, res) => {
 
   const price = priceCalculator.calculate();
 
-  const db_journey = new JourneyModel({
+  const dbJourney = new JourneyModel({
     status: 'requested',
     idPassenger: req.body.idPassenger,
     price: price,
     from: req.body.from.split(','),
     to: req.body.to.split(','),
   });
-  const result = await db_journey.save();
+  const result = await dbJourney.save();
   res.send(result);
 });
 
@@ -62,25 +70,27 @@ journeyRouter.patch('/start/:id', async (req, res) => {
     driver: {idDriver: req.body.idDriver, vip: req.body.vip},
     startOn: Date.now(),
   };
-  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-  res.send(journey);
+  const journey = await journeyRepository
+      .updateJourneyInfo(journeyInfo, req.params.id);
+  returnJourney(res, journey);
 });
 
-
-journeyRouter.post('/accept/:id', async (req, res) => {
+journeyRouter.patch('/accept/:id', async (req, res) => {
   const journeyInfo = {
     status: 'accepted',
   };
-  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-  res.send(journey);
+  const journey = await journeyRepository
+      .updateJourneyInfo(journeyInfo, req.params.id);
+  returnJourney(res, journey);
 });
 
-journeyRouter.post('/cancel/:id', async (req, res) => {
+journeyRouter.patch('/cancel/:id', async (req, res) => {
   const journeyInfo = {
     status: 'cancelled',
   };
-  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-  res.send(journey);
+  const journey = await journeyRepository
+      .updateJourneyInfo(journeyInfo, req.params.id);
+  returnJourney(res, journey);
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
@@ -88,8 +98,9 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
     status: 'finish',
     finishOn: Date.now(),
   };
-  const journey = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-  res.send(journey);
+  const journey = await journeyRepository
+      .updateJourneyInfo(journeyInfo, req.params.id);
+  returnJourney(res, journey);
 });
 
 
@@ -138,11 +149,7 @@ journeyRouter.route('/all').get(async (req, res) => {
  */
 journeyRouter.route('/:id').get(async (req, res) => {
   const journey = await journeyRepository.getJourneyById(req.params.id);
-  if (!journey) {
-    res.status(500).send('journey not found');
-    return;
-  }
-  res.send(journey);
+  returnJourney(res, journey);
 });
 /**
  * @swagger

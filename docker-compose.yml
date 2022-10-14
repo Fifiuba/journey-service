@@ -6,6 +6,8 @@ services:
     ports:
     - "9000:9000"
     restart: always
+    depends_on:
+      - mongodb
 
   mongodb:
     container_name: mongodb
