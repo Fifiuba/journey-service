@@ -17,15 +17,16 @@ Se trata del servicio de viajes, donde se puede crear, aceptar, rechazar, consul
 
 * Mongodb 
 * Modelo
-        ```bash 
-        id_user
-        car_info : {type: id: id_driver: car_model: license_plate:}
-        trip_status (requested, cancelled, finished, ongoing)
-        startTime
-        endTime
-        price
-        route : {to: from:}
-        ```
+
+```javascrip 
+id_user
+car_info : {type: id: id_driver: car_model: license_plate:}
+trip_status (requested, cancelled, finished, ongoing)
+startTime
+endTime
+price
+route : {to: from:}
+```
 
 #### Responsables
 
