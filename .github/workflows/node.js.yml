@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     
     - name: Build
-      run: sh build_ci.sh
+      run: npm test
 
     #----------------------------------------------
     #              upload coverage reports
