@@ -1,8 +1,7 @@
 # journey-service
 ---
-
-[![GitHub issues](https://img.shields.io/github/issues/Fifiuba/journey-service?&style=flat-square)](https://github.com/Fifiuba/journey-service/issues)
-[![GitHub license](https://img.shields.io/github/license/Fifiuba/journey-service?&style=flat-square)](https://github.com/Fifiuba/journey-service/blob/main/LICENSE)
+[![GitHub Workflow Status](https://github.com/Fifiuba/journey-service/actions/workflows/node.js.yml/badge.svg?event=push)](https://github.com/Fifiuba/journey-service/commits/develop)
+[![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/main/graph/badge.svg?token=dJ20t7hz7j)](https://codecov.io/gh/Fifiuba/journey-service)
 
 
 ### App
