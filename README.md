@@ -1,7 +1,7 @@
 # journey-service
 ---
 [![GitHub Workflow Status](https://github.com/Fifiuba/journey-service/actions/workflows/node.js.yml/badge.svg?event=push)](https://github.com/Fifiuba/journey-service/commits/develop)
-[![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/main/graph/badge.svg?token=dJ20t7hz7j)](https://codecov.io/gh/Fifiuba/journey-service)
+[![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/develop/graph/badge.svg?token=dJ20t7hz7j)](https://app.codecov.io/gh/Fifiuba/journey-service/tree/develop)
 
 
 ### App
