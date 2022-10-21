@@ -32,7 +32,7 @@ describe('Application tests', () => {
     const newJourney = new JourneyModel(journey);
     await newJourney.save();
 
-    await request(app).get('/journey/aaaaaaaaaaaa').expect(500).then((response) => {
+    await request(app).get('/journey/aaaaaaaaaaaa').expect(404).then((response) => {
       expect(JSON.stringify(response)).toContain('journey not found');
     });
   });
