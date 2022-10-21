@@ -13,7 +13,7 @@ const journeyRepository = new JourneyRepository();
 
 function returnJourney(response, journey) {
   if (!journey) {
-    response.status(500).send('journey not found');
+    response.status(404).send('journey not found');
     return;
   }
   response.send(journey);
@@ -47,7 +47,8 @@ journeyRouter.route('/info')
       res.send(journey.cost());
     });
 
-journeyRouter.post('', async (req, res) => {
+journeyRouter.post('/', async (req, res) => {
+  console.log("body ", req.body)
   const modality = new Modality(req.body.modality);
   console.log(req.body.modality, req.body.distance);
   const priceCalculator = new PriceCalculator(modality, req.body.distance);
@@ -58,8 +59,8 @@ journeyRouter.post('', async (req, res) => {
     status: 'requested',
     idPassenger: req.body.idPassenger,
     price: price,
-    from: req.body.from.split(","),
-    to: req.body.to.split(","),
+    from: req.body.from,
+    to: req.body.to,
   });
   const result = await dbJourney.save();
   res.send(result);
