@@ -28,7 +28,7 @@
         "application/json"
     ],
     "paths": {
-        "/journey": {
+        "/journey/": {
             "post": {
                 "tags" : ["Journeys"],
                 "summary": "Create a journey",
@@ -86,7 +86,76 @@
                             }
                         },
                         "404": {
-                            "description": "Not found",
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/accept/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Accept journey",
+                    "description": "Returns the journey accepted",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },  "/journey/cancel/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Cancell journey",
+                    "description": "Returns the journey with status cancel",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
                             "schema": {
                                 "type": "string"
                             }
@@ -130,7 +199,7 @@
                             }
                         },
                         "404": {
-                            "description": "Not found",
+                            "description": "journey not found",
                             "schema": {
                                 "type": "string"
                             }
