@@ -1,0 +1,144 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Journey Service API",
+        "description": "",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:9000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Journeys",
+            "description": "Api for journeys"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/journey": {
+            "post": {
+                "tags" : ["Journeys"],
+                "summary": "Create a journey",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/journeyBase"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200" : {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/journey"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Journeys"],
+                "summary": "Get journeys",
+                "description":"Return a list of the journeys",
+                "responses": {
+                    "200": {
+                        "description" : "Return a list of the journeys",
+                        "schema": {
+                            "$ref": "#/definitions/journeys"
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+    "definitions": {
+        "journeyBase": {
+            "type": "object",
+            "properties": {
+                "modality": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "integer"
+                },
+                "idPassenger": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "to": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+
+        },
+        "journey": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "idPassenger": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "startOn": {
+                    "type" : "string"
+                },
+                "finishOn" : {
+                    "type" : "string"
+                },
+                "from": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "to": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "journeys" : {
+            "properties" : {
+                "journeys": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/journey"
+                    }
+                }
+            }
+        }
+
+    }
+}

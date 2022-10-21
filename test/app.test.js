@@ -37,14 +37,14 @@ describe('Application tests', () => {
     });
   });
 
-  it('GET journey by id', async () => {
+  it('GET journeys', async () => {
     const newJourney = new JourneyModel(journey);
     const anotherNewJourney = new JourneyModel(anotherJourney);
 
     const savedJourney = await newJourney.save();
     const anotherSavedJourney = await anotherNewJourney.save();
 
-    await request(app).get('/journey/all').expect(200).then((response) => {
+    await request(app).get('/journey').expect(200).then((response) => {
       const expected = [response.body[0]._id.toString(), response.body[1]._id.toString()];
       expect(response.body.length).toBe(2);
       expect([savedJourney._id.toString(), anotherSavedJourney._id.toString()]).toEqual(expect.arrayContaining(expected));
