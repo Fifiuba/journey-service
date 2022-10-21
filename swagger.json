@@ -64,9 +64,99 @@
                     }
                 }
 
+            },
+            "/journey/finish/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Finish journey",
+                    "description": "Returns the joruney finish with the date updated",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "Not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/start/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Start journey",
+                    "description": "Returns the journey finish with the date updated",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "$ref": "#/definitions/StartJourney"
+                            }
+                        }
+                    ],
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "Not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
             }
         },
     "definitions": {
+        "StartJourney": {
+            "type": "object",
+            "properties": {
+                "idDriver": {
+                    "type": "integer"
+                },
+                "vip": {
+                    "type": "boolean"
+                }
+            }
+        },
         "journeyBase": {
             "type": "object",
             "properties": {
