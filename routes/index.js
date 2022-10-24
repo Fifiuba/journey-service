@@ -11,11 +11,15 @@ const {Auth} = require('../model/auth');
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 
-function returnJourney(response, journey) {
+const logger = require('../utils/logger');
+
+function returnJourney(response, journey, message) {
   if (!journey) {
+    logger.warn("Journey not found");
     response.status(404).send('journey not found');
     return;
   }
+  logger.info("Journey " + message);
   response.send(journey);
 }
 
@@ -62,7 +66,9 @@ journeyRouter.post('/', async (req, res) => {
     from: req.body.from,
     to: req.body.to,
   });
+  logger.debug("Create journey");
   const result = await dbJourney.save();
+  logger.info("Journey Requested")
   res.send(result);
 });
 
@@ -74,7 +80,7 @@ journeyRouter.patch('/start/:id', async (req, res) => {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-  returnJourney(res, journey);
+  returnJourney(res, journey, "Started");
 });
 
 journeyRouter.patch('/accept/:id', async (req, res) => {
@@ -83,7 +89,8 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-  returnJourney(res, journey);
+
+  returnJourney(res, journey, "Accepted");
 });
 
 journeyRouter.patch('/cancel/:id', async (req, res) => {
@@ -92,7 +99,8 @@ journeyRouter.patch('/cancel/:id', async (req, res) => {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-  returnJourney(res, journey);
+
+  returnJourney(res, journey, "Cancelled");
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
@@ -102,18 +110,19 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-  returnJourney(res, journey);
+  returnJourney(res, journey, "Finish");
 });
 
 
 journeyRouter.route('/').get(async (req, res) => {
   const journeys = await journeyRepository.getJourneys();
+  logger.info("Get Journeys");
   res.send(journeys);
 });
 
 journeyRouter.route('/:id').get(async (req, res) => {
   const journey = await journeyRepository.getJourneyById(req.params.id);
-  returnJourney(res, journey);
+  returnJourney(res, journey, req.params.id);
 });
 
 module.exports = {journeyRouter};
