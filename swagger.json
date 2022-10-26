@@ -212,8 +212,31 @@
                         }
                     }
                 }
+            },
+            "/journey/info": {
+                "post": {
+                    "tags" : ["Journeys"],
+                    "summary": "Request journey's price",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "$ref": "#/definitions/RequestPrice"
+                            }
+                        }
+                    ],
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/price"
+                            }
+                        }
+                    }
+                }
             }
-        },
+    },
     "definitions": {
         "StartJourney": {
             "type": "object",
@@ -223,6 +246,25 @@
                 },
                 "vip": {
                     "type": "boolean"
+                }
+            }
+        },
+        "price": {
+            "type": "object",
+            "properties": {
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },    
+        "RequestPrice": {
+            "type": "object",
+            "properties": {
+                "modality": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "integer"
                 }
             }
         },
