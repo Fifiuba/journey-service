@@ -6,6 +6,7 @@
 
 ### App
 Se trata del servicio de viajes, donde se puede crear, aceptar, rechazar, consultar un viaje.
+[Endpoint Access](https://journey-service-solfonte.cloud.okteto.net/docs)
 
 ### Tecnologias
 
