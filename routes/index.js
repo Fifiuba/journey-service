@@ -23,33 +23,31 @@ function returnJourney(response, journey, message) {
   response.send(journey);
 }
 
-journeyRouter.route('/request')
+journeyRouter.route('/info')
     .post(async (req, res) => {
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
       const priceCalculator = new PriceCalculator(modality, distance);
-      const auth = new Auth();
+      //const auth = new Auth();
       // TODO: porque no se esta guardando en la base?
       try {
-        auth.validate(req.headers);
+        // auth.validate(req.headers);
         const price = priceCalculator.calculate();
         const json = {
           price: price,
         };
-        res.status(202).json(json);
+        res.send(json)
       } catch (error) {
         res.status(error.code).json({error: error});
       }
     });
 
-journeyRouter.route('/info')
-    .post(async (req, res) => {
-      const from = req.body.from;
-      const to = req.body.to;
-      const modality = new Modality(req.body.modality);
-      const journey = new Journey(from, to, modality);
-      res.send(journey.cost());
-    });
+// journeyRouter.route('/info')
+//     .post(async (req, res) => {
+//       const modality = new Modality(req.body.modality);
+//       const journey = new Journey(from, to, modality);
+//       res.send(journey.cost());
+//     });
 
 journeyRouter.post('/', async (req, res) => {
   console.log("body ", req.body)
