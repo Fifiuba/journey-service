@@ -50,9 +50,7 @@ journeyRouter.route('/info')
 //     });
 
 journeyRouter.post('/', async (req, res) => {
-  console.log('body ', req.body);
   const modality = new Modality(req.body.modality);
-  console.log(req.body.modality, req.body.distance);
   const priceCalculator = new PriceCalculator(modality, req.body.distance);
 
   const price = priceCalculator.calculate();
