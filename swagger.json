@@ -65,6 +65,41 @@
                 }
 
             },
+            "/journey/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "get":{
+                    "tags": ["Journeys"],
+                    "summary": "Get journey by ID",
+                    "description": "Returns the journey's info ",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
             "/journey/finish/{id}": {
                 "parameters": [
                     {
@@ -235,6 +270,29 @@
                         }
                     }
                 }
+            },
+            "/journey/request": {
+                "post": {
+                    "tags" : ["Journeys"],
+                    "summary": "Gets journeys near by a point",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "$ref": "#/definitions/location"
+                            }
+                        }
+                    ],
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/journeys"
+                            }
+                        }
+                    }
+                }
             }
     },
     "definitions": {
@@ -254,6 +312,17 @@
             "properties": {
                 "price": {
                     "type": "integer"
+                }
+            }
+        },
+        "location": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number"
+                },
+                "lng": {
+                    "type": "number"
                 }
             }
         },    
@@ -283,13 +352,13 @@
                 "from": {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "number"
                     }
                 },
                 "to": {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "number"
                     }
                 }
             }
@@ -319,13 +388,13 @@
                 "from": {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "number"
                     }
                 },
                 "to": {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "number"
                     }
                 }
             }
