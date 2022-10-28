@@ -3,7 +3,7 @@ const {app} = require('../app');
 const {connectDB, dropDB, dropCollections} = require('./testDatabase/testDatabase');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');
-const {JourneyModel} = require('../database/schema');
+const {JourneyModel} = require('../database/journeySchema');
 
 describe('Application tests', () => {
   beforeAll(async () => {
