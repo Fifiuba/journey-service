@@ -15,7 +15,10 @@ class JourneyRepository {
   async getJourneys() {
     return await JourneyModel.find();
   }
-
+  async getJourneysRequested(status){
+    console.log("entre a request joruen");
+    return await JourneyModel.find({"status": status});
+  }
   async updateJourneyInfo(infoJourney, id) {
     const journey = await JourneyModel
         .findByIdAndUpdate(id, infoJourney, {new: true});
