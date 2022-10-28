@@ -1,50 +1,20 @@
 const express = require('express');
 /* const {Journey} = */require('../model/journey');
 
-const {JourneyModel} = require('../database/schema.js');
+const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
+const {DistanceCalculator} = require('../model/distanceCalculator')
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 
 const logger = require('../utils/logger');
 
-function distance(lat1, lon1, lat2, lon2, unit) {
-	if ((lat1 == lat2) && (lon1 == lon2)) {
-		return 0;
-	}
-	else {
-		var radlat1 = Math.PI * lat1/180;
-		var radlat2 = Math.PI * lat2/180;
-		var theta = lon1-lon2;
-		var radtheta = Math.PI * theta/180;
-		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-		if (dist > 1) {
-			dist = 1;
-		}
-		dist = Math.acos(dist);
-		dist = dist * 180/Math.PI;
-		dist = dist * 60 * 1.1515;
-		if (unit=="K") { dist = dist * 1.609344 }
-		if (unit=="N") { dist = dist * 0.8684 }
-		return dist;
-	}
-}
-function isShortDistance(journey, lat1, lng1){
-  console.log("lat1 ", lat1, " lng2: " ,lng1);
-  console.log("lat2: ", journey.from[0], " lng2: " ,journey.from[1]);
-  dist = distance(lat1, lng1, journey.from[0], journey.from[1], "K");
-  console.log(dist);
-  if (dist <= 5){
-      console.log("entre");
-      return true;
-  }
-  return false;
-}
+
 
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -72,16 +42,15 @@ journeyRouter.route('/info')
       }
     });
 
+
 journeyRouter.post("/request", async(req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested("requested");
-  console.log(journeys);
   const lat_request = req.body.lat;
   const lng_request = req.body.lng;
-  console.log("lat: ", lat_request);
-  console.log("lng: ", lng_request);
-  const journeysNear = journeys.filter(element => {
-    if (isShortDistance(element, lat_request, lng_request)){
-         return element;
+  const distanceCalculator = new DistanceCalculator();
+  const journeysNear = journeys.filter(journey => {
+    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
+         return journey;
     }
   })
   res.send(journeysNear);
@@ -104,6 +73,8 @@ journeyRouter.post('/', async (req, res) => {
   const result = await dbJourney.save();
   logger.info('Journey Requested');
   res.send(result);
+  var driverRepository = new DriverRepository();
+  driverRepository.findPossibleDrivers(dbJourney.from, req.body.modality/*,price?*/);
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
@@ -158,5 +129,6 @@ journeyRouter.route('/:id').get(async (req, res) => {
   const journey = await journeyRepository.getJourneyById(req.params.id);
   returnJourney(res, journey, req.params.id);
 });
+
 
 module.exports = {journeyRouter};
