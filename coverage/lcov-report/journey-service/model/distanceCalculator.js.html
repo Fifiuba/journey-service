@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for journey-service/model/journey.js</title>
+    <title>Code coverage report for journey-service/model/distanceCalculator.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">journey-service/model</a> journey.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">journey-service/model</a> distanceCalculator.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">3.84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/11</span>
+                <span class='fraction'>1/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">4.16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/11</span>
+                <span class='fraction'>1/24</span>
             </div>
         
             
@@ -94,69 +94,90 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class Journey {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(modality, priceCalculator) {
-<span class="cstat-no" title="statement not covered" >    this.modality = modality;</span>
-<span class="cstat-no" title="statement not covered" >    this.priceCalculator = priceCalculator;</span>
-  }
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+class DistanceCalculator {
 &nbsp;
-<span class="fstat-no" title="function not covered" >  di</span>stance() {
-<span class="cstat-no" title="statement not covered" >    this.distanceCalculator.calculate();</span>
-  }
+<span class="fstat-no" title="function not covered" >    ca</span>lculate(lat1, lon1, lat2, lon2, unit) {
+<span class="cstat-no" title="statement not covered" >        if ((lat1 == lat2) &amp;&amp; (lon1 == lon2)) {</span>
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+        else {
+            var radlat1 = <span class="cstat-no" title="statement not covered" >Math.PI * lat1/180;</span>
+            var radlat2 = <span class="cstat-no" title="statement not covered" >Math.PI * lat2/180;</span>
+            var theta = <span class="cstat-no" title="statement not covered" >lon1-lon2;</span>
+            var radtheta = <span class="cstat-no" title="statement not covered" >Math.PI * theta/180;</span>
+            var dist = <span class="cstat-no" title="statement not covered" >Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);</span>
+<span class="cstat-no" title="statement not covered" >            if (dist &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                dist = 1;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            dist = Math.acos(dist);</span>
+<span class="cstat-no" title="statement not covered" >            dist = dist * 180/Math.PI;</span>
+<span class="cstat-no" title="statement not covered" >            dist = dist * 60 * 1.1515;</span>
+<span class="cstat-no" title="statement not covered" >            if (unit=="K") { <span class="cstat-no" title="statement not covered" >dist = dist * 1.609344 </span>}</span>
+<span class="cstat-no" title="statement not covered" >            if (unit=="N") { <span class="cstat-no" title="statement not covered" >dist = dist * 0.8684 </span>}</span>
+<span class="cstat-no" title="statement not covered" >            return dist;</span>
+        }
+    }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  se</span>tStart(timestamp) {
-<span class="cstat-no" title="statement not covered" >    this.start = timestamp;</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  se</span>tEnd(timestamp) {
-<span class="cstat-no" title="statement not covered" >    this.end = timestamp;</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  du</span>ration() {
-    const MINUTE = <span class="cstat-no" title="statement not covered" >60000;</span>
-    const milisegs = <span class="cstat-no" title="statement not covered" >this.end - this.start;</span>
-    const minutes = <span class="cstat-no" title="statement not covered" >milisegs / MINUTE;</span>
-<span class="cstat-no" title="statement not covered" >    return minutes;</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>st() {
-<span class="cstat-no" title="statement not covered" >    return this.priceCalculator.calculate();</span>
-  }
+<span class="fstat-no" title="function not covered" >    is</span>Short(from, lat1, lng1){
+<span class="cstat-no" title="statement not covered" >      console.log("lat1 ", lat1, " lng2: " ,lng1);</span>
+<span class="cstat-no" title="statement not covered" >      console.log("lat2: ", from[0], " lng2: " ,from[1]);</span>
+<span class="cstat-no" title="statement not covered" >      dist = distance(lat1, lng1, from[0], from[1], "K");</span>
+<span class="cstat-no" title="statement not covered" >      console.log(dist);</span>
+<span class="cstat-no" title="statement not covered" >      if (dist &lt;= 5){</span>
+<span class="cstat-no" title="statement not covered" >          console.log("entre");</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
 }
 &nbsp;
-module.exports = {Journey};
-&nbsp;</pre></td></tr></table></pre>
+module.exports = {DistanceCalculator}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
