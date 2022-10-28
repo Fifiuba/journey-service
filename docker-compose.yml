@@ -18,6 +18,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - MONGO_INITDB_DATABASE=Journeys
+    volumes:
+      - ./mongo:/data/db
 
   mongo-express:
     container_name: mongo-express
@@ -33,4 +35,5 @@ services:
     ports:
       - "8081:8081"
     restart: always
+
 

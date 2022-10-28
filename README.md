@@ -6,6 +6,7 @@
 
 ### App
 Se trata del servicio de viajes, donde se puede crear, aceptar, rechazar, consultar un viaje.
+[Endpoint Access](https://journey-service-solfonte.cloud.okteto.net/docs)
 
 ### Tecnologias
 
@@ -53,7 +54,7 @@ route : {to: from:}
 * El projecto posee las siguientes carpetas:
     * test: contiene los test del servicio 
     * routes: posee los distintos endpoints
-    * model: posee el modelo del viaje, un repocitorio y logicas de la entidad viajes
+    * model: posee el modelo del viaje, un repositorio y logicas de la entidad viajes
     * errors: contiene disntinas excepciones
 
     ![](https://www.plantuml.com/plantuml/png/ROz12W8n34NtFKKlq2iC0xeI1F46eOrGo3IG9iWWtjr1SR2jNVx_UB-PguAeBUHS9AZLdzYauEhTmps_sKLon0DGD09b-QsEUHEKlkraLpP5QPHdJa1Prq_MSY7nlOHfcFrBxQQ-dlPJl7UToWV2csx8-FqH7IUQxFrcBCaMUW40)
