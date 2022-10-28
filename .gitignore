@@ -1,3 +1,4 @@
 node_modules/
 .env
 get_route_example.json
+/mongo/.stignore

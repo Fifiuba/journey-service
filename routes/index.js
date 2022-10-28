@@ -28,10 +28,7 @@ journeyRouter.route('/info')
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
       const priceCalculator = new PriceCalculator(modality, distance);
-      // const auth = new Auth();
-      // TODO: porque no se esta guardando en la base?
       try {
-        // auth.validate(req.headers);
         const price = priceCalculator.calculate();
         const json = {
           price: price,
@@ -42,12 +39,6 @@ journeyRouter.route('/info')
       }
     });
 
-// journeyRouter.route('/info')
-//     .post(async (req, res) => {
-//       const modality = new Modality(req.body.modality);
-//       const journey = new Journey(from, to, modality);
-//       res.send(journey.cost());
-//     });
 
 journeyRouter.post('/', async (req, res) => {
   const modality = new Modality(req.body.modality);
