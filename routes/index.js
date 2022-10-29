@@ -42,10 +42,12 @@ journeyRouter.route('/info')
     });
 
 
-journeyRouter.post("/requested", async(req, res) =>{
+journeyRouter.get("/requested", async(req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested("requested");
-  const lat_request = req.body.lat;
-  const lng_request = req.body.lng;
+  const location = req.query.location.split(',')
+  const lat_request = location[0];
+  const lng_request = location[1];
+
   const journeysNear = journeys.filter(journey => {
     if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
          return journey;
@@ -90,7 +92,7 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-
+  //TODO: notify user with notification
   returnJourney(res, journey, 'Accepted');
 });
 

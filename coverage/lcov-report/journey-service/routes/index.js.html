@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.85% </span>
+                <span class="strong">77.46% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/70</span>
+                <span class='fraction'>55/71</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/11</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.85% </span>
+                <span class="strong">77.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/70</span>
+                <span class='fraction'>55/71</span>
             </div>
         
             
@@ -210,10 +210,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
@@ -243,16 +242,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -268,8 +270,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -344,10 +344,9 @@ const {DistanceCalculator} = require('../model/distanceCalculator')
 &nbsp;
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
+const distanceCalculator = new DistanceCalculator();
 &nbsp;
 const logger = require('../utils/logger');
-&nbsp;
-&nbsp;
 &nbsp;
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -376,17 +375,20 @@ journeyRouter.route('/info')
     });
 &nbsp;
 &nbsp;
-journeyRouter.post("/request", <span class="fstat-no" title="function not covered" >as</span>ync(req, res) =&gt;{
-  const journeys = <span class="cstat-no" title="statement not covered" >await journeyRepository.getJourneysRequested("requested");</span>
-  const lat_request = <span class="cstat-no" title="statement not covered" >req.body.lat;</span>
-  const lng_request = <span class="cstat-no" title="statement not covered" >req.body.lng;</span>
-  const distanceCalculator = <span class="cstat-no" title="statement not covered" >new DistanceCalculator()</span>
-  const journeysNear = <span class="cstat-no" title="statement not covered" >journeys.filter(<span class="fstat-no" title="function not covered" >el</span>ement =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (distanceCalculator.isShort(element, lat_request, lng_request)){</span>
-<span class="cstat-no" title="statement not covered" >         return element;</span>
+journeyRouter.get("/requested", async(req, res) =&gt;{
+  const journeys = await journeyRepository.getJourneysRequested("requested");
+  const location = req.query.location.split(',')
+  const lat_request = location[0];
+  const lng_request = location[1];
+&nbsp;
+  const journeysNear = journeys.filter(journey =&gt; {
+    console.log('from: ' + journey.from + ' lat: ' + lat_request + ' lng: ' + lng_request);
+    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
+         return journey;
     }
   })
-<span class="cstat-no" title="statement not covered" >  res.send(journeysNear);</span>
+  console.log(journeysNear)
+  res.send(journeysNear);
 });
 &nbsp;
 journeyRouter.post('/', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
@@ -406,8 +408,6 @@ journeyRouter.post('/', <span class="fstat-no" title="function not covered" >as<
   const result = <span class="cstat-no" title="statement not covered" >await dbJourney.save();</span>
 <span class="cstat-no" title="statement not covered" >  logger.info('Journey Requested');</span>
 <span class="cstat-no" title="statement not covered" >  res.send(result);</span>
-  var driverRepository = <span class="cstat-no" title="statement not covered" >new DriverRepository();</span>
-<span class="cstat-no" title="statement not covered" >  driverRepository.findPossibleDrivers(dbJourney.from, req.body.modality/*,price?*/);</span>
 });
 &nbsp;
 journeyRouter.patch('/start/:id', async (req, res) =&gt; {
@@ -427,7 +427,7 @@ journeyRouter.patch('/accept/:id', async (req, res) =&gt; {
   };
   const journey = await journeyRepository
       .updateJourneyInfo(journeyInfo, req.params.id);
-&nbsp;
+  //TODO: notify user with notification
   returnJourney(res, journey, 'Accepted');
 });
 &nbsp;
@@ -472,7 +472,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-28T23:03:56.858Z
+                at 2022-10-29T19:54:40.381Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -3,6 +3,8 @@ const {app} = require('../app');
 const {connectDB, dropDB, dropCollections} = require('./testDatabase/testDatabase');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');
+const buenosAiresJourney = require('./testFiles/buenosAiresJourney.json');
+const pilarJourney = require('./testFiles/pilarJourney.json');
 const {JourneyModel} = require('../database/journeySchema');
 
 describe('Application tests', () => {
@@ -85,6 +87,19 @@ describe('Application tests', () => {
     await request(app).patch('/journey/finish/' + savedJourney._id.toString()).expect(200).then((response) => {
       expect(response.body._id.toString()).toBe(savedJourney._id.toString());
     });
+  });
+
+  it("GET requested journeys which locations are close to a driver", async () => {
+    const newBuenosAiresJourney = new JourneyModel(buenosAiresJourney);
+    const newPilarJourney = new JourneyModel(pilarJourney)
+    const savedJourney = await newBuenosAiresJourney.save();
+    const anotherSavedJourney = await newPilarJourney.save();
+
+    await request(app).get('/journey/requested?location=-34.5854348,-58.400238').expect(200).then((response) => {
+      expect(response.body.length).toBe(1);
+      expect(response.body[0]._id.toString()).toBe(savedJourney._id.toString());
+    });
+    
   });
 
 });
