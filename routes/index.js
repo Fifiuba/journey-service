@@ -11,10 +11,9 @@ const {DistanceCalculator} = require('../model/distanceCalculator')
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
+const distanceCalculator = new DistanceCalculator();
 
 const logger = require('../utils/logger');
-
-
 
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -43,11 +42,10 @@ journeyRouter.route('/info')
     });
 
 
-journeyRouter.post("/request", async(req, res) =>{
+journeyRouter.post("/requested", async(req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested("requested");
   const lat_request = req.body.lat;
   const lng_request = req.body.lng;
-  const distanceCalculator = new DistanceCalculator();
   const journeysNear = journeys.filter(journey => {
     if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
          return journey;
@@ -73,8 +71,6 @@ journeyRouter.post('/', async (req, res) => {
   const result = await dbJourney.save();
   logger.info('Journey Requested');
   res.send(result);
-  var driverRepository = new DriverRepository();
-  driverRepository.findPossibleDrivers(dbJourney.from, req.body.modality/*,price?*/);
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
