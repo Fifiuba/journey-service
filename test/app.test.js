@@ -97,6 +97,7 @@ describe('Application tests', () => {
 
     await request(app).get('/journey/requested?location=-34.5854348,-58.400238').expect(200).then((response) => {
       expect(response.body.length).toBe(1);
+      console.log(response.body[0])
       expect(response.body[0]._id.toString()).toBe(savedJourney._id.toString());
     });
     
