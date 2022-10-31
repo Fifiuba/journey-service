@@ -271,17 +271,18 @@
                     }
                 }
             },
-            "/journey/request": {
-                "post": {
+            "/journey/requested": {
+                "get": {
                     "tags" : ["Journeys"],
                     "summary": "Gets journeys near by a point",
                     "parameters": [
                         {
-                            "in": "body",
-                            "name": "body",
+                            "in": "query",
+                            "name": "location",
                             "schema": {
-                                "$ref": "#/definitions/location"
-                            }
+                                "type": "List"
+                            },
+                            "description" : "Specifies the latitude and logitud of the current location of the driver, as a list separated by commas"
                         }
                     ],
                     "responses":{

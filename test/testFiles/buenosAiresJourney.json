@@ -1,0 +1,11 @@
+{
+    "status": "requested",
+    "idPassenger": 3,
+    "driver": {
+    "idDriver": 1,
+    "vip": false
+    },
+    "price": 20,
+    "from": [-34.5860531,-58.399662],
+    "to": [-34.578827,-58.5005147]
+}
