@@ -2,11 +2,12 @@
 ---
 [![GitHub Workflow Status](https://github.com/Fifiuba/journey-service/actions/workflows/node.js.yml/badge.svg?event=push)](https://github.com/Fifiuba/journey-service/commits/develop)
 [![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/develop/graph/badge.svg?token=dJ20t7hz7j)](https://app.codecov.io/gh/Fifiuba/journey-service/tree/develop)
+[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://journey-service-solfonte.cloud.okteto.net/)
 
 
 ### App
 Se trata del servicio de viajes, donde se puede crear, aceptar, rechazar, consultar un viaje.
-[Endpoint Access](https://journey-service-solfonte.cloud.okteto.net/docs)
+
 
 ### Tecnologias
 
