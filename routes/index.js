@@ -44,11 +44,11 @@ journeyRouter.route('/info')
 journeyRouter.get('/requested', async (req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested('requested');
   const location = req.query.location.split(',');
-  const lat_request = location[0];
-  const lng_request = location[1];
+  const latRequest = location[0];
+  const lngRequest = location[1];
   const distanceCalculator = new DistanceCalculator();
   const journeysNear = journeys.filter((journey) => {
-    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)) {
+    if (distanceCalculator.isShort(journey.from, latRequest, lngRequest)) {
       return journey;
     }
   });
@@ -97,6 +97,7 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
     returnJourney(res, journey, ' ');
   } else if (journey.status !== 'accepted') {
     logger.warn('Journey already accepted');
+    // eslint-disable-next-line max-len
     const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
     return returnJourney(res, updatedJourney, 'Accepted');
   } else {
