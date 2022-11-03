@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.14% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/70</span>
+                <span class='fraction'>60/78</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.14% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/70</span>
+                <span class='fraction'>60/78</span>
             </div>
         
             
@@ -194,7 +194,17 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -212,14 +222,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -283,13 +293,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -334,7 +354,7 @@ const {JourneyRepository} = require('../model/journeyRepository');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
-const {DistanceCalculator} = require('../model/distanceCalculator')
+const {DistanceCalculator} = require('../model/distanceCalculator');
 &nbsp;
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
@@ -369,17 +389,17 @@ journeyRouter.route('/info')
       }
     });
 &nbsp;
-journeyRouter.get("/requested", async(req, res) =&gt;{
-  const journeys = await journeyRepository.getJourneysRequested("requested");
-  const location = req.query.location.split(',')
+journeyRouter.get('/requested', async (req, res) =&gt;{
+  const journeys = await journeyRepository.getJourneysRequested('requested');
+  const location = req.query.location.split(',');
   const lat_request = location[0];
   const lng_request = location[1];
   const distanceCalculator = new DistanceCalculator();
-  const journeysNear = journeys.filter(journey =&gt; {
-    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
-         return journey;
+  const journeysNear = journeys.filter((journey) =&gt; {
+    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)) {
+      return journey;
     }
-  })
+  });
   res.send(journeysNear);
 });
 &nbsp;
@@ -417,10 +437,20 @@ journeyRouter.patch('/accept/:id', async (req, res) =&gt; {
   const journeyInfo = {
     status: 'accepted',
   };
-  const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
 &nbsp;
-  returnJourney(res, journey, 'Accepted');
+  const journey = await journeyRepository.getJourneyById(req.params.id);
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!journey) {
+<span class="cstat-no" title="statement not covered" >    logger.warn('Journey not found');</span>
+<span class="cstat-no" title="statement not covered" >    returnJourney(res, journey, ' ');</span>
+  } else if (journey.status !== 'accepted') {
+    logger.warn('Journey already accepted');
+    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
+    return returnJourney(res, updatedJourney, 'Accepted');
+  } else {
+    journey.status = 'taken';
+    returnJourney(res, journey, 'Already taken');
+  }
 });
 &nbsp;
 journeyRouter.patch('/cancel/:id', async (req, res) =&gt; {
@@ -463,7 +493,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-31T19:50:36.397Z
+                at 2022-11-03T19:28:52.582Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
