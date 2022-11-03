@@ -7,11 +7,10 @@ const {JourneyRepository} = require('../model/journeyRepository');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
-const {DistanceCalculator} = require('../model/distanceCalculator')
+const {DistanceCalculator} = require('../model/distanceCalculator');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
-const distanceCalculator = new DistanceCalculator();
 
 const logger = require('../utils/logger');
 
@@ -42,17 +41,17 @@ journeyRouter.route('/info')
       }
     });
 
-journeyRouter.get("/requested", async(req, res) =>{
-  const journeys = await journeyRepository.getJourneysRequested("requested");
-  const location = req.query.location.split(',')
+journeyRouter.get('/requested', async (req, res) =>{
+  const journeys = await journeyRepository.getJourneysRequested('requested');
+  const location = req.query.location.split(',');
   const lat_request = location[0];
   const lng_request = location[1];
   const distanceCalculator = new DistanceCalculator();
-  const journeysNear = journeys.filter(journey => {
-    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)){
-         return journey;
+  const journeysNear = journeys.filter((journey) => {
+    if (distanceCalculator.isShort(journey.from, lat_request, lng_request)) {
+      return journey;
     }
-  })
+  });
   res.send(journeysNear);
 });
 
@@ -90,10 +89,20 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
   const journeyInfo = {
     status: 'accepted',
   };
-  const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
 
-  returnJourney(res, journey, 'Accepted');
+  const journey = await journeyRepository.getJourneyById(req.params.id);
+
+  if (!journey) {
+    logger.warn('Journey not found');
+    returnJourney(res, journey, ' ');
+  } else if (journey.status !== 'accepted') {
+    logger.warn('Journey already accepted');
+    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
+    return returnJourney(res, updatedJourney, 'Accepted');
+  } else {
+    journey.status = 'taken';
+    returnJourney(res, journey, 'Already taken');
+  }
 });
 
 journeyRouter.patch('/cancel/:id', async (req, res) => {
