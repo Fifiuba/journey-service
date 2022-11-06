@@ -101,6 +101,19 @@ describe('Application tests', () => {
       expect(response.body[0]._id.toString()).toBe(savedJourney._id.toString());
     });
   });
+
+
+  it('cannot UPDATE journey status accepted to an already accepted journey', async () => {
+    journey.status = 'accepted'
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+    
+    
+    await request(app).patch('/journey/accept/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body.status).toContain('taken');
+    });
+  });
+
   
 
 });

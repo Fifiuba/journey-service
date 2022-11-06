@@ -15,9 +15,12 @@ class JourneyRepository {
   async getJourneys() {
     return await JourneyModel.find();
   }
-  async getJourneysRequested(status){
-    return await JourneyModel.find({"status": status});
+
+
+  async getJourneysRequested(status) {
+    return await JourneyModel.find({'status': status});
   }
+
   async updateJourneyInfo(infoJourney, id) {
     const journey = await JourneyModel
         .findByIdAndUpdate(id, infoJourney, {new: true});
