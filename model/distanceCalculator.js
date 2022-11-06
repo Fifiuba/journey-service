@@ -33,8 +33,6 @@ class DistanceCalculator {
       }
       return false;
     }
-    return false;
-  }
 }
 
 module.exports = {DistanceCalculator};
