@@ -208,3 +208,14 @@
 [Nov-03-2022 16:44:16] [32minfo[39m: 	[32mJourney Cancelled[39m
 [Nov-03-2022 16:44:16] [32minfo[39m: 	[32mJourney Finish[39m
 [Nov-03-2022 16:44:16] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-07-2022 09:20:11] [32minfo[39m: 	[32mJourney 6368f7fb2955f5af68818e3c[39m
+[Nov-07-2022 09:20:11] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-07-2022 09:20:11] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-07-2022 09:20:12] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-07-2022 09:20:12] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-07-2022 09:20:12] [32minfo[39m: 	[32mJourney Already taken[39m

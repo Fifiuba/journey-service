@@ -114,6 +114,16 @@ describe('Application tests', () => {
     });
   });
 
-  
+  it('cannot UPDATE journey status cancelled to an already started journey', async () => {
+    journey.status = 'started'
+    const newJourney = new JourneyModel(journey);
+    const savedJourney = await newJourney.save();
+    
+    
+    await request(app).patch('/journey/cancel/' + savedJourney._id.toString()).expect(200).then((response) => {
+      expect(response.body.status).toContain('start');
+    });
+  });
+
 
 });
