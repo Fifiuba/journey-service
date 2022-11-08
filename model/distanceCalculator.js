@@ -26,12 +26,10 @@ class DistanceCalculator {
     }
   }
 
-    isShort(from, lat1, lng1){
-      var dist = this.calculate(lat1, lng1, from[0], from[1], "K");
-      if (dist <= 2){
-          return true;
-      }
-      return false;
+  isShort(from, lat1, lng1) {
+    const dist = this.calculate(lat1, lng1, from[0], from[1], 'K');
+    if (dist <= 2) {
+      return true;
     }
 }
 

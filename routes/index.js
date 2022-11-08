@@ -76,7 +76,7 @@ journeyRouter.post('/', async (req, res) => {
 
 journeyRouter.patch('/start/:id', async (req, res) => {
   const journeyInfo = {
-    status: 'start',
+    status: 'started',
     driver: {idDriver: req.body.idDriver, vip: req.body.vip},
     startOn: Date.now(),
   };
@@ -96,11 +96,11 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
     logger.warn('Journey not found');
     returnJourney(res, journey, ' ');
   } else if (journey.status !== 'accepted') {
-    logger.warn('Journey already accepted');
     // eslint-disable-next-line max-len
     const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
     return returnJourney(res, updatedJourney, 'Accepted');
   } else {
+    logger.warn('Journey already accepted');
     journey.status = 'taken';
     returnJourney(res, journey, 'Already taken');
   }
@@ -110,10 +110,20 @@ journeyRouter.patch('/cancel/:id', async (req, res) => {
   const journeyInfo = {
     status: 'cancelled',
   };
-  const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
 
-  returnJourney(res, journey, 'Cancelled');
+  const journey = await journeyRepository.getJourneyById(req.params.id);
+
+  if (!journey) {
+    logger.warn('Journey not found');
+    returnJourney(res, journey, ' ');
+  } else if (journey.status === 'requested' ) {
+    // eslint-disable-next-line max-len
+    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
+    return returnJourney(res, updatedJourney, 'Cancelled');
+  } else {
+    logger.warn('Journey already started');
+    returnJourney(res, journey, 'Already taken');
+  }
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
