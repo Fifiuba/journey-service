@@ -2,10 +2,13 @@ const {ConfigurationModel} = require('../database/configurationSchema');
 
 class ConfigurationRepository {
 
-    async editRadialDistance(distance){
-        let filter = {};
-        let update = {radial_distance: distance}
-        let config = await ConfigurationModel.findOneAndUpdate(filter, update);
+    async editConfiguration(update){
+        let config = await ConfigurationModel.findOneAndUpdate({}, update);
+        return config;
+    }
+
+    async getConfiguration(){
+        let config = await ConfigurationModel.findOne({});
         return config;
     }
   

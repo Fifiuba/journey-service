@@ -31,6 +31,6 @@ class DistanceCalculator {
     if (dist <= 2) {
       return true;
     }
+  }
 }
-
 module.exports = {DistanceCalculator};
