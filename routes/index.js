@@ -28,19 +28,19 @@ function returnJourney(response, journey, message) {
   response.send(journey);
 }
 
-function returnConfig(response, config){
-  if (!config){
+function returnConfig(response, config) {
+  if (!config) {
     logger.warn('Configuration not set');
     response.status(404).send('No configuration setting was found');
     return;
   }
 
-  let configurationSettings = {
+  const configurationSettings = {
     base_price: config.base_price,
     radial_distance: config.radial_distance,
-  }
+  };
 
-  response.send(configurationSettings)
+  response.send(configurationSettings);
 }
 
 journeyRouter.route('/info')
@@ -68,7 +68,8 @@ journeyRouter.get('/requested', async (req, res) =>{
   const distance = +configuration.radial_distance.toString();
   const distanceCalculator = new DistanceCalculator();
   const journeysNear = journeys.filter((journey) => {
-    if (distanceCalculator.isShort(journey.from, latRequest, lngRequest, distance)) {
+    if (distanceCalculator
+        .isShort(journey.from, latRequest, lngRequest, distance)) {
       return journey;
     }
   });
@@ -164,17 +165,17 @@ journeyRouter.route('/').get(async (req, res) => {
 });
 
 journeyRouter.route('/config').get(async (req, res) => {
-  let config = await configurationRepository.getConfiguration(req.body);
+  const config = await configurationRepository.getConfiguration(req.body);
   returnConfig(res, config);
 });
 
 journeyRouter.route('/config').patch(async (req, res) => {
-  let config = await configurationRepository.editConfiguration(req.body);
+  const config = await configurationRepository.editConfiguration(req.body);
   returnConfig(res, config);
 });
 
 journeyRouter.route('/config').post(async (req, res) => {
-  let config = await configurationRepository.setConfiguration(req.body);
+  const config = await configurationRepository.setConfiguration(req.body);
   returnConfig(res, config);
 });
 
