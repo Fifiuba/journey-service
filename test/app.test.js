@@ -184,6 +184,8 @@ describe('Application tests', () => {
       expect(savedConfig.radial_distance).toBe(2);
     });
   });
+
+  //TODO: faltan mas tests de posts
   
 
 });

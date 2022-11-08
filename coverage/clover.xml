@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667939188043" clover="3.2.0">
-  <project timestamp="1667939188043" name="All files">
-    <metrics statements="238" coveredstatements="200" conditionals="36" coveredconditionals="27" methods="45" coveredmethods="34" elements="319" coveredelements="261" complexity="0" loc="238" ncloc="238" packages="7" files="14" classes="14"/>
+<coverage generated="1667940456687" clover="3.2.0">
+  <project timestamp="1667940456687" name="All files">
+    <metrics statements="241" coveredstatements="203" conditionals="38" coveredconditionals="29" methods="45" coveredmethods="34" elements="324" coveredelements="266" complexity="0" loc="241" ncloc="241" packages="7" files="14" classes="14"/>
     <package name="journey-service">
       <metrics statements="16" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="/home/sol/Documents/journey-service/app.js">
@@ -28,11 +28,11 @@
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="configurationSchema.js" path="/home/sol/Documents/journey-service/database/configurationSchema.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
       </file>
       <file name="journeySchema.js" path="/home/sol/Documents/journey-service/database/journeySchema.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -57,7 +57,7 @@
       </file>
     </package>
     <package name="journey-service.model">
-      <metrics statements="78" coveredstatements="61" conditionals="18" coveredconditionals="13" methods="23" coveredmethods="15"/>
+      <metrics statements="81" coveredstatements="64" conditionals="20" coveredconditionals="15" methods="23" coveredmethods="15"/>
       <file name="auth.js" path="/home/sol/Documents/journey-service/model/auth.js">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
@@ -70,20 +70,23 @@
         <line num="15" count="2" type="stmt"/>
       </file>
       <file name="configurationRepository.js" path="/home/sol/Documents/journey-service/model/configurationRepository.js">
-        <metrics statements="13" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
+        <metrics statements="16" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
       </file>
       <file name="distanceCalculator.js" path="/home/sol/Documents/journey-service/model/distanceCalculator.js">
         <metrics statements="21" coveredstatements="18" conditionals="12" coveredconditionals="7" methods="2" coveredmethods="2"/>
@@ -271,24 +274,24 @@
       <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <file name="testDatabase.js" path="/home/sol/Documents/journey-service/test/testDatabase/testDatabase.js">
         <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="26" count="23" type="cond" truecount="1" falsecount="1"/>
-        <line num="27" count="23" type="stmt"/>
-        <line num="28" count="23" type="stmt"/>
-        <line num="29" count="38" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="29" type="stmt"/>
+        <line num="28" count="29" type="stmt"/>
+        <line num="29" count="44" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.utils">

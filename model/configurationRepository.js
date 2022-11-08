@@ -16,6 +16,12 @@ class ConfigurationRepository {
     }
 
     async setConfiguration(parameters){
+
+        let alreadySetConfiguration = await ConfigurationModel.findOne({});
+        if (alreadySetConfiguration){
+            return alreadySetConfiguration; //TODO: deberia avisar que ya existe?
+        }
+
         let config = new ConfigurationModel(parameters);
         let error;
         try {
