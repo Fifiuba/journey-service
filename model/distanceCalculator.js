@@ -26,9 +26,9 @@ class DistanceCalculator {
     }
   }
 
-  isShort(from, lat1, lng1) {
-    const dist = this.calculate(lat1, lng1, from[0], from[1], 'K');
-    if (dist <= 2) {
+  isShort(from, lat1, lng1, maxDistance) {
+    const distance = this.calculate(lat1, lng1, from[0], from[1], 'K');
+    if (distance <= maxDistance) {
       return true;
     }
   }
