@@ -1,4 +1,3 @@
-const { Decimal128 } = require('mongodb');
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
@@ -18,15 +17,8 @@ const JourneySchema = new Schema ({
   to: {type: [Number]},
 });
 
-const ConfigurationSchema = new Schema ({
-  price: Number,
-  radial_distance: Decimal128,
-  unit: String,
-});
-
 // To use our schema definition, we need to convert it
 // into a Model we can work with Instances of Models are documents
 const JourneyModel = mongoose.model('Journey', JourneySchema);
-const ConfigurationModel = mongoose.model('Configuration', ConfigurationSchema);
 
-module.exports = {JourneyModel, ConfigurationModel};
+module.exports = {JourneyModel};

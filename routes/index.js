@@ -1,7 +1,7 @@
 const express = require('express');
 /* const {Journey} = */require('../model/journey');
 
-const {JourneyModel} = require('../database/schema.js');
+const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
