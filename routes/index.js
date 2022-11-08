@@ -3,6 +3,7 @@ const express = require('express');
 
 const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
+const {ConfigurationRepository} = require('../model/configurationRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
@@ -11,7 +12,7 @@ const {DistanceCalculator} = require('../model/distanceCalculator');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
-const configurationRepository = new configurationRepository();
+const configurationRepository = new ConfigurationRepository();
 
 
 const logger = require('../utils/logger');
@@ -25,6 +26,21 @@ function returnJourney(response, journey, message) {
   }
   logger.info('Journey ' + message);
   response.send(journey);
+}
+
+function returnConfig(response, config){
+  if (!config){
+    logger.warn('Configuration not set');
+    response.status(404).send('No configuration setting was found');
+    return;
+  }
+
+  let configurationSettings = {
+    base_price: config.base_price,
+    radial_distance: config.radial_distance,
+  }
+
+  response.send(configurationSettings)
 }
 
 journeyRouter.route('/info')
@@ -48,9 +64,11 @@ journeyRouter.get('/requested', async (req, res) =>{
   const location = req.query.location.split(',');
   const latRequest = location[0];
   const lngRequest = location[1];
+  const configuration = await configurationRepository.getConfiguration();
+  const distance = +configuration.radial_distance.toString();
   const distanceCalculator = new DistanceCalculator();
   const journeysNear = journeys.filter((journey) => {
-    if (distanceCalculator.isShort(journey.from, latRequest, lngRequest)) {
+    if (distanceCalculator.isShort(journey.from, latRequest, lngRequest, distance)) {
       return journey;
     }
   });
@@ -145,28 +163,24 @@ journeyRouter.route('/').get(async (req, res) => {
   res.send(journeys);
 });
 
-journeyRouter.route('/:id').get(async (req, res) => {
-  const journey = await journeyRepository.getJourneyById(req.params.id);
-  returnJourney(res, journey, req.params.id);
+journeyRouter.route('/config').get(async (req, res) => {
+  let config = await configurationRepository.getConfiguration(req.body);
+  returnConfig(res, config);
 });
 
 journeyRouter.route('/config').patch(async (req, res) => {
-  let result = await configurationRepository.editConfiguration(req.body);
-  let config = {
-    price: result.price,
-    radial_distance: result.radial_distance,
-  }
-  response.send(config);
-
+  let config = await configurationRepository.editConfiguration(req.body);
+  returnConfig(res, config);
 });
 
-journeyRouter.route('/config').get(async (req, res) => {
-  let result = await configurationRepository.editConfiguration(req.body);
-  let config = {
-    price: result.price,
-    radial_distance: result.radial_distance,
-  }
-  response.send(config);
+journeyRouter.route('/config').post(async (req, res) => {
+  let config = await configurationRepository.setConfiguration(req.body);
+  returnConfig(res, config);
+});
+
+journeyRouter.route('/:id').get(async (req, res) => {
+  const journey = await journeyRepository.getJourneyById(req.params.id);
+  returnJourney(res, journey, req.params.id);
 });
 
 module.exports = {journeyRouter};
