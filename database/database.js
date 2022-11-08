@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-function sleep(n){
-  return new Promise(resolve => setTimeout(resolve,n));
-}
+// function sleep(n) {
+//   return new Promise((resolve) => setTimeout(resolve, n));
+// }
 
 
 class JourneyDatabase {
   async connectDB() {
-    try{
+    try {
       await mongoose.connect('mongodb://root:root@mongodb:27017', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -18,9 +18,9 @@ class JourneyDatabase {
         pass: process.env.ME_CONFIG_MONGODB_ADMINPASSWORD,
         dbName: 'Journey_db',
 
-      })
-        console.log('Mongodb connected...');
-    }catch (error){
+      });
+      console.log('Mongodb connected...');
+    } catch (error) {
       console.log();
     }
   }
