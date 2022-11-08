@@ -150,12 +150,11 @@ journeyRouter.route('/:id').get(async (req, res) => {
   returnJourney(res, journey, req.params.id);
 });
 
-journeyRouter.route('/config').post(async (req, res) => {
+journeyRouter.route('/config').patch(async (req, res) => {
   let result = await configurationRepository.editConfiguration(req.body);
   let config = {
     price: result.price,
     radial_distance: result.radial_distance,
-    unit: result.unit,
   }
   response.send(config);
 
@@ -166,7 +165,6 @@ journeyRouter.route('/config').get(async (req, res) => {
   let config = {
     price: result.price,
     radial_distance: result.radial_distance,
-    unit: result.unit,
   }
   response.send(config);
 });
