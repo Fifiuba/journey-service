@@ -177,11 +177,6 @@ journeyRouter.route('/config').patch(async (req, res) => {
   returnConfig(res, config);
 });
 
-journeyRouter.route('/config').post(async (req, res) => {
-  const config = await configurationRepository.setConfiguration(req.body);
-  returnConfig(res, config);
-});
-
 journeyRouter.route('/:id').get(async (req, res) => {
   const journey = await journeyRepository.getJourneyById(req.params.id);
   returnJourney(res, journey, req.params.id);

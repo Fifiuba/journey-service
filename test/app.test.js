@@ -174,35 +174,5 @@ describe('Application tests', () => {
     });
   });
 
-  it('POST configuration saves it correctly', async () => {
-
-    await request(app).post('/journey/config/').expect(200).send(configuration).then(async (response) => {
-      expect(response.body.base_price).toBe(200);
-      expect(response.body.radial_distance).toBe(2);
-      let savedConfig = await ConfigurationModel.findOne({});
-      expect(savedConfig.base_price).toBe(200);
-      expect(savedConfig.radial_distance).toBe(2);
-    });
-  });
-
-  it('POST configuration already set returns previous one', async () => {
-
-    await request(app).post('/journey/config/').expect(200).send(configuration);
-
-    let updatedConfiguration = {
-      base_price: 300,
-      radial_distance: 3,
-    }
-
-
-    await request(app).post('/journey/config/').expect(200).send(updatedConfiguration).then(async (response) => {
-      expect(response.body.base_price).toBe(200);
-      expect(response.body.radial_distance).toBe(2);
-      let savedConfig = await ConfigurationModel.findOne({});
-      expect(savedConfig.base_price).toBe(200);
-      expect(savedConfig.radial_distance).toBe(2);
-    });
-  });
-  
 
 });

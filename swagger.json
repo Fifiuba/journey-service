@@ -343,30 +343,6 @@
                         }
                     }
                 }
-            },
-            "/journey/config": {
-                "post": {
-                    "tags" : ["Journeys"],
-                    "required":true,
-                    "summary": "Set journey configuration parameters",
-                    "parameters": [
-                        {
-                            "in": "body",
-                            "name": "body",
-                            "schema": {
-                                "$ref": "#/definitions/config"
-                            }
-                        }
-                    ],
-                    "responses":{
-                        "200" : {
-                            "description": "Ok",
-                            "schema": {
-                                "$ref": "#/definitions/config"
-                            }
-                        }
-                    }
-                }
             }
         },
     "definitions": {

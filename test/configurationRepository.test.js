@@ -74,7 +74,7 @@ describe('Journey repository test', () => {
   });
 
 
-  it('06 setting configuration when it was already set returns the old one', async () => {
+  it('06 setting configuration when it was already set updates the old one', async () => {
     const configurationRepository = new ConfigurationRepository();
     const config = await configurationRepository.setConfiguration(configuration);
 
@@ -83,10 +83,10 @@ describe('Journey repository test', () => {
         radial_distance: 3,
     }
 
-    const setConfig = await configurationRepository.setConfiguration(configuration);
+    const setConfig = await configurationRepository.setConfiguration(updatedConfiguration);
     const amountOfdocuments = await ConfigurationModel.find({}).count();
-    expect(config.base_price).toBe(setConfig.base_price);
-    expect(config.radial_distance).toBe(setConfig.radial_distance);
+    expect(updatedConfiguration.base_price).toBe(setConfig.base_price);
+    expect(updatedConfiguration.radial_distance).toBe(setConfig.radial_distance);
     expect(amountOfdocuments).toBe(1);
 
   });
