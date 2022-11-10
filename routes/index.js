@@ -47,9 +47,11 @@ journeyRouter.route('/info')
     .post(async (req, res) => {
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
-      const basePrice = await configurationRepository
-          .getConfiguration().base_price;
-      const priceCalculator = new PriceCalculator(basePrice,
+      const config = await configurationRepository
+          .getConfiguration();
+      
+      console.log(config.base_price)
+      const priceCalculator = new PriceCalculator(config.base_price,
           modality, distance);
       try {
         const price = priceCalculator.calculate();

@@ -27,6 +27,7 @@ class ConfigurationRepository {
     let error;
     try {
       await config.save();
+      console.log('Default configuration correclty set')
     } catch (err) {
       error = err;
       console.log(error);

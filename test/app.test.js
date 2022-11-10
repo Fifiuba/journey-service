@@ -22,6 +22,18 @@ describe('Application tests', () => {
     await dropCollections();
   });
 
+  it ('GET info for a journey returns the price', async () => {
+    const config = new ConfigurationModel(configuration)
+    config.save()
+    const journeyInfo = {
+      modality: "standar",
+      distance: 5
+    }
+    await request(app).post('/journey/info').send(journeyInfo).expect(200).then((response) => {
+      expect(response.body.price).toBe(1000);
+    });
+  })
+
   it('GET journey by id of an existing journey', async () => {
     const newJourney = new JourneyModel(journey);
     const savedJourney = await newJourney.save();
