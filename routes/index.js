@@ -66,6 +66,10 @@ journeyRouter.route('/info')
 
 journeyRouter.get('/requested', async (req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested('requested');
+  if (JSON.stringify(req.query) === JSON.stringify({})) {
+    res.status(400).send("Specify location parameters");
+    return;
+  }
   const location = req.query.location.split(',');
   const latRequest = location[0];
   const lngRequest = location[1];
@@ -82,8 +86,9 @@ journeyRouter.get('/requested', async (req, res) =>{
 });
 
 journeyRouter.post('/', async (req, res) => {
+  const configuration = await configurationRepository.getConfiguration();
   const modality = new Modality(req.body.modality);
-  const priceCalculator = new PriceCalculator(modality, req.body.distance);
+  const priceCalculator = new PriceCalculator(configuration.base_price, modality, req.body.distance);
 
   const price = priceCalculator.calculate();
 

@@ -8,7 +8,6 @@ class PriceCalculator {
   }
 
   calculate() {
-    // const BASE_PRICE = 100;
     if (this.distance < 0) {
       throw new InvalidDistanceError('Negative distance!');
     }
