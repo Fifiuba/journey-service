@@ -1,8 +1,9 @@
 const express = require('express');
 /* const {Journey} = */require('../model/journey');
 
-const {JourneyModel} = require('../database/schema.js');
+const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
+const {ConfigurationRepository} = require('../model/configurationRepository');
 
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
@@ -11,6 +12,8 @@ const {DistanceCalculator} = require('../model/distanceCalculator');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
+const configurationRepository = new ConfigurationRepository();
+
 
 const logger = require('../utils/logger');
 
@@ -25,11 +28,31 @@ function returnJourney(response, journey, message) {
   response.send(journey);
 }
 
+function returnConfig(response, config) {
+  if (!config) {
+    logger.warn('Configuration not set');
+    response.status(404).send('No configuration setting was found');
+    return;
+  }
+
+  const configurationSettings = {
+    base_price: config.base_price,
+    radial_distance: config.radial_distance,
+  };
+
+  response.send(configurationSettings);
+}
+
 journeyRouter.route('/info')
     .post(async (req, res) => {
       const distance = req.body.distance;
       const modality = new Modality(req.body.modality);
-      const priceCalculator = new PriceCalculator(modality, distance);
+      const config = await configurationRepository
+          .getConfiguration();
+      
+      console.log(config.base_price)
+      const priceCalculator = new PriceCalculator(config.base_price,
+          modality, distance);
       try {
         const price = priceCalculator.calculate();
         const json = {
@@ -43,12 +66,19 @@ journeyRouter.route('/info')
 
 journeyRouter.get('/requested', async (req, res) =>{
   const journeys = await journeyRepository.getJourneysRequested('requested');
+  if (JSON.stringify(req.query) === JSON.stringify({})) {
+    res.status(400).send("Specify location parameters");
+    return;
+  }
   const location = req.query.location.split(',');
   const latRequest = location[0];
   const lngRequest = location[1];
+  const configuration = await configurationRepository.getConfiguration();
+  const distance = +configuration.radial_distance.toString();
   const distanceCalculator = new DistanceCalculator();
   const journeysNear = journeys.filter((journey) => {
-    if (distanceCalculator.isShort(journey.from, latRequest, lngRequest)) {
+    if (distanceCalculator
+        .isShort(journey.from, latRequest, lngRequest, distance)) {
       return journey;
     }
   });
@@ -56,8 +86,9 @@ journeyRouter.get('/requested', async (req, res) =>{
 });
 
 journeyRouter.post('/', async (req, res) => {
+  const configuration = await configurationRepository.getConfiguration();
   const modality = new Modality(req.body.modality);
-  const priceCalculator = new PriceCalculator(modality, req.body.distance);
+  const priceCalculator = new PriceCalculator(configuration.base_price, modality, req.body.distance);
 
   const price = priceCalculator.calculate();
 
@@ -141,6 +172,16 @@ journeyRouter.route('/').get(async (req, res) => {
   const journeys = await journeyRepository.getJourneys();
   logger.info('Get Journeys');
   res.send(journeys);
+});
+
+journeyRouter.route('/config').get(async (req, res) => {
+  const config = await configurationRepository.getConfiguration(req.body);
+  returnConfig(res, config);
+});
+
+journeyRouter.route('/config').patch(async (req, res) => {
+  const config = await configurationRepository.editConfiguration(req.body);
+  returnConfig(res, config);
 });
 
 journeyRouter.route('/:id').get(async (req, res) => {

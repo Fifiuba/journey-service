@@ -1,4 +1,4 @@
-const {JourneyModel} = require('../database/schema');
+const {JourneyModel} = require('../database/journeySchema');
 
 class JourneyRepository {
   // returns null if the journey is not found
