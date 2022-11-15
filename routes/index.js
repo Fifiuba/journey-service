@@ -89,8 +89,8 @@ journeyRouter.post('/', async (req, res) => {
   const configuration = await configurationRepository.getConfiguration();
   const modality = new Modality(req.body.modality);
   const priceCalculator = new PriceCalculator(configuration.base_price, modality, req.body.distance);
-
   const price = priceCalculator.calculate();
+  console.log(price)
 
   const dbJourney = new JourneyModel({
     status: 'requested',
@@ -99,10 +99,17 @@ journeyRouter.post('/', async (req, res) => {
     from: req.body.from,
     to: req.body.to,
   });
-  logger.debug('Create journey');
-  const result = await dbJourney.save();
-  logger.info('Journey Requested');
-  res.send(result);
+  try {
+    logger.debug('Create journey');
+    const result = await dbJourney.save();
+    logger.info('Journey Requested');
+    res.send(result);
+  } catch (err) {
+    logger.debug(err);
+    res.status(400).send(err.errors)
+}
+  
+  
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {

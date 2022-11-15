@@ -13,6 +13,7 @@ class PriceCalculator {
     }
 
     let price = this.distance * this.basePrice;
+
     price = this.modality.apply(price);
     return price;
   }

@@ -47,6 +47,9 @@
                         "schema": {
                             "$ref": "#/definitions/journey"
                         }
+                    },
+                    "400" : {
+                        "description": "Bad Request - Missing value in body request"
                     }
                 }
             },
@@ -445,6 +448,19 @@
                     "type": "array",
                     "items": {
                         "type": "number"
+                    }
+                }
+            }
+        },
+        "MissingJourneyParameter" : {
+            "type" : "object",
+            "properties" : {
+                "data" : {
+                    "type" : "object",
+                    "items" : {
+                        "missingParameters" : {
+                            "type" : "array"
+                        }
                     }
                 }
             }

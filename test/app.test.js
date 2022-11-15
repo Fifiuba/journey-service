@@ -7,7 +7,7 @@ const {JourneyModel} = require('../database/journeySchema');
 const {ConfigurationModel} = require('../database/configurationSchema');
 const buenosAiresJourney = require('./testFiles/buenosAiresJourney.json');
 const pilarJourney = require('./testFiles/pilarJourney.json');
-const configuration = require('./testFiles/configuration.json')
+const configuration = require('./testFiles/configuration.json');
 
 describe('Application tests', () => {
   beforeAll(async () => {
@@ -176,7 +176,6 @@ describe('Application tests', () => {
   });
   
   it('GET existing configuration returns it correctly', async () => {
-
     const config = new ConfigurationModel(configuration);
     const savedConfig = await config.save();
 
@@ -186,5 +185,23 @@ describe('Application tests', () => {
     });
   });
 
+  it('POST new journey saves it correctly', async () => {
+    const config = new ConfigurationModel(configuration);
+    const savedConfig = await config.save();
+
+    const journey = {
+        modality: "standar",
+        idPassenger: 3,
+        from: [-34.5860531,-58.399662],
+        to: [-34.578827,-58.5005147],
+        distance: 2 /*estimado*/
+    }
+
+    await request(app).post('/journey/').expect(200).send(journey).then((response) => {
+      expect(response.body.status).toBe("requested");
+      expect(response.body.idPassenger).toBe(3);
+      expect(response.body.price).toBeCloseTo(400,2);
+    });
+  });
 
 });

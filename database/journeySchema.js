@@ -4,8 +4,8 @@ const {Schema} = mongoose;
 // Each schema maps to a MongoDB collection and defines
 // the shape of the documents within that collection
 const JourneySchema = new Schema({
-  status: String,
-  idPassenger: Number,
+  status: {type: String},
+  idPassenger: {type: Number, required: true},
   driver: {
     idDriver: {type: Number},
     vip: {type: Boolean},
@@ -13,8 +13,8 @@ const JourneySchema = new Schema({
   price: Number,
   startOn: {type: Date, default: Date.now},
   finishOn: {type: Date},
-  from: {type: [Number]},
-  to: {type: [Number]},
+  from: {type: [Number], required: true},
+  to: {type: [Number], required: true}
 });
 
 // To use our schema definition, we need to convert it
