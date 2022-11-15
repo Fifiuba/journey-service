@@ -1,5 +1,5 @@
 const {JourneyRepository} = require('../model/journeyRepository');
-const {JourneyModel} = require('../database/schema');
+const {JourneyModel} = require('../database/journeySchema');
 const {ObjectId} = require('mongodb');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');

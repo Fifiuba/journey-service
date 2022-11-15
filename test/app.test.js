@@ -3,9 +3,11 @@ const {app} = require('../app');
 const {connectDB, dropDB, dropCollections} = require('./testDatabase/testDatabase');
 const journey = require('./testFiles/journey.json');
 const anotherJourney = require('./testFiles/anotherJourney.json');
-const {JourneyModel} = require('../database/schema');
+const {JourneyModel} = require('../database/journeySchema');
+const {ConfigurationModel} = require('../database/configurationSchema');
 const buenosAiresJourney = require('./testFiles/buenosAiresJourney.json');
 const pilarJourney = require('./testFiles/pilarJourney.json');
+const configuration = require('./testFiles/configuration.json')
 
 describe('Application tests', () => {
   beforeAll(async () => {
@@ -19,6 +21,18 @@ describe('Application tests', () => {
   afterEach(async () => {
     await dropCollections();
   });
+
+  it ('GET info for a journey returns the price', async () => {
+    const config = new ConfigurationModel(configuration)
+    config.save()
+    const journeyInfo = {
+      modality: "standar",
+      distance: 5
+    }
+    await request(app).post('/journey/info').send(journeyInfo).expect(200).then((response) => {
+      expect(response.body.price).toBe(1000);
+    });
+  })
 
   it('GET journey by id of an existing journey', async () => {
     const newJourney = new JourneyModel(journey);
@@ -95,6 +109,8 @@ describe('Application tests', () => {
     const newPilarJourney = new JourneyModel(pilarJourney)
     const savedJourney = await newBuenosAiresJourney.save();
     const anotherSavedJourney = await newPilarJourney.save();
+    const config = new ConfigurationModel(configuration);
+    const savedConfig = await config.save();
 
     await request(app).get('/journey/requested?location=-34.5854348,-58.400238').expect(200).then((response) => {
       expect(response.body.length).toBe(1);
@@ -122,6 +138,51 @@ describe('Application tests', () => {
     
     await request(app).patch('/journey/cancel/' + savedJourney._id.toString()).expect(200).then((response) => {
       expect(response.body.status).toContain('start');
+    });
+  });
+
+
+  it('Cannot UPDATE non existing configuration', async () => {
+
+    await request(app).patch('/journey/config/').expect(404).set({body: configuration}).then((response) => {
+      expect(response.res.text).toBe('No configuration setting was found');
+    });
+  });
+
+  it('UPDATE existing configuration updates correctly', async () => {
+
+    const config = new ConfigurationModel(configuration);
+    const savedConfig = await config.save();
+
+    let updatedConfiguration = {
+      base_price: 300,
+      radial_distance: 3,
+    }
+
+
+    await request(app).patch('/journey/config/').expect(200).send(updatedConfiguration).then((response) => {
+      expect(response.body.base_price).toBe(300);
+      expect(response.body.radial_distance).toBe(3);
+    });
+  });
+
+
+  it('GET non existing configuration returns not found message', async () => {
+
+    await request(app).get('/journey/config/').expect(404).then((response) => {
+      expect(response.res.text).toBe('No configuration setting was found');
+    });
+    
+  });
+  
+  it('GET existing configuration returns it correctly', async () => {
+
+    const config = new ConfigurationModel(configuration);
+    const savedConfig = await config.save();
+
+    await request(app).patch('/journey/config/').expect(200).then((response) => {
+      expect(response.body.base_price).toBe(200);
+      expect(response.body.radial_distance).toBe(2);
     });
   });
 

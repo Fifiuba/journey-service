@@ -21,5 +21,4 @@ const JourneySchema = new Schema({
 // into a Model we can work with Instances of Models are documents
 const JourneyModel = mongoose.model('Journey', JourneySchema);
 
-
 module.exports = {JourneyModel};

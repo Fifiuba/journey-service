@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667823614945" clover="3.2.0">
-  <project timestamp="1667823614945" name="All files">
-    <metrics statements="202" coveredstatements="167" conditionals="34" coveredconditionals="25" methods="37" coveredmethods="27" elements="273" coveredelements="219" complexity="0" loc="202" ncloc="202" packages="7" files="12" classes="12"/>
+<coverage generated="1668459193508" clover="3.2.0">
+  <project timestamp="1668459193508" name="All files">
+    <metrics statements="245" coveredstatements="211" conditionals="40" coveredconditionals="30" methods="44" coveredmethods="34" elements="329" coveredelements="275" complexity="0" loc="245" ncloc="245" packages="7" files="14" classes="14"/>
     <package name="journey-service">
       <metrics statements="16" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="app.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\app.js">
+      <file name="app.js" path="/home/sol/Documents/journey-service/app.js">
         <metrics statements="16" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -25,19 +25,27 @@
       </file>
     </package>
     <package name="journey-service.database">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="schema.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\database\schema.js">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="configurationSchema.js" path="/home/sol/Documents/journey-service/database/configurationSchema.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+      </file>
+      <file name="journeySchema.js" path="/home/sol/Documents/journey-service/database/journeySchema.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.errors">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="invalid_distance.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\errors\invalid_distance.js">
+      <file name="invalid_distance.js" path="/home/sol/Documents/journey-service/errors/invalid_distance.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -49,8 +57,8 @@
       </file>
     </package>
     <package name="journey-service.model">
-      <metrics statements="66" coveredstatements="52" conditionals="18" coveredconditionals="13" methods="19" coveredmethods="12"/>
-      <file name="auth.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\auth.js">
+      <metrics statements="82" coveredstatements="65" conditionals="20" coveredconditionals="15" methods="23" coveredmethods="15"/>
+      <file name="auth.js" path="/home/sol/Documents/journey-service/model/auth.js">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
@@ -61,8 +69,28 @@
         <line num="12" count="1" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
       </file>
-      <file name="distanceCalculator.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\distanceCalculator.js">
-        <metrics statements="22" coveredstatements="19" conditionals="12" coveredconditionals="7" methods="2" coveredmethods="2"/>
+      <file name="configurationRepository.js" path="/home/sol/Documents/journey-service/model/configurationRepository.js">
+        <metrics statements="17" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+      </file>
+      <file name="distanceCalculator.js" path="/home/sol/Documents/journey-service/model/distanceCalculator.js">
+        <metrics statements="21" coveredstatements="18" conditionals="12" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="3" count="2" type="cond" truecount="2" falsecount="2"/>
         <line num="4" count="0" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
@@ -83,10 +111,9 @@
         <line num="30" count="2" type="stmt"/>
         <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
       </file>
-      <file name="journey.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\journey.js">
+      <file name="journey.js" path="/home/sol/Documents/journey-service/model/journey.js">
         <metrics statements="11" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -100,7 +127,7 @@
         <line num="27" count="0" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
       </file>
-      <file name="journeyRepository.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\journeyRepository.js">
+      <file name="journeyRepository.js" path="/home/sol/Documents/journey-service/model/journeyRepository.js">
         <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
         <line num="1" count="2" type="stmt"/>
         <line num="6" count="8" type="stmt"/>
@@ -113,151 +140,173 @@
         <line num="27" count="9" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
       </file>
-      <file name="modality.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\modality.js">
+      <file name="modality.js" path="/home/sol/Documents/journey-service/model/modality.js">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="7" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
       </file>
-      <file name="priceCalculator.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\model\priceCalculator.js">
+      <file name="priceCalculator.js" path="/home/sol/Documents/journey-service/model/priceCalculator.js">
         <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.routes">
-      <metrics statements="84" coveredstatements="64" conditionals="12" coveredconditionals="10" methods="11" coveredmethods="9"/>
-      <file name="index.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\routes\index.js">
-        <metrics statements="84" coveredstatements="64" conditionals="12" coveredconditionals="10" methods="11" coveredmethods="9"/>
+      <metrics statements="106" coveredstatements="90" conditionals="16" coveredconditionals="13" methods="14" coveredmethods="13"/>
+      <file name="index.js" path="/home/sol/Documents/journey-service/routes/index.js">
+        <metrics statements="106" coveredstatements="90" conditionals="16" coveredconditionals="13" methods="14" coveredmethods="13"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="19" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="24" count="7" type="stmt"/>
-        <line num="25" count="7" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="32" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
-        <line num="51" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="55" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="70" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
         <line num="77" count="1" type="stmt"/>
         <line num="78" count="1" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="80" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="82" count="1" type="stmt"/>
         <line num="85" count="1" type="stmt"/>
         <line num="88" count="1" type="stmt"/>
-        <line num="89" count="2" type="stmt"/>
-        <line num="93" count="2" type="stmt"/>
-        <line num="95" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="98" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="100" count="1" type="stmt"/>
-        <line num="101" count="1" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
-        <line num="104" count="1" type="stmt"/>
-        <line num="105" count="1" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
         <line num="109" count="1" type="stmt"/>
-        <line num="110" count="2" type="stmt"/>
-        <line num="114" count="2" type="stmt"/>
-        <line num="116" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="117" count="0" type="stmt"/>
-        <line num="118" count="0" type="stmt"/>
-        <line num="119" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="121" count="1" type="stmt"/>
-        <line num="122" count="1" type="stmt"/>
-        <line num="124" count="1" type="stmt"/>
-        <line num="125" count="1" type="stmt"/>
-        <line num="129" count="1" type="stmt"/>
-        <line num="130" count="1" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="120" count="2" type="stmt"/>
+        <line num="124" count="2" type="stmt"/>
+        <line num="126" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="129" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="132" count="1" type="stmt"/>
         <line num="134" count="1" type="stmt"/>
+        <line num="135" count="1" type="stmt"/>
         <line num="136" count="1" type="stmt"/>
         <line num="140" count="1" type="stmt"/>
-        <line num="141" count="1" type="stmt"/>
-        <line num="142" count="1" type="stmt"/>
-        <line num="143" count="1" type="stmt"/>
-        <line num="146" count="1" type="stmt"/>
-        <line num="147" count="2" type="stmt"/>
-        <line num="148" count="2" type="stmt"/>
-        <line num="151" count="1" type="stmt"/>
+        <line num="141" count="2" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="147" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="152" count="1" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
+        <line num="156" count="1" type="stmt"/>
+        <line num="160" count="1" type="stmt"/>
+        <line num="161" count="1" type="stmt"/>
+        <line num="165" count="1" type="stmt"/>
+        <line num="167" count="1" type="stmt"/>
+        <line num="171" count="1" type="stmt"/>
+        <line num="172" count="1" type="stmt"/>
+        <line num="173" count="1" type="stmt"/>
+        <line num="174" count="1" type="stmt"/>
+        <line num="177" count="1" type="stmt"/>
+        <line num="178" count="1" type="stmt"/>
+        <line num="179" count="1" type="stmt"/>
+        <line num="182" count="1" type="stmt"/>
+        <line num="183" count="3" type="stmt"/>
+        <line num="184" count="3" type="stmt"/>
+        <line num="187" count="1" type="stmt"/>
+        <line num="188" count="2" type="stmt"/>
+        <line num="189" count="2" type="stmt"/>
+        <line num="192" count="1" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.test.testDatabase">
       <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
-      <file name="testDatabase.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\test\testDatabase\testDatabase.js">
+      <file name="testDatabase.js" path="/home/sol/Documents/journey-service/test/testDatabase/testDatabase.js">
         <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="26" count="18" type="cond" truecount="1" falsecount="1"/>
-        <line num="27" count="18" type="stmt"/>
-        <line num="28" count="18" type="stmt"/>
-        <line num="29" count="18" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="29" type="stmt"/>
+        <line num="28" count="29" type="stmt"/>
+        <line num="29" count="44" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.utils">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="logger.js" path="C:\Users\alejo\OneDrive\Documents\Facultad\2C2022\taller_2\journey-service\utils\logger.js">
+      <file name="logger.js" path="/home/sol/Documents/journey-service/utils/logger.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="15" count="11" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
       </file>
     </package>

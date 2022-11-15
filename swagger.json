@@ -294,8 +294,57 @@
                         }
                     }
                 }
+            },
+            "/journey/config": {
+                "get": {
+                    "tags" : ["Journeys"],
+                    "summary": "Gets journey configuration parameters",
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/config"
+                            }
+                        },
+                        "404": {
+                            "description": "No configuration setting was found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/config": {
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "required":false,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Edit journey configuration parameters",
+                    "description": "Edits the specified configuration fields in the request body and returns them",
+                    "responses":{
+                        "200": {
+                            "description": "The final configuration schema",
+                            "schema": {
+                                "$ref": "#/definitions/config"
+                            }
+                        },
+                        "404": {
+                            "description": "No configuration setting was found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
             }
-    },
+        },
     "definitions": {
         "StartJourney": {
             "type": "object",
@@ -407,6 +456,17 @@
                     "additionalProperties": {
                         "$ref": "#/definitions/journey"
                     }
+                }
+            }
+        },
+        "config": {
+            "type": "object",
+            "properties": {
+                "base_price": {
+                    "type": "int"
+                },
+                "radial_distance": {
+                    "type": "Decimal128"
                 }
             }
         }

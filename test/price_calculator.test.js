@@ -8,7 +8,7 @@ describe('PriceCalculator', () => {
     const distance = 0.0;
     const modality = new Modality();
 
-    const priceCalculator = new PriceCalculator(modality, distance);
+    const priceCalculator = new PriceCalculator(100,modality, distance);
 
     expect(priceCalculator.calculate()).toBe(0);
   } );
@@ -17,7 +17,7 @@ describe('PriceCalculator', () => {
     const distance = 7.0;
     const modality = new Modality('standar');
 
-    const priceCalculator = new PriceCalculator(modality, distance);
+    const priceCalculator = new PriceCalculator(100,modality, distance);
 
     expect(priceCalculator.calculate()).toBe(700);
   } );
@@ -26,7 +26,7 @@ describe('PriceCalculator', () => {
     const distance = 2.5;
     const modality = new Modality('pro');
 
-    const priceCalculator = new PriceCalculator(modality, distance);
+    const priceCalculator = new PriceCalculator(100,modality, distance);
 
     expect(priceCalculator.calculate()).toBe(275);
   } );
@@ -34,7 +34,7 @@ describe('PriceCalculator', () => {
   test('04_should_throw_error_negative_distance', () => {
     const distance = -1;
     const modality = new Modality('standar');
-    const priceCalculator = new PriceCalculator(modality, distance);
+    const priceCalculator = new PriceCalculator(100,modality, distance);
 
     const error = () => {
       priceCalculator.calculate();
