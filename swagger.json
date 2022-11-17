@@ -414,6 +414,17 @@
             }
 
         },
+        "driver" : {
+            "type": "object",
+            "properties": {
+                "idDriver": {
+                    "type": "Number"
+                }, 
+                "vip": {
+                    "type": "boolean"
+                }
+            }
+        },
         "journey": {
             "type": "object",
             "properties": {
@@ -435,10 +446,17 @@
                 "finishOn" : {
                     "type" : "string"
                 },
+                 "driver" : {
+                    "type": "object"
+                
+                },
                 "from": {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "additionalProperties": {
+                            "$ref": "#/definitions/driver"
+                        }
                     }
                 },
                 "to": {
