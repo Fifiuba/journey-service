@@ -92,17 +92,24 @@ journeyRouter.post('/', async (req, res) => {
 
   const price = priceCalculator.calculate();
 
-  const dbJourney = new JourneyModel({
-    status: 'requested',
-    idPassenger: req.body.idPassenger,
-    price: price,
-    from: req.body.from,
-    to: req.body.to,
-  });
-  logger.debug('Create journey');
-  const result = await dbJourney.save();
-  logger.info('Journey Requested');
-  res.send(result);
+  try {
+    const dbJourney = new JourneyModel({
+      status: 'requested',
+      idPassenger: req.body.idPassenger,
+      price: price,
+      from: req.body.from,
+      to: req.body.to,
+    });
+    logger.debug('Create journey');
+    const result = await dbJourney.save();
+    logger.info('Journey Requested');
+    res.send(result);
+  }catch(err){
+    console.log(error);
+    res.status(422).send("Error requesting journey - check the fields sent")
+  }
+
+  
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
