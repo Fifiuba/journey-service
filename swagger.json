@@ -9,7 +9,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "localhost:9000",
+    "host": "journey-service-solfonte.cloud.okteto.net",
     "basePath": "/",
     "tags": [
         {
@@ -18,7 +18,6 @@
         }
     ],
     "schemes": [
-        "http",
         "https"
     ],
     "consumes": [
@@ -313,18 +312,16 @@
                             }
                         }
                     }
-                }
-            },
-            "/journey/config": {
-                "parameters": [
-                    {
-                    "in": "body",
-                    "name": "body",
-                    "required":false,
-                    "type": "string"
-                    }
-                ],
+                },
                 "patch":{
+                    "parameters": [
+                        {
+                        "in": "body",
+                        "name": "body",
+                        "required":false,
+                        "type": "string"
+                        }
+                    ],
                     "tags": ["Journeys"],
                     "summary": "Edit journey configuration parameters",
                     "description": "Edits the specified configuration fields in the request body and returns them",

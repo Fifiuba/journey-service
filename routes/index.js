@@ -54,6 +54,10 @@ journeyRouter.route('/info')
       const priceCalculator = new PriceCalculator(config.base_price,
           modality, distance);
       try {
+        logger.info(config.base_price);
+        logger.info(modality);
+        logger.info(distance);
+
         const price = priceCalculator.calculate();
         const json = {
           price: price,
@@ -105,7 +109,7 @@ journeyRouter.post('/', async (req, res) => {
     logger.info('Journey Requested');
     res.send(result);
   }catch(err){
-    console.log(error);
+    console.log(err);
     res.status(422).send("Error requesting journey - check the fields sent")
   }
 
