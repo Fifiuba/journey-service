@@ -7,8 +7,8 @@ const JourneySchema = new Schema({
   status: String,
   idPassenger: Number,
   driver: {
-    idDriver: {type: Number},
-    vip: {type: Boolean},
+    idDriver: {type: Number, default: null},
+    vip: {type: Boolean, default: null},
   },
   price: Number,
   startOn: {type: Date, default: Date.now},
