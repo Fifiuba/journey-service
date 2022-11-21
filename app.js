@@ -10,7 +10,7 @@ const swaggerSpec = require('./swagger.json');
 let serviceInfo = {
   "service": "Journey service!",
   "created_on": "9-9-2022",
-  "description": "Journey service is responsable for managing requested journeys and requested info for a journey"
+  "description": "Journey service is responsible for managing requested journeys and requested info for a journey"
 }
 
 app.use(cors());
