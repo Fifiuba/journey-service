@@ -147,6 +147,15 @@
                     "tags": ["Journeys"],
                     "summary": "Accept journey",
                     "description": "Returns the journey accepted",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "$ref": "#/definitions/StartJourney"
+                            }
+                        }
+                    ],
                     "responses":{
                         "200": {
                             "description": "A journey",
@@ -216,15 +225,6 @@
                     "tags": ["Journeys"],
                     "summary": "Start journey",
                     "description": "Returns the journey finish with the date updated",
-                    "parameters": [
-                        {
-                            "in": "body",
-                            "name": "body",
-                            "schema": {
-                                "$ref": "#/definitions/StartJourney"
-                            }
-                        }
-                    ],
                     "responses":{
                         "200": {
                             "description": "A journey",
