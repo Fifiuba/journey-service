@@ -119,21 +119,20 @@ journeyRouter.post('/', async (req, res) => {
 journeyRouter.patch('/start/:id', async (req, res) => {
   const journeyInfo = {
     status: 'started',
-    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
     startOn: Date.now(),
   };
   const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
+  .updateJourneyInfo(journeyInfo, req.params.id);
   returnJourney(res, journey, 'Started');
 });
 
 journeyRouter.patch('/accept/:id', async (req, res) => {
   const journeyInfo = {
     status: 'accepted',
+    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
   };
 
   const journey = await journeyRepository.getJourneyById(req.params.id);
-
   if (!journey) {
     logger.warn('Journey not found');
     returnJourney(res, journey, ' ');
