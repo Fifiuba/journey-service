@@ -259,32 +259,23 @@
 <a name='L194'></a><a href='#L194'>194</a>
 <a name='L195'></a><a href='#L195'>195</a>
 <a name='L196'></a><a href='#L196'>196</a>
-<a name='L197'></a><a href='#L197'>197</a>
-<a name='L198'></a><a href='#L198'>198</a>
-<a name='L199'></a><a href='#L199'>199</a>
-<a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L197'></a><a href='#L197'>197</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
@@ -385,13 +376,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -400,8 +386,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -470,24 +456,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
-/* const {Journey} = */require('../model/journey');
-&nbsp;
+const {JourneyManager} = require('../model/journeyManager');
 const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
-&nbsp;
+const logger = require('../utils/logger');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 const {DistanceCalculator} = require('../model/distanceCalculator');
 &nbsp;
+&nbsp;
+&nbsp;
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
-&nbsp;
-&nbsp;
-const logger = require('../utils/logger');
-&nbsp;
+const journeyManager = new JourneyManager();
 &nbsp;
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -588,23 +572,18 @@ journeyRouter.post('/', <span class="fstat-no" title="function not covered" >as<
 });
 &nbsp;
 journeyRouter.patch('/start/:id', async (req, res) =&gt; {
-  const journeyInfo = {
-    status: 'started',
-    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
-    startOn: Date.now(),
-  };
-  const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
+&nbsp;
+  const journey = journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 &nbsp;
 journeyRouter.patch('/accept/:id', async (req, res) =&gt; {
   const journeyInfo = {
     status: 'accepted',
+    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
   };
 &nbsp;
   const journey = await journeyRepository.getJourneyById(req.params.id);
-&nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (!journey) {
 <span class="cstat-no" title="statement not covered" >    logger.warn('Journey not found');</span>
 <span class="cstat-no" title="statement not covered" >    returnJourney(res, journey, ' ');</span>
@@ -679,7 +658,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-20T20:05:06.025Z
+                at 2022-11-22T15:13:45.731Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

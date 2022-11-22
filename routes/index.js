@@ -1,22 +1,20 @@
 const express = require('express');
-/* const {Journey} = */require('../model/journey');
-
+const {JourneyManager} = require('../model/journeyManager');
 const {JourneyModel} = require('../database/journeySchema.js');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
-
+const logger = require('../utils/logger');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 const {DistanceCalculator} = require('../model/distanceCalculator');
 
+
+
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
-
-
-const logger = require('../utils/logger');
-
+const journeyManager = new JourneyManager();
 
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -117,12 +115,8 @@ journeyRouter.post('/', async (req, res) => {
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
-  const journeyInfo = {
-    status: 'started',
-    startOn: Date.now(),
-  };
-  const journey = await journeyRepository
-  .updateJourneyInfo(journeyInfo, req.params.id);
+
+  const journey = journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 
