@@ -11,6 +11,17 @@ class JourneyManager {
         this.configurationRepository = configurationRepository;
       }
 
+    async getPriceForJourney(distance, requestedModality){
+        const modality = new Modality(requestedModality);
+        const config = await this.configurationRepository
+            .getConfiguration();
+        const priceCalculator = new PriceCalculator(config.base_price,
+            modality, distance);
+        const price = priceCalculator.calculate();
+        console.log(price)
+        return price
+    }
+
     async requestJourney(passengerId, requestedModality, distance, from, to){
         const configuration = await this.configurationRepository.getConfiguration();
         const modality = new Modality(requestedModality);

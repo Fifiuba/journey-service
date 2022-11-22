@@ -37,27 +37,13 @@ function returnConfig(response, config) {
   response.send(configurationSettings);
 }
 
-journeyRouter.route('/info')
-    .get(async (req, res) => {
-      const distance = req.query.distance;
-      const modality = new Modality(req.query.modality);
-      const config = await configurationRepository
-          .getConfiguration();
-      
-      console.log(config.base_price)
-      const priceCalculator = new PriceCalculator(config.base_price,
-          modality, distance);
-      try {
-        logger.info(config.base_price);
-        logger.info(modality);
-        logger.info(distance);
+journeyRouter.route('/info').get(async (req, res) => {
 
-        const price = priceCalculator.calculate();
-        const json = {
-          price: price,
-        };
-        res.send(json);
-      } catch (error) {
+      try {
+        const journeyPrice = await journeyManager.getPriceForJourney(req.query.distance, req.query.modality);
+        console.log("todo ok")
+        res.send({price : journeyPrice});
+      } catch (error){
         res.status(error.code).json({error: error});
       }
     });
