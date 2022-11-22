@@ -3,14 +3,13 @@ const {JourneyManager} = require('../model/journeyManager');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
 const logger = require('../utils/logger');
-const {PriceCalculator} = require('../model/priceCalculator');
-const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
-const journeyManager = new JourneyManager(journeyRepository, configurationRepository);
+const journeyManager = new JourneyManager(journeyRepository,
+    configurationRepository);
 
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -38,73 +37,72 @@ function returnConfig(response, config) {
 }
 
 journeyRouter.route('/info').get(async (req, res) => {
-
-      try {
-        const journeyPrice = await journeyManager.getPriceForJourney(req.query.distance, req.query.modality);
-        console.log("todo ok")
-        res.send({price : journeyPrice});
-      } catch (error){
-        res.status(error.code).json({error: error});
-      }
-    });
+  try {
+    const journeyPrice = await journeyManager
+        .getPriceForJourney(req.query.distance, req.query.modality);
+    res.send({price: journeyPrice});
+  } catch (error) {
+    res.status(error.code).json({error: error});
+  }
+});
 
 journeyRouter.get('/requested', async (req, res) => {
   if (JSON.stringify(req.query) === JSON.stringify({})) {
-    res.status(400).send("Specify location parameters");
+    res.status(400).send('Specify location parameters');
     return;
   }
   const location = req.query.location.split(',');
   const latRequest = location[0];
   const lngRequest = location[1];
-  const journeysNear = await journeyManager.getNearestRequestedJourneys(latRequest, lngRequest)
+  const journeysNear = await journeyManager
+      .getNearestRequestedJourneys(latRequest, lngRequest);
   res.send(journeysNear);
 });
 
 journeyRouter.post('/', async (req, res) => {
-
-  const journey = await journeyManager.requestJourney(req.body.idPassenger, req.body.modality,
-                 req.body.distance, req.body.from, req.body.to);
-  if (!journey){
-    res.status(422).send("Error requesting journey - check the fields sent")
-    return
+  const journey = await journeyManager
+      .requestJourney(req.body.idPassenger, req.body.modality,
+          req.body.distance, req.body.from, req.body.to);
+  if (!journey) {
+    res.status(422).send('Error requesting journey - check the fields sent');
+    return;
   }
   res.send(result);
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
-
   const journey = await journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 
 journeyRouter.patch('/accept/:id', async (req, res) => {
-  let returnMessage = ' '
-  const journey = await journeyManager.acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
-  if (journey != null && journey.status == 'accepted'){
-    returnMessage = 'Accepted'
-  }else if (journey != null){
-    returnMessage = 'Already taken'
+  let returnMessage = ' ';
+  const journey = await journeyManager
+      .acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
+  if (journey != null && journey.status == 'accepted') {
+    returnMessage = 'Accepted';
+  } else if (journey != null) {
+    returnMessage = 'Already taken';
   }
   returnJourney(res, journey, returnMessage);
 });
 
 journeyRouter.patch('/cancel/:id', async (req, res) => {
-  
-  let returnMessage = ' '
-  const journey = await journeyManager.cancelJourney(req.params.id)
-  if (journey != null && journey.status === 'requested' ){
-    returnMessage = 'Cancelled'
-  }else if (journey != null){
-    returnMessage = 'Already taken'
+  let returnMessage = ' ';
+  const journey = await journeyManager.cancelJourney(req.params.id);
+  if (journey != null && journey.status === 'requested' ) {
+    returnMessage = 'Cancelled';
+  } else if (journey != null) {
+    returnMessage = 'Already taken';
   }
   returnJourney(res, journey, returnMessage);
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
-  let returnMessage = 'Finish'
+  let returnMessage = 'Finish';
   const journey = await journeyManager.finishJourney(req.params.id);
-  if (!journey){
-    returnMessage = ' '
+  if (!journey) {
+    returnMessage = ' ';
   }
   returnJourney(res, journey, returnMessage);
 });

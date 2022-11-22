@@ -22,7 +22,7 @@ describe('Journey repository test', () => {
         await dropCollections();
     });
     
-    it('get price for a journey returns the correct price', async () => {
+    it('01 get price for a journey returns the correct price', async () => {
         const journeyRepository = new JourneyRepository()
         const configurationRepository = new ConfigurationRepository()
         const config = new ConfigurationModel(configuration)
@@ -31,7 +31,22 @@ describe('Journey repository test', () => {
         const price = await journeyManager.getPriceForJourney(5, "standar")
         expect(price).toBe(1000)
     });
+/*
+    it('02', async () => {
 
-    it('')
+        const newJourney = new JourneyModel(journey);
+        const anotherNewJourney = new JourneyModel(anotherJourney);
+    
+        const savedJourney = await newJourney.save();
+        const anotherSavedJourney = await anotherNewJourney.save();
+        const journeyRepository = new JourneyRepository()
+        const configurationRepository = new ConfigurationRepository()
+        const journeyManager = new JourneyManager(journeyRepository,  configurationRepository)
+       
+        const journeys = await journeyManager.getJourneys()
+        const expected = [journeys[0]._id.toString(), journeys[1]._id.toString()];
+        expect(journeys.length).toBe(2);
+        expect([savedJourney._id.toString(), anotherSavedJourney._id.toString()]).toEqual(expect.arrayContaining(expected));   
+    });*/
 
 });

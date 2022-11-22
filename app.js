@@ -7,11 +7,11 @@ const swaggerUi = require('swagger-ui-express');
 /* const swaggerJSDoc = */require('swagger-jsdoc');
 const swaggerSpec = require('./swagger.json');
 
-let serviceInfo = {
-  "service": "Journey service!",
-  "created_on": "9-9-2022",
-  "description": "Journey service is responsible for managing requested journeys and requested info for a journey"
-}
+const serviceInfo = {
+  'service': 'Journey service!',
+  'created_on': '9-9-2022',
+  'description': 'Journey service is responsible for managing journeys',
+};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,7 +25,6 @@ app.use('/journey', routes.journeyRouter);
 
 
 app.get('/', (req, res) => {
-
   res.send(serviceInfo);
 });
 

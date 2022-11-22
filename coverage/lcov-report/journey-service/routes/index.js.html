@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.09% </span>
+                <span class="strong">87.8% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>74/84</span>
+                <span class='fraction'>72/82</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.09% </span>
+                <span class="strong">87.8% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>74/84</span>
+                <span class='fraction'>72/82</span>
             </div>
         
             
@@ -196,10 +196,7 @@
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -210,6 +207,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
@@ -237,9 +235,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,12 +254,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -271,7 +270,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,16 +277,16 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -336,14 +334,13 @@ const {JourneyManager} = require('../model/journeyManager');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
 const logger = require('../utils/logger');
-const {PriceCalculator} = require('../model/priceCalculator');
-const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 &nbsp;
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
-const journeyManager = new JourneyManager(journeyRepository, configurationRepository);
+const journeyManager = new JourneyManager(journeyRepository,
+    configurationRepository);
 &nbsp;
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -371,73 +368,73 @@ function returnConfig(response, config) {
 }
 &nbsp;
 journeyRouter.route('/info').get(async (req, res) =&gt; {
-&nbsp;
-      try {
-        const journeyPrice = await journeyManager.getPriceForJourney(req.query.distance, req.query.modality);
-        console.log("todo ok")
-        res.send({price : journeyPrice});
-      } catch (error){
-<span class="cstat-no" title="statement not covered" >        res.status(error.code).json({error: error});</span>
-      }
-    });
+  try {
+    const journeyPrice = await journeyManager
+        .getPriceForJourney(req.query.distance, req.query.modality);
+    console.log('todo ok');
+    res.send({price: journeyPrice});
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    res.status(error.code).json({error: error});</span>
+  }
+});
 &nbsp;
 journeyRouter.get('/requested', async (req, res) =&gt; {
   <span class="missing-if-branch" title="if path not taken" >I</span>if (JSON.stringify(req.query) === JSON.stringify({})) {
-<span class="cstat-no" title="statement not covered" >    res.status(400).send("Specify location parameters");</span>
+<span class="cstat-no" title="statement not covered" >    res.status(400).send('Specify location parameters');</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
   const location = req.query.location.split(',');
   const latRequest = location[0];
   const lngRequest = location[1];
-  const journeysNear = await journeyManager.getNearestRequestedJourneys(latRequest, lngRequest)
+  const journeysNear = await journeyManager
+      .getNearestRequestedJourneys(latRequest, lngRequest);
   res.send(journeysNear);
 });
 &nbsp;
 journeyRouter.post('/', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-&nbsp;
-  const journey = <span class="cstat-no" title="statement not covered" >await journeyManager.requestJourney(req.body.idPassenger, req.body.modality,</span>
-                 req.body.distance, req.body.from, req.body.to);
-<span class="cstat-no" title="statement not covered" >  if (!journey){</span>
-<span class="cstat-no" title="statement not covered" >    res.status(422).send("Error requesting journey - check the fields sent")</span>
-<span class="cstat-no" title="statement not covered" >    return</span>
+  const journey = <span class="cstat-no" title="statement not covered" >await journeyManager</span>
+      .requestJourney(req.body.idPassenger, req.body.modality,
+          req.body.distance, req.body.from, req.body.to);
+<span class="cstat-no" title="statement not covered" >  if (!journey) {</span>
+<span class="cstat-no" title="statement not covered" >    res.status(422).send('Error requesting journey - check the fields sent');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
   }
 <span class="cstat-no" title="statement not covered" >  res.send(result);</span>
 });
 &nbsp;
 journeyRouter.patch('/start/:id', async (req, res) =&gt; {
-&nbsp;
   const journey = await journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 &nbsp;
 journeyRouter.patch('/accept/:id', async (req, res) =&gt; {
-  let returnMessage = ' '
-  const journey = await journeyManager.acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
-  if (journey != null &amp;&amp; journey.status == 'accepted'){
-    returnMessage = 'Accepted'
-  }else <span class="missing-if-branch" title="else path not taken" >E</span>if (journey != null){
-    returnMessage = 'Already taken'
+  let returnMessage = ' ';
+  const journey = await journeyManager
+      .acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
+  if (journey != null &amp;&amp; journey.status == 'accepted') {
+    returnMessage = 'Accepted';
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (journey != null) {
+    returnMessage = 'Already taken';
   }
   returnJourney(res, journey, returnMessage);
 });
 &nbsp;
 journeyRouter.patch('/cancel/:id', async (req, res) =&gt; {
-  
-  let returnMessage = ' '
-  const journey = await journeyManager.cancelJourney(req.params.id)
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (journey != null &amp;&amp; journey.status === 'requested' ){
-<span class="cstat-no" title="statement not covered" >    returnMessage = 'Cancelled'</span>
-  }else <span class="missing-if-branch" title="else path not taken" >E</span>if (journey != null){
-    returnMessage = 'Already taken'
+  let returnMessage = ' ';
+  const journey = await journeyManager.cancelJourney(req.params.id);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (journey != null &amp;&amp; journey.status === 'requested' ) {
+<span class="cstat-no" title="statement not covered" >    returnMessage = 'Cancelled';</span>
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (journey != null) {
+    returnMessage = 'Already taken';
   }
   returnJourney(res, journey, returnMessage);
 });
 &nbsp;
 journeyRouter.patch('/finish/:id', async (req, res) =&gt; {
-  let returnMessage = 'Finish'
+  let returnMessage = 'Finish';
   const journey = await journeyManager.finishJourney(req.params.id);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!journey){
-<span class="cstat-no" title="statement not covered" >    returnMessage = ' '</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!journey) {
+<span class="cstat-no" title="statement not covered" >    returnMessage = ' ';</span>
   }
   returnJourney(res, journey, returnMessage);
 });
@@ -472,7 +469,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-22T17:52:03.075Z
+                at 2022-11-22T18:04:52.031Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -31,7 +31,7 @@ class DistanceCalculator {
     if (distance <= maxDistance) {
       return true;
     }
-    return false
+    return false;
   }
 }
 module.exports = {DistanceCalculator};

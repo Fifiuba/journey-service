@@ -20,14 +20,14 @@ class ConfigurationRepository {
   async setConfiguration(parameters) {
     const alreadySetConfiguration = await ConfigurationModel.findOne({});
     if (alreadySetConfiguration) {
-      return await this.editConfiguration(parameters)
+      return await this.editConfiguration(parameters);
     }
 
     const config = new ConfigurationModel(parameters);
     let error;
     try {
       await config.save();
-      console.log('Default configuration correclty set')
+      console.log('Default configuration correclty set');
     } catch (err) {
       error = err;
       console.log(error);
