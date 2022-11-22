@@ -133,23 +133,15 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
 });
 
 journeyRouter.patch('/cancel/:id', async (req, res) => {
-  const journeyInfo = {
-    status: 'cancelled',
-  };
-
-  const journey = await journeyRepository.getJourneyById(req.params.id);
-
-  if (!journey) {
-    logger.warn('Journey not found');
-    returnJourney(res, journey, ' ');
-  } else if (journey.status === 'requested' ) {
-    // eslint-disable-next-line max-len
-    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-    return returnJourney(res, updatedJourney, 'Cancelled');
-  } else {
-    logger.warn('Journey already started');
-    returnJourney(res, journey, 'Already taken');
+  
+  let returnMessage = ' '
+  const journey = await journeyManager.cancelJourney(req.params.id)
+  if (journey != null && journey.status === 'requested' ){
+    returnMessage = 'Cancelled'
+  }else if (journey != null){
+    returnMessage = 'Already taken'
   }
+  returnJourney(res, journey, returnMessage);
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {

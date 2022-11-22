@@ -21,19 +21,34 @@ class JourneyManager {
           };
         
           let journey = await journeyRepository.getJourneyById(journeyId);
-          console.log(journey);
           if (!journey) {
             logger.warn('Journey not found');
-            return null
           } else if (journey.status !== 'accepted') {
             // eslint-disable-next-line max-len
-            const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
-            return updatedJourney;
+            journey = await journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
           } else {
             logger.warn('Journey already accepted');
             journey.status = 'taken';
-            return journey;
           }
+          return journey
+    }
+
+    async cancelJourney(journeyId){
+        const journeyInfo = {
+            status: 'cancelled',
+          };
+        
+          let journey = await journeyRepository.getJourneyById(journeyId);
+        
+          if (!journey) {
+            logger.warn('Journey not found');
+          } else if (journey.status === 'requested' ) {
+            // eslint-disable-next-line max-len
+            journey = await journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
+          } else {
+            logger.warn('Journey already ' + journey.status);
+          }
+          return journey
     }
 }
 
