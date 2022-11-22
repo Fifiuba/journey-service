@@ -29,7 +29,7 @@ describe('Application tests', () => {
       modality: "standar",
       distance: 5
     }
-    await request(app).post('/journey/info').send(journeyInfo).expect(200).then((response) => {
+    await request(app).get('/journey/info?distance=5&modality=standar').send(journeyInfo).expect(200).then((response) => {
       expect(response.body.price).toBe(1000);
     });
   })

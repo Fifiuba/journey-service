@@ -6,9 +6,6 @@ const logger = require('../utils/logger');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
-const e = require('express');
-
-
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
@@ -41,9 +38,9 @@ function returnConfig(response, config) {
 }
 
 journeyRouter.route('/info')
-    .post(async (req, res) => {
-      const distance = req.body.distance;
-      const modality = new Modality(req.body.modality);
+    .get(async (req, res) => {
+      const distance = req.query.distance;
+      const modality = new Modality(req.query.modality);
       const config = await configurationRepository
           .getConfiguration();
       
