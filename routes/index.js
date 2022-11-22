@@ -116,7 +116,7 @@ journeyRouter.post('/', async (req, res) => {
 
 journeyRouter.patch('/start/:id', async (req, res) => {
 
-  const journey = journeyManager.startJourney(req.params.id);
+  const journey = await journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 

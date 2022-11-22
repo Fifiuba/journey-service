@@ -8,7 +8,7 @@ class JourneyManager {
             status: 'started',
             startOn: Date.now(),
           };
-          const journey = await journeyRepository
+          let journey = await journeyRepository
           .updateJourneyInfo(journeyInfo, journeyId);
           return journey
     }
