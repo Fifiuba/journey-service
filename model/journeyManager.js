@@ -50,6 +50,16 @@ class JourneyManager {
           }
           return journey
     }
+
+    async finishJourney(journeyId){
+        const journeyInfo = {
+            status: 'finish',
+            finishOn: Date.now(),
+          };
+          const journey = await journeyRepository
+              .updateJourneyInfo(journeyInfo, journeyId);
+          return journey
+    }
 }
 
 module.exports = {JourneyManager};

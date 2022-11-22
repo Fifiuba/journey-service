@@ -145,13 +145,12 @@ journeyRouter.patch('/cancel/:id', async (req, res) => {
 });
 
 journeyRouter.patch('/finish/:id', async (req, res) => {
-  const journeyInfo = {
-    status: 'finish',
-    finishOn: Date.now(),
-  };
-  const journey = await journeyRepository
-      .updateJourneyInfo(journeyInfo, req.params.id);
-  returnJourney(res, journey, 'Finish');
+  let returnMessage = 'Finish'
+  const journey = await journeyManager.finishJourney(req.params.id);
+  if (!journey){
+    returnMessage = ' '
+  }
+  returnJourney(res, journey, returnMessage);
 });
 
 
