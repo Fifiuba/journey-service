@@ -1,15 +1,61 @@
-const {JourneyRepository} = require('../model/journeyRepository');
-const journeyRepository = new JourneyRepository();
 const logger = require('../utils/logger');
+const {Modality} = require('../model/modality');
+const {PriceCalculator} = require('../model/priceCalculator');
+const {DistanceCalculator} = require('../model/distanceCalculator');
+
 
 class JourneyManager {
 
+    constructor(journeyRepository, configurationRepository) {
+        this.journeyRepository = journeyRepository;
+        this.configurationRepository = configurationRepository;
+      }
+
+    async requestJourney(passengerId, requestedModality, distance, from, to){
+        const configuration = await this.configurationRepository.getConfiguration();
+        const modality = new Modality(requestedModality);
+        const priceCalculator = new PriceCalculator(configuration.base_price, modality, distance);
+        const price = priceCalculator.calculate();
+
+        let requestedJourney = null
+        try {
+            const dbJourney = new JourneyModel({
+            status: 'requested',
+            idPassenger: passengerId,
+            price: price,
+            from: from,
+            to: to,
+            });
+            logger.debug('Create journey');
+            const result = await dbJourney.save();
+            logger.info('Journey Requested');
+            requestedJourney = result
+        }catch(err){
+            console.log(err);
+        }
+        return requestedJourney
+    }
+
+    async getNearestRequestedJourneys(latRequest, lngRequest){
+        const journeys = await this.journeyRepository.getJourneysRequested('requested');
+        const configuration = await this.configurationRepository.getConfiguration();
+        const distance = +configuration.radial_distance.toString();
+        const distanceCalculator = new DistanceCalculator();
+        const journeysNear = journeys.filter((journey) => {
+            if (distanceCalculator
+                .isShort(journey.from, latRequest, lngRequest, distance)) {
+            return journey;
+            }
+        });
+        return journeysNear
+    }
+    
     async startJourney(journeyId) {
         const journeyInfo = {
             status: 'started',
             startOn: Date.now(),
           };
-          let journey = await journeyRepository
+          let journey = await this.journeyRepository
           .updateJourneyInfo(journeyInfo, journeyId);
           return journey
     }
@@ -20,12 +66,12 @@ class JourneyManager {
             driver: {idDriver: driverId, vip: vip},
           };
         
-          let journey = await journeyRepository.getJourneyById(journeyId);
+          let journey = await this.journeyRepository.getJourneyById(journeyId);
           if (!journey) {
             logger.warn('Journey not found');
           } else if (journey.status !== 'accepted') {
             // eslint-disable-next-line max-len
-            journey = await journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
+            journey = await this.journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
           } else {
             logger.warn('Journey already accepted');
             journey.status = 'taken';
@@ -38,13 +84,13 @@ class JourneyManager {
             status: 'cancelled',
           };
         
-          let journey = await journeyRepository.getJourneyById(journeyId);
+          let journey = await this.journeyRepository.getJourneyById(journeyId);
         
           if (!journey) {
             logger.warn('Journey not found');
           } else if (journey.status === 'requested' ) {
             // eslint-disable-next-line max-len
-            journey = await journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
+            journey = await this.journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
           } else {
             logger.warn('Journey already ' + journey.status);
           }
@@ -56,7 +102,7 @@ class JourneyManager {
             status: 'finish',
             finishOn: Date.now(),
           };
-          const journey = await journeyRepository
+          const journey = await this.journeyRepository
               .updateJourneyInfo(journeyInfo, journeyId);
           return journey
     }
