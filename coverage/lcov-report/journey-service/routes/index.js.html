@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.18% </span>
+                <span class="strong">84.4% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>94/113</span>
+                <span class='fraction'>92/109</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.25% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>13/16</span>
+                <span class='fraction'>15/18</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.18% </span>
+                <span class="strong">84.4% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>94/113</span>
+                <span class='fraction'>92/109</span>
             </div>
         
             
@@ -250,17 +250,8 @@
 <a name='L185'></a><a href='#L185'>185</a>
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a>
-<a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a>
-<a name='L194'></a><a href='#L194'>194</a>
-<a name='L195'></a><a href='#L195'>195</a>
-<a name='L196'></a><a href='#L196'>196</a>
-<a name='L197'></a><a href='#L197'>197</a>
-<a name='L198'></a><a href='#L198'>198</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L188'></a><a href='#L188'>188</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -380,28 +371,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -467,6 +447,7 @@ const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 const {DistanceCalculator} = require('../model/distanceCalculator');
+const e = require('express');
 &nbsp;
 &nbsp;
 &nbsp;
@@ -576,29 +557,18 @@ journeyRouter.post('/', <span class="fstat-no" title="function not covered" >as<
 journeyRouter.patch('/start/:id', async (req, res) =&gt; {
 &nbsp;
   const journey = await journeyManager.startJourney(req.params.id);
-  console.log(journey)
   returnJourney(res, journey, 'Started');
 });
 &nbsp;
 journeyRouter.patch('/accept/:id', async (req, res) =&gt; {
-  const journeyInfo = {
-    status: 'accepted',
-    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
-  };
-&nbsp;
-  const journey = await journeyRepository.getJourneyById(req.params.id);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!journey) {
-<span class="cstat-no" title="statement not covered" >    logger.warn('Journey not found');</span>
-<span class="cstat-no" title="statement not covered" >    returnJourney(res, journey, ' ');</span>
-  } else if (journey.status !== 'accepted') {
-    // eslint-disable-next-line max-len
-    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-    return returnJourney(res, updatedJourney, 'Accepted');
-  } else {
-    logger.warn('Journey already accepted');
-    journey.status = 'taken';
-    returnJourney(res, journey, 'Already taken');
+  let returnMessage = ' '
+  const journey = await journeyManager.acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
+  if (journey != null &amp;&amp; journey.status == 'accepted'){
+    returnMessage = 'Accepted'
+  }else <span class="missing-if-branch" title="else path not taken" >E</span>if (journey != null){
+    returnMessage = 'Already taken'
   }
+  returnJourney(res, journey, returnMessage);
 });
 &nbsp;
 journeyRouter.patch('/cancel/:id', async (req, res) =&gt; {
@@ -661,7 +631,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-22T15:30:20.835Z
+                at 2022-11-22T15:49:14.875Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1584,3 +1584,74 @@
 [Nov-22-2022 12:30:18] [32minfo[39m: 	[32mJourney Already taken[39m
 [Nov-22-2022 12:30:18] [33mwarn[39m: 	[33mConfiguration not set[39m
 [Nov-22-2022 12:30:18] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:44:14] [32minfo[39m: 	[32m200[39m
+[Nov-22-2022 12:44:14] [32minfo[39m: 	[32mModality { type: 'standar' }[39m
+[Nov-22-2022 12:44:14] [32minfo[39m: 	[32m5[39m
+[Nov-22-2022 12:44:14] [32minfo[39m: 	[32mJourney 637cee4e0556106674de64cf[39m
+[Nov-22-2022 12:44:14] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-22-2022 12:44:14] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-22-2022 12:44:19] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-22-2022 12:44:19] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-22-2022 12:44:19] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-22-2022 12:44:24] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-22-2022 12:44:24] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:44:24] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:44:25] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:45:06] [32minfo[39m: 	[32m200[39m
+[Nov-22-2022 12:45:06] [32minfo[39m: 	[32mModality { type: 'standar' }[39m
+[Nov-22-2022 12:45:06] [32minfo[39m: 	[32m5[39m
+[Nov-22-2022 12:45:06] [32minfo[39m: 	[32mJourney 637cee827c49226db4955111[39m
+[Nov-22-2022 12:45:06] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-22-2022 12:45:06] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-22-2022 12:45:07] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-22-2022 12:45:07] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-22-2022 12:45:07] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-22-2022 12:45:07] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-22-2022 12:45:12] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-22-2022 12:45:12] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:45:12] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:45:12] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32m200[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mModality { type: 'standar' }[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32m5[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mJourney 637ceee8f8aac07d3e508136[39m
+[Nov-22-2022 12:46:48] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-22-2022 12:46:48] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-22-2022 12:46:53] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-22-2022 12:46:53] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:46:53] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:46:53] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32m200[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mModality { type: 'standar' }[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32m5[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mJourney 637cef311e78770f30dbcd92[39m
+[Nov-22-2022 12:48:01] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-22-2022 12:48:01] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-22-2022 12:48:06] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-22-2022 12:48:06] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:48:06] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:48:06] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32m200[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mModality { type: 'standar' }[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32m5[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney 637cef78d8ac90295e33e0d5[39m
+[Nov-22-2022 12:49:12] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Cancelled[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-22-2022 12:49:12] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:49:12] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-22-2022 12:49:12] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-22-2022 12:49:12] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-22-2022 12:49:12] [33mwarn[39m: 	[33mConfiguration not set[39m

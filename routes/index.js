@@ -8,6 +8,7 @@ const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
 /* const {Auth} = */require('../model/auth');
 const {DistanceCalculator} = require('../model/distanceCalculator');
+const e = require('express');
 
 
 
@@ -121,24 +122,14 @@ journeyRouter.patch('/start/:id', async (req, res) => {
 });
 
 journeyRouter.patch('/accept/:id', async (req, res) => {
-  const journeyInfo = {
-    status: 'accepted',
-    driver: {idDriver: req.body.idDriver, vip: req.body.vip},
-  };
-
-  const journey = await journeyRepository.getJourneyById(req.params.id);
-  if (!journey) {
-    logger.warn('Journey not found');
-    returnJourney(res, journey, ' ');
-  } else if (journey.status !== 'accepted') {
-    // eslint-disable-next-line max-len
-    const updatedJourney = await journeyRepository.updateJourneyInfo(journeyInfo, req.params.id);
-    return returnJourney(res, updatedJourney, 'Accepted');
-  } else {
-    logger.warn('Journey already accepted');
-    journey.status = 'taken';
-    returnJourney(res, journey, 'Already taken');
+  let returnMessage = ' '
+  const journey = await journeyManager.acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
+  if (journey != null && journey.status == 'accepted'){
+    returnMessage = 'Accepted'
+  }else if (journey != null){
+    returnMessage = 'Already taken'
   }
+  returnJourney(res, journey, returnMessage);
 });
 
 journeyRouter.patch('/cancel/:id', async (req, res) => {
