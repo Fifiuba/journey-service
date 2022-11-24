@@ -1,6 +1,6 @@
 const {PriceCalculator} = require('../model/priceCalculator');
 const {Modality} = require('../model/modality');
-const {InvalidDistanceError} = require('../errors/invalid_distance');
+const {InvalidDistanceError} = require('../errors/invalid_parameters');
 
 
 describe('PriceCalculator', () => {

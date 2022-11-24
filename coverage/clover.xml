@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1669207272631" clover="3.2.0">
-  <project timestamp="1669207272632" name="All files">
+<coverage generated="1669312158996" clover="3.2.0">
+  <project timestamp="1669312158996" name="All files">
     <metrics statements="268" coveredstatements="235" conditionals="56" coveredconditionals="40" methods="46" coveredmethods="41" elements="370" coveredelements="316" complexity="0" loc="268" ncloc="268" packages="7" files="14" classes="14"/>
     <package name="journey-service">
       <metrics statements="17" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -46,7 +46,7 @@
     </package>
     <package name="journey-service.errors">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="invalid_distance.js" path="/home/sol/Documents/journey-service/errors/invalid_distance.js">
+      <file name="invalid_parameters.js" path="/home/sol/Documents/journey-service/errors/invalid_parameters.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>

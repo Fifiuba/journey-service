@@ -55,7 +55,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:errors/invalid_distance.js
+SF:errors/invalid_parameters.js
 FN:2,(anonymous_0)
 FN:10,(anonymous_1)
 FNF:2

@@ -2123,3 +2123,29 @@
 [Nov-23-2022 09:41:09] [32minfo[39m: 	[32mJourney Already taken[39m
 [Nov-23-2022 09:41:09] [33mwarn[39m: 	[33mConfiguration not set[39m
 [Nov-23-2022 09:41:09] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney 637fae7559ab51310accf707[39m
+[Nov-24-2022 14:48:37] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-24-2022 14:48:37] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:48:37] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-24-2022 14:48:37] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:48:37] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-24-2022 14:48:38] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney 637fae9bca65d057da91afbc[39m
+[Nov-24-2022 14:49:15] [33mwarn[39m: 	[33mJourney not found[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mGet Journeys[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Accepted[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Started[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Finish[39m
+[Nov-24-2022 14:49:15] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:49:15] [33mwarn[39m: 	[33mJourney already started[39m
+[Nov-24-2022 14:49:15] [32minfo[39m: 	[32mJourney Already taken[39m
+[Nov-24-2022 14:49:16] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Nov-24-2022 14:49:16] [33mwarn[39m: 	[33mConfiguration not set[39m
