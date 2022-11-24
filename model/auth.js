@@ -1,4 +1,4 @@
-const {InvalidTokenError} = require('../errors/invalid_distance');
+const {InvalidTokenError} = require('../errors/invalid_parameters');
 
 class Auth {
   validate(req) {

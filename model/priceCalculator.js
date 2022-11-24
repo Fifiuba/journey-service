@@ -1,4 +1,4 @@
-const {InvalidDistanceError} = require('../errors/invalid_distance');
+const {InvalidDistanceError} = require('../errors/invalid_parameters');
 
 class PriceCalculator {
   constructor(basePrice, modality, distance) {
