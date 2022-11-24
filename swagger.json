@@ -248,16 +248,25 @@
                 }
             },
             "/journey/info": {
-                "post": {
+                "get": {
                     "tags" : ["Journeys"],
                     "summary": "Request journey's price",
                     "parameters": [
                         {
-                            "in": "body",
-                            "name": "body",
+                            "in": "query",
+                            "name": "distance",
                             "schema": {
-                                "$ref": "#/definitions/RequestPrice"
-                            }
+                                "type": "int"
+                            },
+                            "description" : "Specifies the total distance to be travelled"
+                        },
+                        {
+                            "in": "query",
+                            "name": "modality",
+                            "schema": {
+                                "type": "string"
+                            },
+                            "description" : "Specifies the modality of the journey (vip or standar)"
                         }
                     ],
                     "responses":{

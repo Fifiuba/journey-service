@@ -2,7 +2,7 @@ const logger = require('../utils/logger');
 const {Modality} = require('../model/modality');
 const {PriceCalculator} = require('../model/priceCalculator');
 const {DistanceCalculator} = require('../model/distanceCalculator');
-
+const {JourneyModel} = require('../database/journeySchema');
 
 class JourneyManager {
   constructor(journeyRepository, configurationRepository) {

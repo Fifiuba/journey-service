@@ -67,7 +67,7 @@ journeyRouter.post('/', async (req, res) => {
     res.status(422).send('Error requesting journey - check the fields sent');
     return;
   }
-  res.send(result);
+  res.send(journey);
 });
 
 journeyRouter.patch('/start/:id', async (req, res) => {
