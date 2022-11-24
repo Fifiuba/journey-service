@@ -3,11 +3,12 @@ const {JourneyManager} = require('../model/journeyManager');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
 const logger = require('../utils/logger');
-/* const {Auth} = */require('../model/auth');
+const {Auth} = require('../model/auth');
 
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
+const auth = new Auth()
 const journeyManager = new JourneyManager(journeyRepository,
     configurationRepository);
 
@@ -36,7 +37,16 @@ function returnConfig(response, config) {
   response.send(configurationSettings);
 }
 
-journeyRouter.route('/info').get(async (req, res) => {
+function authenticateToken(req, res, next) {
+  try {
+    auth.validate(req);
+    return next();
+  }catch(error){
+    return res.sendStatus(error.code).send(error.name);
+  }
+}
+
+journeyRouter.get('/info', authenticateToken, async (req, res) => {
   try {
     const journeyPrice = await journeyManager
         .getPriceForJourney(req.query.distance, req.query.modality);
@@ -129,4 +139,4 @@ journeyRouter.route('/:id').get(async (req, res) => {
   returnJourney(res, journey, req.params.id);
 });
 
-module.exports = {journeyRouter};
+module.exports = {journeyRouter, auth};

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.65% </span>
+                <span class="strong">87.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>71/81</span>
+                <span class='fraction'>75/86</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/13</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.65% </span>
+                <span class="strong">87.2% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>71/81</span>
+                <span class='fraction'>75/86</span>
             </div>
         
             
@@ -195,13 +195,24 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -231,6 +242,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -332,11 +352,12 @@ const {JourneyManager} = require('../model/journeyManager');
 const {JourneyRepository} = require('../model/journeyRepository');
 const {ConfigurationRepository} = require('../model/configurationRepository');
 const logger = require('../utils/logger');
-/* const {Auth} = */require('../model/auth');
+const {Auth} = require('../model/auth');
 &nbsp;
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
+const auth = new Auth()
 const journeyManager = new JourneyManager(journeyRepository,
     configurationRepository);
 &nbsp;
@@ -365,7 +386,16 @@ function returnConfig(response, config) {
   response.send(configurationSettings);
 }
 &nbsp;
-journeyRouter.route('/info').get(async (req, res) =&gt; {
+function authenticateToken(req, res, next) {
+  try {
+    auth.validate(req);
+    return next();
+  }catch(error){
+<span class="cstat-no" title="statement not covered" >    return res.sendStatus(error.code).send(error.name);</span>
+  }
+}
+&nbsp;
+journeyRouter.get('/info', authenticateToken, async (req, res) =&gt; {
   try {
     const journeyPrice = await journeyManager
         .getPriceForJourney(req.query.distance, req.query.modality);
@@ -458,7 +488,7 @@ journeyRouter.route('/:id').get(async (req, res) =&gt; {
   returnJourney(res, journey, req.params.id);
 });
 &nbsp;
-module.exports = {journeyRouter};
+module.exports = {journeyRouter, auth};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -466,7 +496,7 @@ module.exports = {journeyRouter};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-24T17:49:18.954Z
+                at 2022-11-24T18:30:43.259Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

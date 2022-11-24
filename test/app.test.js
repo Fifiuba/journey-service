@@ -7,11 +7,14 @@ const {JourneyModel} = require('../database/journeySchema');
 const {ConfigurationModel} = require('../database/configurationSchema');
 const buenosAiresJourney = require('./testFiles/buenosAiresJourney.json');
 const pilarJourney = require('./testFiles/pilarJourney.json');
-const configuration = require('./testFiles/configuration.json')
+const configuration = require('./testFiles/configuration.json');
+const auth = require('../routes/index').auth
 
 describe('Application tests', () => {
   beforeAll(async () => {
     await connectDB();
+    const validate = jest.spyOn(auth, 'validate');
+    validate.mockImplementation(() => () => ({ verified: 'true' }));
   });
 
   afterAll(async () => {
@@ -25,9 +28,10 @@ describe('Application tests', () => {
   it ('GET info for a journey returns the price', async () => {
     const config = new ConfigurationModel(configuration)
     await config.save()
-    await request(app).get('/journey/info?distance=5&modality=standar').expect(200).then((response) => {
-      expect(response.body.price).toBe(1000);
-    });
+    const response = await request(app).get('/journey/info?distance=5&modality=standar').set('Authorization', 'Bearer faketoken')
+    expect(response.statusCode).toBe(200);
+    expect(response.body.price).toBe(1000);
+
   })
 
   it('GET journey by id of an existing journey', async () => {
