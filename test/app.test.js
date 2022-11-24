@@ -28,9 +28,10 @@ describe('Application tests', () => {
   it ('GET info for a journey returns the price', async () => {
     const config = new ConfigurationModel(configuration)
     await config.save()
-    const response = await request(app).get('/journey/info?distance=5&modality=standar').set('Authorization', 'Bearer faketoken')
-    expect(response.statusCode).toBe(200);
-    expect(response.body.price).toBe(1000);
+    const response = await request(app).get('/journey/info?distance=5&modality=standar').expect(200).then((response) => {
+      expect(response.body.price).toBe(1000);
+
+    })
 
   })
 

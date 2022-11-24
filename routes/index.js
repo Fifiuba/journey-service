@@ -8,9 +8,10 @@ const {Auth} = require('../model/auth');
 const journeyRouter = express.Router();
 const journeyRepository = new JourneyRepository();
 const configurationRepository = new ConfigurationRepository();
-const auth = new Auth()
+const auth = new Auth();
 const journeyManager = new JourneyManager(journeyRepository,
     configurationRepository);
+
 
 function returnJourney(response, journey, message) {
   if (!journey) {
@@ -44,6 +45,7 @@ function authenticateToken(req, res, next) {
   }catch(error){
     return res.sendStatus(error.code).send(error.name);
   }
+  next()
 }
 
 journeyRouter.get('/info', authenticateToken, async (req, res) => {
@@ -56,7 +58,7 @@ journeyRouter.get('/info', authenticateToken, async (req, res) => {
   }
 });
 
-journeyRouter.get('/requested', async (req, res) => {
+journeyRouter.get('/requested', authenticateToken, async (req, res) => {
   if (JSON.stringify(req.query) === JSON.stringify({})) {
     res.status(400).send('Specify location parameters');
     return;
@@ -69,7 +71,7 @@ journeyRouter.get('/requested', async (req, res) => {
   res.send(journeysNear);
 });
 
-journeyRouter.post('/', async (req, res) => {
+journeyRouter.post('/', authenticateToken, async (req, res) => {
   const journey = await journeyManager
       .requestJourney(req.body.idPassenger, req.body.modality,
           req.body.distance, req.body.from, req.body.to);
@@ -80,12 +82,12 @@ journeyRouter.post('/', async (req, res) => {
   res.send(journey);
 });
 
-journeyRouter.patch('/start/:id', async (req, res) => {
+journeyRouter.patch('/start/:id', authenticateToken, async (req, res) => {
   const journey = await journeyManager.startJourney(req.params.id);
   returnJourney(res, journey, 'Started');
 });
 
-journeyRouter.patch('/accept/:id', async (req, res) => {
+journeyRouter.patch('/accept/:id', authenticateToken, async (req, res) => {
   let returnMessage = ' ';
   const journey = await journeyManager
       .acceptJourney(req.params.id, req.body.idDriver, req.body.vip);
@@ -97,7 +99,7 @@ journeyRouter.patch('/accept/:id', async (req, res) => {
   returnJourney(res, journey, returnMessage);
 });
 
-journeyRouter.patch('/cancel/:id', async (req, res) => {
+journeyRouter.patch('/cancel/:id', authenticateToken, async (req, res) => {
   let returnMessage = ' ';
   const journey = await journeyManager.cancelJourney(req.params.id);
   if (journey != null && journey.status === 'requested' ) {
@@ -108,7 +110,7 @@ journeyRouter.patch('/cancel/:id', async (req, res) => {
   returnJourney(res, journey, returnMessage);
 });
 
-journeyRouter.patch('/finish/:id', async (req, res) => {
+journeyRouter.patch('/finish/:id', authenticateToken, async (req, res) => {
   let returnMessage = 'Finish';
   const journey = await journeyManager.finishJourney(req.params.id);
   if (!journey) {
@@ -118,23 +120,23 @@ journeyRouter.patch('/finish/:id', async (req, res) => {
 });
 
 
-journeyRouter.route('/').get(async (req, res) => {
+journeyRouter.route('/').get(authenticateToken, async (req, res) => {
   const journeys = await journeyRepository.getJourneys();
   logger.info('Get Journeys');
   res.send(journeys);
 });
 
-journeyRouter.route('/config').get(async (req, res) => {
+journeyRouter.route('/config').get(authenticateToken, async (req, res) => {
   const config = await configurationRepository.getConfiguration(req.body);
   returnConfig(res, config);
 });
 
-journeyRouter.route('/config').patch(async (req, res) => {
+journeyRouter.route('/config').patch(authenticateToken, async (req, res) => {
   const config = await configurationRepository.editConfiguration(req.body);
   returnConfig(res, config);
 });
 
-journeyRouter.route('/:id').get(async (req, res) => {
+journeyRouter.route('/:id').get(authenticateToken, async (req, res) => {
   const journey = await journeyRepository.getJourneyById(req.params.id);
   returnJourney(res, journey, req.params.id);
 });
