@@ -39,10 +39,10 @@ function returnConfig(response, config) {
 }
 
 function authenticateToken(req, res, next) {
- try {
+  try {
     auth.validate(req.headers);
     return next();
-  }catch(error){
+  } catch (error) {
     return res.sendStatus(error.code).send(error.name);
   }
 }
