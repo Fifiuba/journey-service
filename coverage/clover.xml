@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1669314933615" clover="3.2.0">
-  <project timestamp="1669314933615" name="All files">
-    <metrics statements="273" coveredstatements="239" conditionals="56" coveredconditionals="40" methods="47" coveredmethods="42" elements="376" coveredelements="321" complexity="0" loc="273" ncloc="273" packages="7" files="14" classes="14"/>
+<coverage generated="1669398714759" clover="3.2.0">
+  <project timestamp="1669398714759" name="All files">
+    <metrics statements="276" coveredstatements="242" conditionals="58" coveredconditionals="42" methods="47" coveredmethods="42" elements="381" coveredelements="326" complexity="0" loc="276" ncloc="276" packages="7" files="14" classes="14"/>
     <package name="journey-service">
       <metrics statements="17" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="/home/sol/Documents/journey-service/app.js">
@@ -51,24 +51,27 @@
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
       </file>
     </package>
     <package name="journey-service.model">
-      <metrics statements="129" coveredstatements="107" conditionals="30" coveredconditionals="23" methods="26" coveredmethods="23"/>
+      <metrics statements="132" coveredstatements="110" conditionals="32" coveredconditionals="25" methods="26" coveredmethods="23"/>
       <file name="auth.js" path="/home/sol/Documents/journey-service/model/auth.js">
-        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="9" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
       </file>
       <file name="configurationRepository.js" path="/home/sol/Documents/journey-service/model/configurationRepository.js">
         <metrics statements="17" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>

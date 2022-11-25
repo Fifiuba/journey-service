@@ -39,13 +39,12 @@ function returnConfig(response, config) {
 }
 
 function authenticateToken(req, res, next) {
-  try {
-    auth.validate(req);
+ try {
+    auth.validate(req.headers);
     return next();
   }catch(error){
     return res.sendStatus(error.code).send(error.name);
   }
-  next()
 }
 
 journeyRouter.get('/info', authenticateToken, async (req, res) => {
