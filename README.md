@@ -1,76 +1,140 @@
 # journey-service
 ---
-[![GitHub Workflow Status](https://github.com/Fifiuba/journey-service/actions/workflows/node.js.yml/badge.svg?event=push)](https://github.com/Fifiuba/journey-service/commits/develop)
+[![main CI](https://github.com/Fifiuba/journey-service/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/Fifiuba/journey-service/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/Fifiuba/journey-service/branch/develop/graph/badge.svg?token=dJ20t7hz7j)](https://app.codecov.io/gh/Fifiuba/journey-service/tree/develop)
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://journey-service-solfonte.cloud.okteto.net/)
 
 
 ### App
-Se trata del servicio de viajes, donde se puede crear, aceptar, rechazar, consultar un viaje.
 
+This is the journey service used to handle all the request for the journeys. Some of the request are : create, update, read a journey
 
-### Tecnologias
+### Technologies
 
-#### Lenguajes y librerias
-* Version de npm (version 6.14.12)
+#### Language & Libraries
+* npm (version 6.14.12)
+* Docker version 20.10.17
+* Docker compose version 2.6.0
+* Libraries:
+    * Express
+    * cors
+    * dotenv
+    * swagger-ui-express
 
-#### Base de datos
+#### Data Base
 
 * Mongodb 
-* Modelo
+* Mongoose
 
-```javascrip 
-id_user
-car_info : {type: id: id_driver: car_model: license_plate:}
-trip_status (requested, cancelled,started, finished)
-startTime
-endTime
-price
-route : {to: from:}
-```
+### Developers
+|Name                | Email                |
+|--------------------|----------------------|
+| Agustina Segura    | asegura@fi.uba.ar    |
+| Alejo villores     | avillores@fi.uba.ar  |
+| Maria Sol Fontela  | msfontenla@fi.uba.ar |
 
-#### Responsables
+### Development
 
-* Sol Fontenla 
-* Agustina Segura
-* Alejo Villores
-* Celeste Diturio
-* Franco 
+#### Development Environment
 
-### Desarrollo
-
-#### Ambiente de desarrollo
-
-* Instrucciones para instalar herramientas
+* Instructions for installing tools
     * npm: [install](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
     * docker: [install](https://docs.docker.com/engine/install/)
     * docker-compose: [install](https://docs.docker.com/compose/install/)
 
-* Instrucciones para configurar el ambiente de desarrollo
-    * Se levanta con sh.startJourney.sh
-    * se debe crear un .env. Utilizar el .env.example como guia
+* Intructions to get the service running in a docker container
+    * Install all the tools use in the project
+    * You will need to add a .env file. Use .env.example as guide
+    * To build and run the user service execute the following commands
+        ```bash
+        docker compose build
+        docker compose up
+        ```
+    This will start the app's container
+    * After stopping the execution, you must run 
+        ```bash 
+        docker compose down -v
+        ```
 
-#### Estructura del proyecto 
+    * You can also use startJourney.sh to run the journey service and to stop it use stopJourney.sh
+    
 
-* El projecto posee las siguientes carpetas:
-    * test: contiene los test del servicio 
-    * routes: posee los distintos endpoints
-    * model: posee el modelo del viaje, un repositorio y logicas de la entidad viajes
-    * errors: contiene disntinas excepciones
+#### Project Structure
 
+* 
+```
+│
+├─── app.js
+├─── README.md
+├─── server.js
+├─── startJourney.sh
+├─── stopJourney.sh 
+├─── swagger.json
+├─── .github 
+├─── .coverage
+├─── database 
+│       configurationSchema.js
+│       database.js 
+│       journeySchema.js
+│
+├─── errors 
+│       invalid_parameters.js
+├─── model 
+│       auth.sj
+│       configurationRepository.js
+│       distanceCalculator.js
+│       journyeManager.js
+│       journeyRepository.js
+│       modality.js
+│       proceCalculator.js
+│
+├───routes
+│       index.js
+│
+├───test
+│   │   app.test.js
+│   │   auth.test.js
+│   │   configurationRepository.test.js
+│   │   journeyManager.test.js
+│   │   journeyRespository.test.js
+│   │   price_calculator.test.js
+│   │
+│   ├───testDatabase
+│   │       testDatabase.js
+│   │
+│   └───testFiles
+│           anotherJourney.json
+│           buenosAiresJourney.json
+│           configuration.json
+│           journey.json
+│           pilarJourney.json
+│
+└───utils
+        logger.js
+```
     ![](https://www.plantuml.com/plantuml/png/ROz12W8n34NtFKKlq2iC0xeI1F46eOrGo3IG9iWWtjr1SR2jNVx_UB-PguAeBUHS9AZLdzYauEhTmps_sKLon0DGD09b-QsEUHEKlkraLpP5QPHdJa1Prq_MSY7nlOHfcFrBxQQ-dlPJl7UToWV2csx8-FqH7IUQxFrcBCaMUW40)
 
-* Arquitectura: 
 
 ### Testing 
 
-* Pasos para correr los test
+* Steps to run the test 
     ```bash
     npm test 
     ```
 
-* Pasos para correr app localmente 
+### Run the APP
+* Steps to run app locally 
     ```
     npm install
     npm start
     ``` 
+
+## Deployment
+
+To deploy the app:  
+1. Connect [Okteto](https://www.okteto.com/) to your github account.
+2. Go to the project folder
+3. Run 
+```
+npm run deploy`
+```
