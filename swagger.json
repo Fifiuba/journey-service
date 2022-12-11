@@ -328,7 +328,10 @@
                         "in": "body",
                         "name": "body",
                         "required":false,
-                        "type": "string"
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/config"
+                        }
                         }
                     ],
                     "tags": ["Journeys"],

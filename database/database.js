@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-// function sleep(n) {
-//   return new Promise((resolve) => setTimeout(resolve, n));
-// }
-
 
 class JourneyDatabase {
   async connectDB() {

@@ -48,7 +48,7 @@ describe('Journey repository test', () => {
 
     const results = await journeyRepository.getJourneys();
     const expected = [results[0]._id.toString(), results[1]._id.toString()];
-
+    
     expect(results.length).toBe(2);
     expect([savedJourney._id.toString(), anotherSavedJourney._id.toString()]).toEqual(expect.arrayContaining(expected));
   });
@@ -64,7 +64,7 @@ describe('Journey repository test', () => {
       finishOn: startDate,
     };
     const result = await journeyRepository.updateJourneyInfo(journeyInfo,savedJourney._id);
-
+    console.log(result)
     expect(result._id.toString()).toBe(savedJourney._id.toString());
     expect(result.status).toBe('start');
     expect(result.finishOn.toString()).toBe(new Date(startDate).toString());

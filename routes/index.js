@@ -43,7 +43,7 @@ function authenticateToken(req, res, next) {
     auth.validate(req.headers);
     return next();
   } catch (error) {
-    return res.sendStatus(error.code).send(error.name);
+    return res.status(error.code).send(error.name);
   }
 }
 
