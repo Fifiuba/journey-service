@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1670775029714" clover="3.2.0">
-  <project timestamp="1670775029715" name="All files">
+<coverage generated="1670872957552" clover="3.2.0">
+  <project timestamp="1670872957552" name="All files">
     <metrics statements="276" coveredstatements="242" conditionals="58" coveredconditionals="42" methods="47" coveredmethods="42" elements="381" coveredelements="326" complexity="0" loc="276" ncloc="276" packages="7" files="14" classes="14"/>
     <package name="journey-service">
       <metrics statements="17" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
