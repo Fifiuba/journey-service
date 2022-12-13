@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 class JourneyDatabase {
   async connectDB() {
     try {
-      await mongoose.connect('mongodb://root:root@mongodb:27017', {
+      await mongoose.connect('mongodb://'+process.env.ME_CONFIG_MONGODB_ADMINUSERNAME+':'
+      +process.env.ME_CONFIG_MONGODB_ADMINPASSWORD+'@'+process.env.ME_CONFIG_MONGODB_SERVER+':'+process.env.ME_CONFIG_MONGODB_PORT, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         auth: {
