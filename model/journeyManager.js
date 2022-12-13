@@ -80,12 +80,15 @@ class JourneyManager {
     let journey = await this.journeyRepository.getJourneyById(journeyId);
     if (!journey) {
       logger.warn('Journey not found');
-    } else if (journey.status !== 'accepted') {
+    } else if (journey.status == 'requested') {
       // eslint-disable-next-line max-len
       journey = await this.journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
     } else {
-      logger.warn('Journey already accepted');
-      journey.status = 'taken';
+      if (journey.status == 'accepted'){
+        logger.warn('Journey already accepted');
+      }else{
+        logger.warn('Journey is not longer requested');
+      }
     }
     return journey;
   }

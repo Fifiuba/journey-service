@@ -2807,3 +2807,17 @@
 [Dec-12-2022 16:22:28] [32minfo[39m: 	[32mJourney Already taken[39m
 [Dec-12-2022 16:22:28] [33mwarn[39m: 	[33mConfiguration not set[39m
 [Dec-12-2022 16:22:29] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-12-2022 21:47:03] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 08:47:00] [32minfo[39m: 	[32mJourney 6398663457507682d976d6c9[39m
+[Dec-13-2022 08:47:00] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mConfiguration not set[39m
