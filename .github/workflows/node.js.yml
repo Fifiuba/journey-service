@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "!fix**" ]
   pull_request:
     branches: [ "develop"]
 
@@ -32,6 +32,8 @@ jobs:
     - run: npm run build --if-present
     
     - name: Build
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > .env
       run: npm test
 
     #----------------------------------------------
