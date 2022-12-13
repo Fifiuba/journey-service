@@ -84,12 +84,14 @@ class JourneyManager {
       // eslint-disable-next-line max-len
       journey = await this.journeyRepository.updateJourneyInfo(journeyInfo, journeyId);
     } else {
-      if (journey.status == 'accepted'){
+      if (journey.status == 'accepted') {
+        journey.status = 'taken';
         logger.warn('Journey already accepted');
-      }else{
+      } else {
         logger.warn('Journey is not longer requested');
       }
     }
+    console.log(journey);
     return journey;
   }
 

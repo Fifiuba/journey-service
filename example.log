@@ -2821,3 +2821,93 @@
 [Dec-13-2022 08:47:01] [32minfo[39m: 	[32mJourney Already taken[39m
 [Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mConfiguration not set[39m
 [Dec-13-2022 08:47:01] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney 6398f95563516aebc64eb034[39m
+[Dec-13-2022 19:14:46] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:14:46] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:14:46] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:14:47] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:14:47] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:14:47] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:14:47] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:15:28] [32minfo[39m: 	[32mJourney 6398f98057e21760b5fc8a1e[39m
+[Dec-13-2022 19:15:28] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:15:28] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:15:29] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:15:29] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:15:29] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:15:29] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:15:29] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney 6398f9aeb04de3989365c132[39m
+[Dec-13-2022 19:16:14] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:16:14] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:16:14] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:16:15] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:16:15] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:16:15] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:16:15] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney 6398f9e46c8fdbb502efc331[39m
+[Dec-13-2022 19:17:08] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:17:08] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:17:09] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:17:09] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:17:09] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:17:09] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:18:20] [32minfo[39m: 	[32mJourney 6398fa2cd6086ab3bd380096[39m
+[Dec-13-2022 19:18:20] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:18:20] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:18:20] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:18:20] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:18:21] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:18:21] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:18:21] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:18:21] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:18:21] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:18:21] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:18:21] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:18:21] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:19:51] [32minfo[39m: 	[32mJourney 6398fa876e90ba8742faa013[39m
+[Dec-13-2022 19:19:51] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:19:51] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:19:51] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:19:51] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:19:52] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:19:52] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:19:52] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:19:52] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:19:52] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:19:52] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:19:52] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:19:52] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:20:25] [32minfo[39m: 	[32mJourney 6398faa967291842f2491533[39m
+[Dec-13-2022 19:20:25] [33mwarn[39m: 	[33mJourney not found[39m
+[Dec-13-2022 19:20:25] [32minfo[39m: 	[32mGet Journeys[39m
+[Dec-13-2022 19:20:25] [32minfo[39m: 	[32mJourney Accepted[39m
+[Dec-13-2022 19:20:25] [32minfo[39m: 	[32mJourney Started[39m
+[Dec-13-2022 19:20:26] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:20:26] [32minfo[39m: 	[32mJourney Finish[39m
+[Dec-13-2022 19:20:26] [33mwarn[39m: 	[33mJourney already accepted[39m
+[Dec-13-2022 19:20:26] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:20:26] [33mwarn[39m: 	[33mJourney already started[39m
+[Dec-13-2022 19:20:26] [32minfo[39m: 	[32mJourney Already taken[39m
+[Dec-13-2022 19:20:26] [33mwarn[39m: 	[33mConfiguration not set[39m
+[Dec-13-2022 19:20:26] [33mwarn[39m: 	[33mConfiguration not set[39m
