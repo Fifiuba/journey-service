@@ -34,7 +34,7 @@ jobs:
     - name: Build
       run: |
         echo "${{ secrets.ENV_FILE }}" > .env
-      run: npm test
+        npm test
 
     #----------------------------------------------
     #              upload coverage reports
