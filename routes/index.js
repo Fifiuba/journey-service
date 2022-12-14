@@ -58,7 +58,7 @@ journeyRouter.get('/info', authenticateToken, async (req, res) => {
 });
 
 journeyRouter.get('/requested', authenticateToken, async (req, res) => {
-  if (JSON.stringify(req.query) === JSON.stringify({})) {
+  if (JSON.stringify(req.query) === JSON.stringify({}) || req.query.location == undefined) {
     res.status(400).send('Specify location parameters');
     return;
   }

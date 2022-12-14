@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">4.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>1/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">4.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>1/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,75 +102,75 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class DistanceCalculator {
-  calculate(lat1, lon1, lat2, lon2, unit) {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if ((lat1 == lat2) &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >lon1 == lon2)</span>) {
+<span class="fstat-no" title="function not covered" >  ca</span>lculate(lat1, lon1, lat2, lon2, unit) {
+<span class="cstat-no" title="statement not covered" >    if ((lat1 == lat2) &amp;&amp; (lon1 == lon2)) {</span>
 <span class="cstat-no" title="statement not covered" >      return 0;</span>
     } else {
-      const radlat1 = Math.PI * lat1/180;
-      const radlat2 = Math.PI * lat2/180;
-      const theta = lon1-lon2;
-      const radtheta = Math.PI * theta/180;
+      const radlat1 = <span class="cstat-no" title="statement not covered" >Math.PI * lat1/180;</span>
+      const radlat2 = <span class="cstat-no" title="statement not covered" >Math.PI * lat2/180;</span>
+      const theta = <span class="cstat-no" title="statement not covered" >lon1-lon2;</span>
+      const radtheta = <span class="cstat-no" title="statement not covered" >Math.PI * theta/180;</span>
 &nbsp;
       // eslint-disable-next-line max-len
-      let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (dist &gt; 1) {
+      let dist = <span class="cstat-no" title="statement not covered" >Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);</span>
+<span class="cstat-no" title="statement not covered" >      if (dist &gt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >        dist = 1;</span>
       }
-      dist = Math.acos(dist);
-      dist = dist * 180/Math.PI;
-      dist = dist * 60 * 1.1515;
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (unit=='K') {
-        dist = dist * 1.609344;
+<span class="cstat-no" title="statement not covered" >      dist = Math.acos(dist);</span>
+<span class="cstat-no" title="statement not covered" >      dist = dist * 180/Math.PI;</span>
+<span class="cstat-no" title="statement not covered" >      dist = dist * 60 * 1.1515;</span>
+<span class="cstat-no" title="statement not covered" >      if (unit=='K') {</span>
+<span class="cstat-no" title="statement not covered" >        dist = dist * 1.609344;</span>
       }
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (unit=='N') {
+<span class="cstat-no" title="statement not covered" >      if (unit=='N') {</span>
 <span class="cstat-no" title="statement not covered" >        dist = dist * 0.8684;</span>
       }
-      return dist;
+<span class="cstat-no" title="statement not covered" >      return dist;</span>
     }
   }
 &nbsp;
-  isShort(from, lat1, lng1, maxDistance) {
-    const distance = this.calculate(lat1, lng1, from[0], from[1], 'K');
-    if (distance &lt;= maxDistance) {
-      return true;
+<span class="fstat-no" title="function not covered" >  is</span>Short(from, lat1, lng1, maxDistance) {
+    const distance = <span class="cstat-no" title="statement not covered" >this.calculate(lat1, lng1, from[0], from[1], 'K');</span>
+<span class="cstat-no" title="statement not covered" >    if (distance &lt;= maxDistance) {</span>
+<span class="cstat-no" title="statement not covered" >      return true;</span>
     }
-    return false;
+<span class="cstat-no" title="statement not covered" >    return false;</span>
   }
 }
 module.exports = {DistanceCalculator};
@@ -181,7 +181,7 @@ module.exports = {DistanceCalculator};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-13T22:44:12.820Z
+                at 2022-12-14T01:22:06.038Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
