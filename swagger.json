@@ -1,0 +1,502 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Journey Service API",
+        "description": "",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "journey-service-solfonte.cloud.okteto.net",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Journeys",
+            "description": "Api for journeys"
+        }
+    ],
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/journey/": {
+            "post": {
+                "tags" : ["Journeys"],
+                "summary": "Create a journey",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/journeyBase"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200" : {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/journey"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Journeys"],
+                "summary": "Get journeys",
+                "description":"Return a list of the journeys",
+                "responses": {
+                    "200": {
+                        "description" : "Return a list of the journeys",
+                        "schema": {
+                            "$ref": "#/definitions/journeys"
+                            }
+                        }
+                    }
+                }
+
+            },
+            "/journey/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "get":{
+                    "tags": ["Journeys"],
+                    "summary": "Get journey by ID",
+                    "description": "Returns the journey's info ",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/finish/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Finish journey",
+                    "description": "Returns the joruney finish with the date updated",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/accept/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Accept journey",
+                    "description": "Returns the journey accepted",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "schema": {
+                                "$ref": "#/definitions/StartJourney"
+                            }
+                        }
+                    ],
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },  "/journey/cancel/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Cancell journey",
+                    "description": "Returns the journey with status cancel",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/start/{id}": {
+                "parameters": [
+                    {
+                    "in": "path",
+                    "name": "id",
+                    "required":true,
+                    "type": "string"
+                    }
+                ],
+                "patch":{
+                    "tags": ["Journeys"],
+                    "summary": "Start journey",
+                    "description": "Returns the journey finish with the date updated",
+                    "responses":{
+                        "200": {
+                            "description": "A journey",
+                            "schema": {
+                                "$ref": "#/definitions/journey"
+                            }
+                        },
+                        "404": {
+                            "description": "journey not found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/info": {
+                "get": {
+                    "tags" : ["Journeys"],
+                    "summary": "Request journey's price",
+                    "parameters": [
+                        {
+                            "in": "query",
+                            "name": "distance",
+                            "schema": {
+                                "type": "int"
+                            },
+                            "description" : "Specifies the total distance to be travelled"
+                        },
+                        {
+                            "in": "query",
+                            "name": "modality",
+                            "schema": {
+                                "type": "string"
+                            },
+                            "description" : "Specifies the modality of the journey (vip or standar)"
+                        }
+                    ],
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/price"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/requested": {
+                "get": {
+                    "tags" : ["Journeys"],
+                    "summary": "Gets journeys near by a point",
+                    "parameters": [
+                        {
+                            "in": "query",
+                            "name": "location",
+                            "schema": {
+                                "type": "List"
+                            },
+                            "description" : "Specifies the latitude and logitud of the current location of the driver, as a list separated by commas"
+                        }
+                    ],
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/journeys"
+                            }
+                        }
+                    }
+                }
+            },
+            "/journey/config": {
+                "get": {
+                    "tags" : ["Journeys"],
+                    "summary": "Gets journey configuration parameters",
+                    "responses":{
+                        "200" : {
+                            "description": "Ok",
+                            "schema": {
+                                "$ref": "#/definitions/config"
+                            }
+                        },
+                        "404": {
+                            "description": "No configuration setting was found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "patch":{
+                    "parameters": [
+                        {
+                        "in": "body",
+                        "name": "body",
+                        "required":false,
+                        "type": "object",
+                        "schema": {
+                            "$ref": "#/definitions/config"
+                        }
+                        }
+                    ],
+                    "tags": ["Journeys"],
+                    "summary": "Edit journey configuration parameters",
+                    "description": "Edits the specified configuration fields in the request body and returns them",
+                    "responses":{
+                        "200": {
+                            "description": "The final configuration schema",
+                            "schema": {
+                                "$ref": "#/definitions/config"
+                            }
+                        },
+                        "404": {
+                            "description": "No configuration setting was found",
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    "definitions": {
+        "StartJourney": {
+            "type": "object",
+            "properties": {
+                "idDriver": {
+                    "type": "integer"
+                },
+                "vip": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "price": {
+            "type": "object",
+            "properties": {
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "location": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number"
+                },
+                "lng": {
+                    "type": "number"
+                }
+            }
+        },    
+        "RequestPrice": {
+            "type": "object",
+            "properties": {
+                "modality": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "integer"
+                }
+            }
+        },
+        "journeyBase": {
+            "type": "object",
+            "properties": {
+                "modality": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "integer"
+                },
+                "idPassenger": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "to": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+
+        },
+        "driver" : {
+            "type": "object",
+            "properties": {
+                "idDriver": {
+                    "type": "Number"
+                }, 
+                "vip": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "journey": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "idPassenger": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "startOn": {
+                    "type" : "string"
+                },
+                "finishOn" : {
+                    "type" : "string"
+                },
+                 "driver" : {
+                    "type": "object"
+                
+                },
+                "from": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "additionalProperties": {
+                            "$ref": "#/definitions/driver"
+                        }
+                    }
+                },
+                "to": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "journeys" : {
+            "properties" : {
+                "journeys": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/journey"
+                    }
+                }
+            }
+        },
+        "config": {
+            "type": "object",
+            "properties": {
+                "base_price": {
+                    "type": "int"
+                },
+                "radial_distance": {
+                    "type": "Decimal128"
+                }
+            }
+        }
+
+    }
+}

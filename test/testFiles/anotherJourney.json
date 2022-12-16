@@ -1,0 +1,11 @@
+{
+    "status": "finished",
+    "idPassenger": 10,
+    "driver": {
+    "idDriver": 1,
+    "vip": false
+    },
+    "price": 20,
+    "from": [-10, 0],
+    "to": [29.121234, 13.131313]
+}
